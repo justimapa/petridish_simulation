@@ -1,4 +1,0 @@
-/home/mapanao/Desktop/myfiles/Programmation/cpp/Projet/partie1/build/CMakeFiles/edit_cache.dir
-/home/mapanao/Desktop/myfiles/Programmation/cpp/Projet/partie1/build/CMakeFiles/vec2dTest.dir
-/home/mapanao/Desktop/myfiles/Programmation/cpp/Projet/partie1/build/CMakeFiles/rebuild_cache.dir
-/home/mapanao/Desktop/myfiles/Programmation/cpp/Projet/partie1/build/CMakeFiles/circularBodyTest.dir
