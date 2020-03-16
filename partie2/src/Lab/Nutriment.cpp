@@ -4,25 +4,35 @@
 #include <Utility/Types.hpp>
 #include "Utility/Vec2d.hpp"
 #include "Application.hpp"
+#include "petridish.hpp"
 #include <string>
 using namespace std;
 
 
 Nutriment::Nutriment(Quantity const& quantity,Vec2d const& position)
 : CircularBody(position, quantity),
-  quantity(quantity){
+  quantity(quantity)
+{
     //Done.
 }
 
+
+
 Quantity Nutriment::takeQuantity(Quantity quantity_){
+    Quantity quantity_taken(quantity_);
     if(quantity >= quantity_){
-        return quantity_;
+        quantity -= quantity_;
+        setRadius(quantity);
+        return quantity_taken;
     } else {
-        return quantity;
+        quantity_taken = quantity;
+        quantity = 0.0;
+        setRadius(0.0);
+        return quantity_taken;
     }
 }
 
-void Nutriment::setQuantity(Quantity& quantity_){
+void Nutriment::setQuantity(Quantity quantity_){
     if(quantity_ >= 0.0){
         quantity = quantity_;
     } else {
@@ -47,6 +57,12 @@ void Nutriment::drawOn(sf::RenderTarget& target) const{
 j::Value const& Nutriment::getConfig() const{
     return getAppConfig()["nutriments"];
 }
-\
-\
 
+void Nutriment::update(sf::Time dt) const{
+    if(getAppEnv().dish.getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
+       and getAppEnv().dish.getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
+       and quantity <= 2 * getConfig()["quantity"]["max"].toDouble()
+       and getAppEnv().contains(*this)){
+        auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
+    }
+}
