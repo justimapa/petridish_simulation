@@ -4,9 +4,6 @@
 
 class Lab
 {
-private:
-    Petridish dish;
-
 public:
     Lab();
     bool contains(const CircularBody&);
@@ -15,4 +12,7 @@ public:
     bool update(sf::Time dt);
     void reset();
     ~Lab();
+
+private:
+    Petridish dish;
 };
