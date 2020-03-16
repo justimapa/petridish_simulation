@@ -3,8 +3,8 @@
 #include "Nutriment.hpp"
 #include <Application.hpp>
 
-Lab::Lab():
-    dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2))
+Lab::Lab()
+: dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2))
 {
   //Done.
 }
