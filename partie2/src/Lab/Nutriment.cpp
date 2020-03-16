@@ -38,7 +38,7 @@ void Nutriment::drawOn(sf::RenderTarget& target) const{
     target.draw(nutrimentSprite);
     if(isDebugOn()){
 
-        string message="Quantity of nutriments : "+to_string(quantity);
+        string message="Qte : "+to_string(quantity);
         auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
         target.draw(text);
     }
