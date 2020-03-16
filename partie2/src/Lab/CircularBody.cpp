@@ -27,7 +27,7 @@ void CircularBody::setPosition(Vec2d& position_)
 {
     position=position_;
 }
-void CircularBody::setRadius(double& radius_)
+void CircularBody::setRadius(double radius_)
 {
     radius=radius_;
 }
