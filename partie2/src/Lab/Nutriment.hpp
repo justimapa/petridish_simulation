@@ -1,5 +1,6 @@
 #pragma once
 #include "CircularBody.hpp"
+#include "petridish.hpp"
 #include <Utility/Types.hpp>
 #include "Utility/Vec2d.hpp"
 #include <SFML/Graphics.hpp>
@@ -32,6 +33,9 @@ public:
     *
     * @return amount of Nutriment:: taken
     */
+
+
+
     Quantity takeQuantity(Quantity quantity_);
 
     /*!
@@ -39,7 +43,7 @@ public:
     *
     * @param Quantity that will be set
     */
-    void setQuantity(Quantity& quantity_);
+    void setQuantity(Quantity quantity_);
 
     /*!
      * @brief draws the Nutriment::
@@ -52,6 +56,14 @@ public:
      * @brief Shortcut for method getAppConfig()
     */
     j::Value const& getConfig() const;
+
+    /*!
+     * @brief updates nutriments within Petridish:: at every fraction
+     * of time dt
+    *
+    * @param time dt
+    */
+    void update(sf::Time dt) const;
 
 private:
     Quantity quantity;
