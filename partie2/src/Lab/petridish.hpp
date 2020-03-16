@@ -1,18 +1,27 @@
-#prgama once
-#include "bacterium.hpp"
+#pragma once
+#include "Bacterium.hpp"
 #include "Utility/Vec2d.hpp"
+#include "Nutriment.hpp"
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Petridish:public CircularBody
 {
-    Bacterium bacterium;
-    Nutrient nutrient;
+private:
+    std::vector<Bacterium*> bacterium;
+    std::vector<Nutriment*> nutriment;
 public:
+    /*!
+     * Deletes = operator inherited form CircularBody
+     *
+     */
+    Petridish& operator=(Petridish const &) = delete;
     Petridish(Vec2d position,double radius);
     bool addBacterium(Bacterium*);
-    bool addNutrient(Nutriment*);
+    bool addNutriment(Nutriment*);
     void update(sf::Time dt);
-    void drawOn(sf::RenderTarget& targetWindow);
+    void drawOn(sf::RenderTarget& targetWindow)const;
     void reset();
+    ~Petridish();
 };
 

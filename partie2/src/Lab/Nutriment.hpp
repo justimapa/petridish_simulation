@@ -1,4 +1,5 @@
 #pragma once
+#include "CircularBody.hpp"
 #include <Utility/Types.hpp>
 #include "Utility/Vec2d.hpp"
 #include <SFML/Graphics.hpp>
@@ -22,7 +23,7 @@ public:
     *
     * @return a Nutriment:: with all parameters set
     */
-    Nutriment(Vec2d const& position, Quantity const& quantity);
+    Nutriment(Quantity const& quantity,Vec2d const& position);
 
     /*!
      * @brief Take a certain quantity of Nutriment::
@@ -31,7 +32,7 @@ public:
     *
     * @return amount of Nutriment:: taken
     */
-    Quantity takeQuantity(Quantity& quantity_) const;
+    Quantity takeQuantity(Quantity quantity_);
 
     /*!
      * @brief Sets a Quantity
@@ -56,4 +57,3 @@ private:
     Quantity quantity;
 };
 
-\

@@ -1,24 +1,42 @@
 #include "petridish.hpp"
+#include <vector>
 
-Petridish::Petridish(Vec2d position,double radius)
+using namespace std;
+
+Petridish::Petridish(Vec2d position,double radius):
+    CircularBody(position,radius)
 {
- //TO DO.
+ //Done.
 }
 
 bool Petridish::addBacterium(Bacterium*){
-   //TO DO.
+   //TO DO: add a bacteria in the dish if impossible return false
 }
-bool Petridish::addNutrient(Nutriment*){
-    //TO DO.
+bool Petridish::addNutriment(Nutriment* nutriment_){
+    if(contains(*nutriment_)){
+        nutriment.push_back(nutriment_);
+    }else{
+        return false;
+    }
+    return true;
 }
-bool Petridish::update(sf::Time dt){
-    //TO DO.
+void Petridish::update(sf::Time dt){
+    //updates bacterias
 }
-void Petridish::drawOn(sf::RenderTarget& targetWindow){
-    //TO DO.
+void Petridish::drawOn(sf::RenderTarget& targetWindow)const
+{
+    auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
+    for(auto& nutriment_:nutriment){
+        nutriment_->drawOn(targetWindow);
+    }
+    targetWindow.draw(border);
+
 }
 void Petridish::reset(){
-    //TO DO.
+    //resets dish to zero
+}
+Petridish::~Petridish(){
+    reset();
 }
 
 

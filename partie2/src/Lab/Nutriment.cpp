@@ -1,13 +1,20 @@
 #include "Nutriment.hpp"
+#include <SFML/Graphics.hpp>
+#include "CircularBody.hpp"
+#include <Utility/Types.hpp>
+#include "Utility/Vec2d.hpp"
+#include "Application.hpp"
+#include <string>
+using namespace std;
 
 
-Nutriment::Nutriment(Vec2d const& position, Quantity const& quantity)
+Nutriment::Nutriment(Quantity const& quantity,Vec2d const& position)
 : CircularBody(position, quantity),
   quantity(quantity){
     //Done.
 }
 
-Quantity Nutriment::takeQuantity(Quantity quantity_) const{
+Quantity Nutriment::takeQuantity(Quantity quantity_){
     if(quantity >= quantity_){
         return quantity_;
     } else {
@@ -24,10 +31,17 @@ void Nutriment::setQuantity(Quantity& quantity_){
 }
 
 void Nutriment::drawOn(sf::RenderTarget& target) const{
-    auto nutrimentSprite = buildSprite(position, graphic_size, texture);
-    nutrimentSprite.setScale(2 * radius / texture.getSize().x, 2 * radius /
+    auto const& texture = getAppTexture(getConfig()["texture"].toString());
+    auto nutrimentSprite = buildSprite(getPosition(), 6, texture);
+    nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
                              texture.getSize().y);
     target.draw(nutrimentSprite);
+    if(isDebugOn()){
+
+        string message="Quantity of nutriments : "+to_string(quantity);
+        auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
+        target.draw(text);
+    }
 }
 
 j::Value const& Nutriment::getConfig() const{
