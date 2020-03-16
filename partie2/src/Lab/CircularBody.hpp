@@ -46,7 +46,7 @@ public:
     * @brief Sets the radius
     * @param Radius that will be set
     */
-   void setRadius(double& radius);
+   void setRadius(double radius);
    /*!
     * @brief Overloading the = operator for the Circulbody::
     * @param Value of the CircularBody::
