@@ -7,9 +7,6 @@
 
 class Petridish:public CircularBody
 {
-private:
-    std::vector<Bacterium*> bacterium;
-    std::vector<Nutriment*> nutriment;
 public:
     /*!
      * Deletes = operator inherited form CircularBody
@@ -17,11 +14,20 @@ public:
      */
     Petridish& operator=(Petridish const &) = delete;
     Petridish(Vec2d position,double radius);
+
+   double getTemperature() const;
+
     bool addBacterium(Bacterium*);
     bool addNutriment(Nutriment*);
     void update(sf::Time dt);
     void drawOn(sf::RenderTarget& targetWindow)const;
     void reset();
     ~Petridish();
+
+private:
+    std::vector<Bacterium*> bacterium;
+    std::vector<Nutriment*> nutriment;
+    double Temperature;
+
 };
 
