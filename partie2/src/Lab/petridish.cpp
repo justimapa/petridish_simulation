@@ -1,12 +1,18 @@
 #include "petridish.hpp"
 #include <vector>
+#include <Application.hpp>
 
 using namespace std;
 
-Petridish::Petridish(Vec2d position,double radius):
-    CircularBody(position,radius)
+Petridish::Petridish(Vec2d position,double radius, double Temperature)
+: CircularBody(position,radius),
+  Temperature(Temperature)
 {
- //Done.
+    //Done.
+}
+
+double Petridish::getTemperature() const{
+    return Temperature;
 }
 
 bool Petridish::addBacterium(Bacterium*){
