@@ -6,7 +6,7 @@ using namespace std;
 
 Petridish::Petridish(Vec2d position,double radius, double Temperature)
 : CircularBody(position,radius),
-  temperature(temperature)
+  temperature(Temperature)
 {
     //Done.
 }
@@ -15,7 +15,10 @@ double Petridish::getTemperature() const{
     return temperature;
 }
 void Petridish::decreaseTemperature(){
-    temperature-=getAppConfig()["petri dish"]["tempertaure"]["delta"].toDouble();
+    temperature-=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
+}
+void Petridish::increaseTemperature(){
+    temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
 bool Petridish::addBacterium(Bacterium*){
    //TO DO: add a bacteria in the dish if impossible return false

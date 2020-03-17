@@ -543,7 +543,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
         case sf::Keyboard::PageUp: // decrease current control
 				switch(mCurrentControl){
 					case TEMPERATURE :
-//						mLab->increaseTemperature();
+                        mLab->increaseTemperature();
 						break;
 					case GRADIENT :
 //						mLab->increaseGradientExponent();

@@ -23,6 +23,7 @@ public:
 
     double getTemperature() const;
     void decreaseTemperature();
+    void increaseTemperature();
     bool addBacterium(Bacterium*);
     bool addNutriment(Nutriment*);
     void update(sf::Time dt);

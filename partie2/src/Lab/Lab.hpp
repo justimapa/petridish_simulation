@@ -8,6 +8,7 @@ public:
     Lab();
     double getTemperature()const;
     void decreaseTemperature();
+    void increaseTemperature();
     bool contains(const CircularBody&);
     void addNutriment(Nutriment*);
     void drawOn(sf::RenderTarget& targetWindow)const;

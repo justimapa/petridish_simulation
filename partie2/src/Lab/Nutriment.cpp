@@ -47,7 +47,6 @@ void Nutriment::drawOn(sf::RenderTarget& target) const{
                              texture.getSize().y);
     target.draw(nutrimentSprite);
     if(isDebugOn()){
-
         string message="Qte : "+to_string(quantity);
         auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
         target.draw(text);
@@ -58,12 +57,14 @@ j::Value const& Nutriment::getConfig() const{
     return getAppConfig()["nutriments"];
 }
 
-void Nutriment::update(sf::Time dt) const{
+void Nutriment::update(sf::Time dt){
     if(getAppEnv().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
        and getAppEnv().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
        and quantity <= 2 * getConfig()["quantity"]["max"].toDouble()
        and getAppEnv().contains(*this)){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
+        quantity+=growth;
+        setRadius(quantity);
 
     }
 }

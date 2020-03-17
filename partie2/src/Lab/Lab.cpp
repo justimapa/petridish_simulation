@@ -15,6 +15,9 @@ double Lab::getTemperature()const{
 void Lab::decreaseTemperature(){
     dish.decreaseTemperature();
 }
+void Lab::increaseTemperature(){
+    dish.increaseTemperature();
+}
 void Lab::addNutriment(Nutriment* nutriment){
     dish.addNutriment(nutriment);
 }
