@@ -59,8 +59,8 @@ j::Value const& Nutriment::getConfig() const{
 }
 
 void Nutriment::update(sf::Time dt) const{
-    if(getAppEnv().dish.getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
-       and getAppEnv().dish.getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
+    if(getAppEnv().getPetridish().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
+       and getAppEnv().getPetridish().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
        and quantity <= 2 * getConfig()["quantity"]["max"].toDouble()
        and getAppEnv().contains(*this)){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
