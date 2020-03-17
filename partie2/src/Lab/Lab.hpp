@@ -6,7 +6,8 @@ class Lab
 {
 public:
     Lab();
-    Petridish getPetridish() const;
+    double getTemperature()const;
+    void decreaseTemperature();
     bool contains(const CircularBody&);
     void addNutriment(Nutriment*);
     void drawOn(sf::RenderTarget& targetWindow)const;

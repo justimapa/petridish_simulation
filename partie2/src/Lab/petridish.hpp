@@ -13,10 +13,16 @@ public:
      *
      */
     Petridish& operator=(Petridish const &) = delete;
+    /*!
+     * @brief Petridish
+     * @param position
+     * @param radius
+     * @param Temperature
+     */
     Petridish(Vec2d position,double radius, double Temperature);
 
-   double getTemperature() const;
-
+    double getTemperature() const;
+    void decreaseTemperature();
     bool addBacterium(Bacterium*);
     bool addNutriment(Nutriment*);
     void update(sf::Time dt);
@@ -27,7 +33,7 @@ public:
 private:
     std::vector<Bacterium*> bacterium;
     std::vector<Nutriment*> nutriment;
-    double Temperature;
+    double temperature;
 
 };
 
