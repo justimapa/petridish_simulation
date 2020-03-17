@@ -4,9 +4,14 @@
 #include <Application.hpp>
 
 Lab::Lab()
-: dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2))
+    : dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2),
+           getAppConfig()["petri dish"]["temperature"]["default"].toDouble())
 {
   //Done.
+}
+
+Petridish Lab::getPetridish() const{
+    return dish;
 }
 
 void Lab::addNutriment(Nutriment* nutriment){
