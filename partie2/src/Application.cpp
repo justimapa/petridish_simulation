@@ -528,10 +528,10 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 
 				switch(mCurrentControl){
 					case TEMPERATURE :
-//						mLab->decreaseTemperature();
+                        mLab->decreaseTemperature();
 						break;
 					case GRADIENT :
-//						mLab->decreaseGradientExponent();
+//                        mLab->decreaseGradientExponent();
 						break;
 					case STATS:
 //						mStats->previous(); 
@@ -810,7 +810,7 @@ void Application::drawOneControl(sf::RenderWindow& target
 	switch (control) {
 		case TEMPERATURE :
 			text = "Temperature : ";
-//			text += to_nice_string(mLab->getTemperature());
+            text += to_nice_string(mLab->getTemperature());
 			break;
 		case GRADIENT :
 			text = "Gradient exponent : ";

@@ -6,15 +6,17 @@ using namespace std;
 
 Petridish::Petridish(Vec2d position,double radius, double Temperature)
 : CircularBody(position,radius),
-  Temperature(Temperature)
+  temperature(temperature)
 {
     //Done.
 }
 
 double Petridish::getTemperature() const{
-    return Temperature;
+    return temperature;
 }
-
+void Petridish::decreaseTemperature(){
+    temperature-=getAppConfig()["petri dish"]["tempertaure"]["delta"].toDouble();
+}
 bool Petridish::addBacterium(Bacterium*){
    //TO DO: add a bacteria in the dish if impossible return false
 }
@@ -27,7 +29,9 @@ bool Petridish::addNutriment(Nutriment* nutriment_){
     return true;
 }
 void Petridish::update(sf::Time dt){
-    //updates bacterias
+    for(auto& nutriment_:nutriment){
+        nutriment_->update(dt);
+    }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const
 {
@@ -38,7 +42,7 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
     targetWindow.draw(border);
 }
 void Petridish::reset(){
-    //resets dish to zero
+    temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 Petridish::~Petridish(){
     reset();

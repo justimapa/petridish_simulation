@@ -9,11 +9,12 @@ Lab::Lab()
 {
   //Done.
 }
-
-Petridish Lab::getPetridish() const{
-    return dish;
+double Lab::getTemperature()const{
+    return dish.getTemperature();
 }
-
+void Lab::decreaseTemperature(){
+    dish.decreaseTemperature();
+}
 void Lab::addNutriment(Nutriment* nutriment){
     dish.addNutriment(nutriment);
 }

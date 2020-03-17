@@ -42,7 +42,7 @@ void Nutriment::setQuantity(Quantity quantity_){
 
 void Nutriment::drawOn(sf::RenderTarget& target) const{
     auto const& texture = getAppTexture(getConfig()["texture"].toString());
-    auto nutrimentSprite = buildSprite(getPosition(), 6, texture);
+    auto nutrimentSprite = buildSprite(getPosition(),getRadius(), texture);
     nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
                              texture.getSize().y);
     target.draw(nutrimentSprite);
@@ -59,10 +59,11 @@ j::Value const& Nutriment::getConfig() const{
 }
 
 void Nutriment::update(sf::Time dt) const{
-    if(getAppEnv().getPetridish().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
-       and getAppEnv().getPetridish().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
+    if(getAppEnv().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
+       and getAppEnv().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble()
        and quantity <= 2 * getConfig()["quantity"]["max"].toDouble()
        and getAppEnv().contains(*this)){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
+
     }
 }
