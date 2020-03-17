@@ -13,7 +13,7 @@ public:
      *
      */
     Petridish& operator=(Petridish const &) = delete;
-    Petridish(Vec2d position,double radius);
+    Petridish(Vec2d position,double radius, double Temperature);
 
    double getTemperature() const;
 
