@@ -7,8 +7,7 @@
 class CircularBody
 {
 
-
-public:
+protected:
     /*!
      * @brief Construct a CircularBody:: fully set up
     *
@@ -26,6 +25,20 @@ public:
     * @return a copy of CircularBody::
     */
    CircularBody(CircularBody const& copy);
+    /*!
+     * @brief Sets the position of the instance
+     * @return returns position
+     */
+    void setPosition(Vec2d& position_);
+    /*!
+     * @brief Sets the radius
+     * @param Radius that will be set
+     */
+    void setRadius(double radius);
+
+
+public:
+
    /*!
     * @brief Get the postion of the instance
     *
@@ -37,16 +50,7 @@ public:
     * @return returns radius
     */
    double getRadius()const;
-   /*!
-    * @brief Sets the position of the instance
-    * @return returns position
-    */
-   void setPosition(Vec2d& position_);
-   /*!
-    * @brief Sets the radius
-    * @param Radius that will be set
-    */
-   void setRadius(double radius);
+
    /*!
     * @brief Overloading the = operator for the Circulbody::
     * @param Value of the CircularBody::

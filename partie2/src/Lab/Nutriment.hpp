@@ -63,7 +63,6 @@ public:
     * @param time dt
     */
     void update(sf::Time dt);
-
 private:
     Quantity quantity;
 };
