@@ -29,14 +29,13 @@ bool Petridish::addNutriment(Nutriment* nutriment_){
 void Petridish::update(sf::Time dt){
     //updates bacterias
 }
-void Petridish::drawOn(sf::RenderTarget& targetWindow)const
+void Petridish::drawOn(sf::RenderTarget& targetWindow) const
 {
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
     for(auto& nutriment_:nutriment){
         nutriment_->drawOn(targetWindow);
     }
     targetWindow.draw(border);
-
 }
 void Petridish::reset(){
     //resets dish to zero
