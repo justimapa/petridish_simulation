@@ -1,6 +1,5 @@
 #pragma once
 #include "CircularBody.hpp"
-#include "petridish.hpp"
 #include <Utility/Types.hpp>
 #include "Utility/Vec2d.hpp"
 #include <SFML/Graphics.hpp>
