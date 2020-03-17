@@ -32,6 +32,7 @@ bool Petridish::addNutriment(Nutriment* nutriment_){
     return true;
 }
 void Petridish::update(sf::Time dt){
+    for(auto& nutriment_:nutriment){
         nutriment_->update(dt);
     }
 }
