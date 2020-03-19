@@ -1,17 +1,14 @@
 #include "petridish.hpp"
-#include <vector>
-#include <Application.hpp>
+#include "Application.hpp"
 
 using namespace std;
 
 Petridish::Petridish(Vec2d position,double radius, double Temperature)
 : CircularBody(position,radius),
   temperature(Temperature)
+{ }
+double Petridish::getTemperature() const
 {
-    //Done.
-}
-
-double Petridish::getTemperature() const{
     return temperature;
 }
 void Petridish::decreaseTemperature(){
@@ -25,21 +22,21 @@ bool Petridish::addBacterium(Bacterium*){
 }
 bool Petridish::addNutriment(Nutriment* nutriment_){
     if(contains(*nutriment_)){
-        nutriment.push_back(nutriment_);
-    }else{
+        nutriments.push_back(nutriment_);
+    } else {
         return false;
     }
     return true;
 }
 void Petridish::update(sf::Time dt){
-    for(auto& nutriment_:nutriment){
+    for(auto& nutriment_ : nutriments){
         nutriment_->update(dt);
     }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const
 {
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
-    for(auto& nutriment_:nutriment){
+    for(auto& nutriment_ : nutriments){
         nutriment_->drawOn(targetWindow);
     }
     targetWindow.draw(border);
