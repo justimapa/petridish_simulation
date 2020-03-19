@@ -47,7 +47,7 @@ void Nutriment::drawOn(sf::RenderTarget& target) const{
                              texture.getSize().y);
     target.draw(nutrimentSprite);
     if(isDebugOn()){
-        string message="Qte : "+to_string(quantity);
+        string message="Qte : "+to_string((int)quantity);
         auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
         target.draw(text);
     }
@@ -68,3 +68,4 @@ void Nutriment::update(sf::Time dt){
 
     }
 }
+

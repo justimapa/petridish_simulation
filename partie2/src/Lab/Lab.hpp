@@ -5,6 +5,9 @@
 class Lab
 {
 public:
+    /*!
+     * @brief Default constructor
+     */
     Lab();
     double getTemperature()const;
     void decreaseTemperature();

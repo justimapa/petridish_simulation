@@ -36,3 +36,9 @@ All methods that do not modify the arguments, such as the getters and
 test methods(contains, isColliding). The const is used to indicate
 the roles to an eventual user-programmer.
 - réponse à la question 1.4
+
+**************************************************
+
+##Q2.1
+
+
