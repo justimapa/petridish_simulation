@@ -1,6 +1,6 @@
 #Projet programmation orientée objet (SSV)
 
-##REPONSES du groupe *No groupe* (*Nom étudiant(e)1* & *Nom étudiant(e) 2*) 
+##REPONSES du groupe ** (*Umut Tan Germeyan* & *Justin Christian Mapanao*) 
 
 *************************************************
 ##Q1.1
@@ -40,5 +40,38 @@ the roles to an eventual user-programmer.
 **************************************************
 
 ##Q2.1
+
+The class Petridish will inherit from the class CircularBody, which will
+allow it to use all of the methods in the class CircularBody. This represents
+an "IS-A" relationship. A petri dish is a circular body.
+- reponse a la question 2.1
+
+**************************************************
+
+##Q2.2
+
+We will declare as const all the methods (getTemperature(), drawOn()) 
+that do not modifiy the current instance. This allows an eventual user-programmer 
+to read the code more easily.
+- reponse a la question 2.2
+
+**************************************************
+
+##Q2.3
+
+To avoid unnecessary copies of very large and memory class consumming
+objects, we must explicily erase operator=.
+-reponse a la question 2.3
+
+***************************************************
+
+##Q2.4
+
+As we destroy the Petridish, we remove the memory space we have allocated 
+previously for the nutrients and bacteria within the petri dish. This can
+be done through the reset() function.
+-reponse a la question 2.4
+
+
 
 
