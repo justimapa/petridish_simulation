@@ -29,8 +29,8 @@ J'ai codé les méthodes demandées dans la partie 2.1 dans les classes Petridis
 
 Umut
 
-J'ai cree la classe Nutriment.
-J'ai code les methodes demandees dans la partie 2.2 a faire avant la mise en commun.
+J'ai crée la classe Nutriment.
+J'ai codé les methodes demandées dans la partie 2.2 à faire avant la mise en commun.
 
 Justin & Umut
 
@@ -47,6 +47,14 @@ Jeudi 19.03.2020
 
 Umut
 
-J'ai netttoye le code des deux parties (inclusions en trop, fautes de frappes, modularisation,...)
-J'ai ajoute toutes les commentaires de la partie 2.
+J'ai netttoyé le code des deux parties (inclusions en trop, fautes de frappes, modularisation,...)
+J'ai ajouté toutes les commentaires de la partie 2.
 J'ai repondu aux questions 2.1 a 2.4.
+
+
+Vendredi 20.03.2020
+
+Justin 
+
+J'ai ajouté une méthode refreshConfiguration dans la classe Lab ainsi que
+modifié la méthode reset().
