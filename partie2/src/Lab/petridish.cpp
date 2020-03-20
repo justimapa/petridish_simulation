@@ -41,8 +41,13 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
     }
     targetWindow.draw(border);
 }
-void Petridish::reset(){
+void Petridish::resetTemperature(){
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
+}
+void Petridish::reset(){
+    nutriments.clear();
+    bacteria.clear();
+    resetTemperature();
 }
 Petridish::~Petridish(){
     reset();

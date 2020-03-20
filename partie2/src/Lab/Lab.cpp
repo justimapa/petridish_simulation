@@ -18,6 +18,9 @@ void Lab::increaseTemperature()
 {
     dish.increaseTemperature();
 }
+void Lab::refreshConfig(){
+    dish.resetTemperature();
+}
 void Lab::addNutriment(Nutriment* nutriment)
 {
     dish.addNutriment(nutriment);

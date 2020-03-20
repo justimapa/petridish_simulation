@@ -32,6 +32,10 @@ public:
     * @brief Increases temperature of the Petridish::
     */
     void increaseTemperature();
+    /*!
+     * @brief resets temperature of the petridish to config default
+     */
+    void resetTemperature();
    /*!
     * @brief Adds a Bacterium:: to the Petridish::
     * @param Bacterium:: to be added

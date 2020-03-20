@@ -24,6 +24,10 @@ public:
      */
     void increaseTemperature();
     /*!
+     * @brief Sets to config default
+     */
+    void refreshConfig();
+    /*!
      * @brief Tests if a CircularBody:: is inside another
      * @param The other CircularBody::
      * @return true if the other CircularBody:: has a smaller radius and the center is

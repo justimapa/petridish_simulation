@@ -50,10 +50,14 @@ j::Value const& Nutriment::getConfig() const
 }
 void Nutriment::update(sf::Time dt)
 {
-    if(isTemperatureOK() and isQuantityOK() and isContained()){
+    if(isTemperatureOK() and isQuantityOK() ){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
         quantity+=growth;
         setRadius(quantity);
+        if(not isContained()){
+            quantity-=growth;
+            setRadius(quantity);
+        }
     }
 }
 bool Nutriment::isTemperatureOK() const
