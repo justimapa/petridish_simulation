@@ -58,3 +58,11 @@ Justin
 
 J'ai ajouté une méthode refreshConfiguration dans la classe Lab ainsi que
 modifié la méthode reset().
+
+Samedi 21.03.2020
+
+Umut
+
+J'ai modifie la fonction reset() de la classe Petridish, pour desallouer
+la memoire alouee dynamiquement par les vecteurs de pointeurs sur des nutriments/bacteries.
+J'ai repondu aux question 2.5 a 2.12.
