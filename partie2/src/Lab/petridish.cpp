@@ -45,7 +45,13 @@ void Petridish::resetTemperature(){
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 void Petridish::reset(){
+    for(auto* nutr: nutriments){
+        delete nutr;
+    }
     nutriments.clear();
+    for(auto* bact : bacteria){
+        delete bact;
+    }
     bacteria.clear();
     resetTemperature();
 }
