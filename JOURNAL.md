@@ -63,6 +63,10 @@ Samedi 21.03.2020
 
 Umut
 
-J'ai modifie la fonction reset() de la classe Petridish, pour desallouer
-la memoire alouee dynamiquement par les vecteurs de pointeurs sur des nutriments/bacteries.
+J'ai modifié la fonction reset() de la classe Petridish, pour desallouer
+la mémoire alouee dynamiquement par les vecteurs de pointeurs sur des nutriments/bacteries.
 J'ai repondu aux question 2.5 a 2.12.
+
+Justin
+J'ai modifié le mode debug pour que le nutriment affiche un simple cercle vert
+et non et le sprite pour que ce mode soit plus lisible.

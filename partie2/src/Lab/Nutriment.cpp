@@ -33,15 +33,18 @@ void Nutriment::setQuantity(Quantity quantity_)
 }
 void Nutriment::drawOn(sf::RenderTarget& target) const
 {
+    if(not isDebugOn()){
     auto const& texture = getAppTexture(getConfig()["texture"].toString());
     auto nutrimentSprite = buildSprite(getPosition(),getRadius(), texture);
     nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
                              texture.getSize().y);
     target.draw(nutrimentSprite);
-    if(isDebugOn()){
+    }else{
         string message="Qte : "+to_string((int)quantity);
         auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
+        auto border = buildAnnulus(getPosition(),getRadius(),sf::Color::Green,2);
         target.draw(text);
+        target.draw(border);
     }
 }
 j::Value const& Nutriment::getConfig() const
