@@ -70,3 +70,10 @@ J'ai repondu aux question 2.5 a 2.12.
 Justin
 J'ai modifié le mode debug pour que le nutriment affiche un simple cercle vert
 et non et le sprite pour que ce mode soit plus lisible.
+
+Dimanche 22.03.2020
+
+Umut
+
+J'ai codé jusqu'au test 5 de l'étape 3.1.
+
