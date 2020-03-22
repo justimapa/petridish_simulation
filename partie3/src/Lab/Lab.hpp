@@ -12,6 +12,11 @@ public:
      */
     Lab();
     /*!
+     * @brief Gets the Nutriment that is colliding with a CircularBody::
+     * @return A pointer towards the Nutriments if collision a nullptr if no collision
+     */
+    Nutriment* getNutrimentColliding(CircularBody const&)const;
+    /*!
      * @brief Getter for the Petridish::'s temperature
      * @return Temperature of the Petridish::
      */
@@ -40,7 +45,16 @@ public:
      * @param Nutriment:: to be added
      */
     void addNutriment(Nutriment*);
+    /*!
+     * @brief Adds a Bacterium:: to the Petridish::
+     * @param Bacterium:: to be added
+     */
     void addBacterium(Bacterium*);
+    /*!
+     * @brief Tests if a CircularBody:: is in collision with Petridish::
+     * @return True if CircularBody is in collision false if not
+     */
+    bool doesCollideWithDish(CircularBody const&);
     /*!
      * @brief Draws Petridish:: on targetWindow
      * @param targetWindow

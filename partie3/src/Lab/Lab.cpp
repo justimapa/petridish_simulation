@@ -5,7 +5,14 @@ Lab::Lab()
     : dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2),
            getAppConfig()["petri dish"]["temperature"]["default"].toDouble())
 { }
-
+Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
+    for(auto& nutriment:dish.getNutriments()){
+        if(*nutriment&body){
+            return nutriment;
+        }
+    }
+    return nullptr;
+}
 double Lab::getTemperature() const
 {
     return dish.getTemperature();
@@ -29,6 +36,9 @@ void Lab::addBacterium(Bacterium* bact){
 void Lab::addNutriment(Nutriment* nutriment)
 {
     dish.addNutriment(nutriment);
+}
+bool Lab::doesCollideWithDish(const CircularBody & body){
+    return dish&body;
 }
 void Lab::drawOn(sf::RenderTarget& targetWindow) const
 {

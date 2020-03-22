@@ -7,6 +7,10 @@ Petridish::Petridish(Vec2d position,double radius, double Temperature)
 : CircularBody(position,radius),
   temperature(Temperature)
 { }
+
+vector<Nutriment*>& getNutriments()const{
+    return nutriments;
+}
 double Petridish::getTemperature() const
 {
     return temperature;
@@ -34,8 +38,11 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     return true;
 }
 void Petridish::update(sf::Time dt){
-    for(auto& nutriment_ : nutriments){
-        nutriment_->update(dt);
+    for(auto& nutriment : nutriments){
+        nutriment->update(dt);
+    }
+    for(auto& bacterium:bacteria){
+        bacterium->update(dt);
     }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const

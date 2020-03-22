@@ -19,7 +19,12 @@ public:
     * @param Temperature of the Petridish::
     */
     Petridish(Vec2d position,double radius, double Temperature);
-   /*!
+    /*!
+     * @brief Get Nutriments
+     * @return Vector of nutriments of *this
+     */
+    std::vector<Nutriment*>& getNutriments()const;
+    /*!
     * @brief Getter for the temperature
     * @return Temperature of the Petridish::
     */

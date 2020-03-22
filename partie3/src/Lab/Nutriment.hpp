@@ -21,8 +21,7 @@ public:
     * @param Quantity of the Nutriment::
     * @return A Nutriment:: with all parameters set
     */
-    Nutriment(Quantity const& quantity,Vec2d const& position);
-   /*!
+    Nutriment(Quantity const& quantity,Vec2d const& position);    /*!
     * @brief Take a certain quantity of Nutriment::
     * @param Quantity of Nutriment:: to take
     * @return Amount of Nutriment:: taken
