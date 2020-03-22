@@ -1,4 +1,5 @@
-#include "NutrimentB.h"
+#include "NutrimentB.hpp"
+#include "Application.hpp"
 
 NutrimentB::NutrimentB(Quantity const& quantity,Vec2d const& position):
     Nutriment(quantity,position)
@@ -6,7 +7,7 @@ NutrimentB::NutrimentB(Quantity const& quantity,Vec2d const& position):
     //Done.
 }
 
-j::Value const& NutrimentB::getConfig()const
+j::Value const& NutrimentB::getConfig() const
 {
-    return getAppConfig()["nutriements"]["B"];
+    return getAppConfig()["nutriments"]["B"];
 }

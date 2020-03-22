@@ -1,11 +1,14 @@
-#ifndef NUTRIMENTGENERATOR_HPP
-#define NUTRIMENTGENERATOR_HPP
+#pragma once
+#include <SFML/Graphics.hpp>
+#include "Interface/Updatable.hpp"
 
-
-class NutrimentGenerator
+class NutrimentGenerator : public Updatable
 {
 public:
     NutrimentGenerator();
+    void update(sf::Time dt) override;
+
+private:
+    sf::Time stopwatch;
 };
 
-#endif // NUTRIMENTGENERATOR_HPP

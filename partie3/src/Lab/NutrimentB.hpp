@@ -1,12 +1,12 @@
-#pragma once;
+#pragma once
 #include "Nutriment.hpp"
 
 
-class NutrimentA:public Nutriment
+class NutrimentB : public Nutriment
 {
 public:
     NutrimentB(Quantity const& quantity,Vec2d const& position);
-    virtual j::Value const& getConfig() const;
+    j::Value const& getConfig() const override;
 };
 
 
