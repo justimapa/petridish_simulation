@@ -1,11 +1,11 @@
 #include "Nutriment.hpp"
 #include <string>
 #include "Application.hpp"
-#include "petridish.hpp"
+#include "Petridish.hpp"
 
 using namespace std;
 
-Nutriment::Nutriment(Quantity const& quantity, Vec2d const& position)
+Nutriment::Nutriment(Quantity const& quantity,Vec2d const& position)
 : CircularBody(position, quantity),
   quantity(quantity)
 { }
@@ -47,7 +47,10 @@ void Nutriment::drawOn(sf::RenderTarget& target) const
         target.draw(border);
     }
 }
-
+j::Value const& Nutriment::getConfig() const
+{
+    return getAppConfig()["nutriments"];
+}
 void Nutriment::update(sf::Time dt)
 {
     if(isTemperatureOK() and isQuantityOK() ){
@@ -72,22 +75,4 @@ bool Nutriment::isQuantityOK() const
 bool Nutriment::isContained() const
 {
     return getAppEnv().contains(*this);
-}
-
-NutrimentA::NutrimentA(Quantity const& quantity, Vec2d const& position)
-: Nutriment(quantity, position)
-{ }
-
-j::Value const& NutrimentA::getConfig() const
-{
-    return getAppConfig()["nutriments"]["A"];
-}
-
-NutrimentB::NutrimentB(Quantity const& quantity, Vec2d const& position)
-: Nutriment(quantity, position)
-{ }
-
-j::Value const& NutrimentB::getConfig() const
-{
-    return getAppConfig()["nutriments"]["B"];
 }

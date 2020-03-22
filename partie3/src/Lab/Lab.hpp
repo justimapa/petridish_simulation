@@ -1,6 +1,7 @@
 #pragma once
 #include "Nutriment.hpp"
-#include "petridish.hpp"
+#include "Petridish.hpp"
+
 
 class Lab
 {

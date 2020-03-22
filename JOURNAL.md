@@ -71,9 +71,17 @@ Justin
 J'ai modifié le mode debug pour que le nutriment affiche un simple cercle vert
 et non et le sprite pour que ce mode soit plus lisible.
 
+<<<<<<< HEAD
 Dimanche 22.03.2020
 
 Umut
 
 J'ai codé jusqu'au test 5 de l'étape 3.1.
 
+=======
+
+Dimanche 22.03.2020
+
+J'ai initializé l'environnement pour la partie 3 du projet ainsi que créé les 
+fichiers des classes demandé vide.
+>>>>>>> 7a4c7ad0adaba5890542fd71652f2339edaa9298

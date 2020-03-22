@@ -2,9 +2,7 @@
 #include "CircularBody.hpp"
 #include "Utility/Types.hpp"
 #include "Utility/Vec2d.hpp"
-#include <SFML/Graphics.hpp>
-#include "Interface/Drawable.hpp"
-#include "Interface/Updatable.hpp"
+#include "SFML/Graphics.hpp"
 
 /*!
  * @class Nutriment
@@ -13,7 +11,7 @@
  *
  * Subclass of CircularBody::
  */
-class Nutriment : public CircularBody, public Drawable, public Updatable
+class Nutriment : public CircularBody
 {
 public:
    /*!
@@ -22,7 +20,7 @@ public:
     * @param Quantity of the Nutriment::
     * @return A Nutriment:: with all parameters set
     */
-    Nutriment(Quantity const& quantity, Vec2d const& position);
+    Nutriment(Quantity const& quantity,Vec2d const& position);
    /*!
     * @brief Take a certain quantity of Nutriment::
     * @param Quantity of Nutriment:: to take
@@ -38,19 +36,17 @@ public:
     * @brief draws the Nutriment::
     * @param targetWindow where the Nutriment:: will be drawn
     */
-    void drawOn(sf::RenderTarget& target) const override;
+    void drawOn(sf::RenderTarget& target) const;
    /*!
     * @brief Shortcut for method getAppConfig() in Application.hpp
-    *
-    * Here, the method is specified as pure virtual.
     */
-    virtual j::Value const& getConfig() const = 0;
+    j::Value const& getConfig() const;
    /*!
     * @brief updates nutriments within Petridish:: at every fraction
     * of time dt
     * @param Fraction of time dt
     */
-    virtual void update(sf::Time dt) override;
+    void update(sf::Time dt);
    /*!
     * @brief Checks whether temperature is within specified boundaries
     * @return True if temperature is within boundaries, false if not
@@ -69,19 +65,5 @@ public:
 
 private:
     Quantity quantity;
-};
-
-class NutrimentA : public Nutriment
-{
-public:
-    NutrimentA(Quantity const& quantity, Vec2d const& position);
-    j::Value const& getConfig() const override;
-};
-
-class NutrimentB : public Nutriment
-{
-public:
-    NutrimentB(Quantity const& quantity, Vec2d const& position);
-    j::Value const& getConfig() const override;
 };
 
