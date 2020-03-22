@@ -4,8 +4,10 @@
 #include "Nutriment.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Interface/Drawable.hpp"
+#include "Interface/Updatable.hpp"
 
-class Petridish : public CircularBody
+class Petridish : public CircularBody,public Drawable,public Updatable
 {
 public:
     /*!

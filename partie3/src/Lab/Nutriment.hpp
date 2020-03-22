@@ -2,7 +2,9 @@
 #include "CircularBody.hpp"
 #include "Utility/Types.hpp"
 #include "Utility/Vec2d.hpp"
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
+#include "Interface/Drawable.hpp"
+#include "Interface/Updatable.hpp"
 
 /*!
  * @class Nutriment
@@ -11,8 +13,7 @@
  *
  * Subclass of CircularBody::
  */
-class Nutriment : public CircularBody
-{
+class Nutriment : public CircularBody,public Drawable,public Updatable{
 public:
    /*!
     * @brief Constructs a Nutriment:: fully set up
@@ -36,17 +37,17 @@ public:
     * @brief draws the Nutriment::
     * @param targetWindow where the Nutriment:: will be drawn
     */
-    void drawOn(sf::RenderTarget& target) const;
+    void drawOn(sf::RenderTarget& target) const override;
    /*!
     * @brief Shortcut for method getAppConfig() in Application.hpp
     */
-    j::Value const& getConfig() const;
+    virtual j::Value const& getConfig() const=0;
    /*!
     * @brief updates nutriments within Petridish:: at every fraction
     * of time dt
     * @param Fraction of time dt
     */
-    void update(sf::Time dt);
+    void update(sf::Time dt) override;
    /*!
     * @brief Checks whether temperature is within specified boundaries
     * @return True if temperature is within boundaries, false if not

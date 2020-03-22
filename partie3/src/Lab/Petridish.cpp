@@ -1,4 +1,4 @@
-#include "petridish.hpp"
+#include "Petridish.hpp"
 #include "Application.hpp"
 
 using namespace std;
@@ -45,7 +45,7 @@ void Petridish::resetTemperature(){
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 void Petridish::reset(){
-    for(auto* nutr: nutriments){
+    for(auto* nutr: anutriments){
         delete nutr;
     }
     nutriments.clear();

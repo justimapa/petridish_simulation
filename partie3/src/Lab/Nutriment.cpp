@@ -47,10 +47,6 @@ void Nutriment::drawOn(sf::RenderTarget& target) const
         target.draw(border);
     }
 }
-j::Value const& Nutriment::getConfig() const
-{
-    return getAppConfig()["nutriments"];
-}
 void Nutriment::update(sf::Time dt)
 {
     if(isTemperatureOK() and isQuantityOK() ){

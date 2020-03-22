@@ -1,11 +1,12 @@
-#ifndef NUTRIMENTA_HPP
-#define NUTRIMENTA_HPP
+#pragma once;
+#include "Nutriment.hpp"
 
 
-class NutrimentA
+class NutrimentA:public Nutriment
 {
 public:
-    NutrimentA();
+    NutrimentA(Quantity const& quantity,Vec2d const& position);
+    virtual j::Value const& getConfig() const;
 };
 
-#endif // NUTRIMENTA_HPP
+
