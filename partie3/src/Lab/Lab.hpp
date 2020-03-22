@@ -39,6 +39,7 @@ public:
      * @param Nutriment:: to be added
      */
     void addNutriment(Nutriment*);
+    void addBacterium(Bacterium*);
     /*!
      * @brief Draws Petridish:: on targetWindow
      * @param targetWindow

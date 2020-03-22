@@ -1,8 +1,6 @@
 #pragma once
 #include "Bacterium.hpp"
-#include "Utility/Vec2d.hpp"
 #include "Nutriment.hpp"
-#include <SFML/Graphics.hpp>
 #include <vector>
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"

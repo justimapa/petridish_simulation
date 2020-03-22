@@ -21,6 +21,9 @@ void Lab::increaseTemperature()
 void Lab::refreshConfig(){
     dish.resetTemperature();
 }
+void Lab::addBacterium(){
+    dish.addBacterium();
+}
 void Lab::addNutriment(Nutriment* nutriment)
 {
     dish.addNutriment(nutriment);

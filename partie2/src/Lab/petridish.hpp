@@ -1,8 +1,7 @@
 #pragma once
 #include "Bacterium.hpp"
-#include "Utility/Vec2d.hpp"
 #include "Nutriment.hpp"
-#include <SFML/Graphics.hpp>
+
 #include <vector>
 
 class Petridish : public CircularBody
