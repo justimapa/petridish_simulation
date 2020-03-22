@@ -1,7 +1,7 @@
 #include "Nutriment.hpp"
 #include <string>
 #include "Application.hpp"
-#include "petridish.hpp"
+#include "Petridish.hpp"
 
 using namespace std;
 
