@@ -21,14 +21,11 @@ void Lab::increaseTemperature()
 void Lab::refreshConfig(){
     dish.resetTemperature();
 }
-<<<<<<< HEAD
+
 void Lab::addBacterium(Bacterium* bact){
     dish.addBacterium(bact);
-=======
-void Lab::addBacterium(Bacterium* bacteria){
-    dish.addBacterium(bacteria);
->>>>>>> 1e6f9bfaf9025d4a3557568a8f7cbfb0a0cf7f00
 }
+
 void Lab::addNutriment(Nutriment* nutriment)
 {
     dish.addNutriment(nutriment);

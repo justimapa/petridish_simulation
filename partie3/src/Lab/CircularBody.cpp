@@ -62,7 +62,7 @@ CircularBody::CircularBody(CircularBody const& copy)
   radius(copy.getRadius())
 { }
 
-void CircularBody::setPosition(Vec2d& position_)
+void CircularBody::setPosition(const Vec2d& position_)
 {
     position=position_;
 }

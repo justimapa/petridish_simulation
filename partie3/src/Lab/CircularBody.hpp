@@ -77,7 +77,7 @@ public:
    /*!
     * @brief Settter for the position
     */
-   void setPosition(Vec2d& position_);
+   void setPosition(const Vec2d& position_);
 
 protected:
    /*!
