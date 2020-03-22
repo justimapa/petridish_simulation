@@ -21,8 +21,8 @@ void Lab::increaseTemperature()
 void Lab::refreshConfig(){
     dish.resetTemperature();
 }
-void Lab::addBacterium(){
-    dish.addBacterium();
+void Lab::addBacterium(Bacterium* bact){
+    dish.addBacterium(bact);
 }
 void Lab::addNutriment(Nutriment* nutriment)
 {
@@ -42,6 +42,7 @@ bool Lab::contains(const CircularBody& body)
 }
 void Lab::reset(){
     dish.reset();
+    generator.reset();
 }
 Lab::~Lab()
 {

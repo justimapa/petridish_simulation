@@ -74,6 +74,11 @@ public:
     */
    std::ostream& print(std::ostream& out) const;
 
+   /*!
+    * @brief Settter for the position
+    */
+   void setPosition(Vec2d& position_);
+
 protected:
    /*!
     * @brief Construct a CircularBody:: fully set up
@@ -89,10 +94,6 @@ protected:
     */
    CircularBody(CircularBody const& copy);
 
-   /*!
-    * @brief Settter for the position
-    */
-   void setPosition(Vec2d& position_);
    /*!
     * @brief Settter for the radius
     */

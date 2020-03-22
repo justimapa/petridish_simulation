@@ -1,6 +1,7 @@
 #pragma once
 #include "Nutriment.hpp"
 #include "Petridish.hpp"
+#include "NutrimentGenerator.hpp"
 
 
 class Lab
@@ -59,4 +60,5 @@ public:
 
 private:
     Petridish dish;
+    NutrimentGenerator generator;
 };
