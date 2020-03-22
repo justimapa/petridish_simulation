@@ -82,19 +82,19 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
       #target_link_libraries(application sfml-graphics sfml-window sfml-system)
 	
       #Units tests:
-#      add_executable (mutableTest  ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
-#      target_link_libraries(mutableTest sfml-graphics sfml-window sfml-system)
-#      add_executable (circularBodyTest  ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
-#      target_link_libraries(circularBodyTest sfml-graphics sfml-window sfml-system)
-#      add_executable (vec2dTest  ${TEST_DIR}/UnitTests/Vec2dTest.cpp ${CACHE_SOURCES})
-#      target_link_libraries(vec2dTest sfml-graphics sfml-window sfml-system)
+  #    add_executable (mutableTest  ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
+  #    target_link_libraries(mutableTest sfml-graphics sfml-window sfml-system)
+      add_executable (circularBodyTest  ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
+      target_link_libraries(circularBodyTest sfml-graphics sfml-window sfml-system)
+      add_executable (vec2dTest  ${TEST_DIR}/UnitTests/Vec2dTest.cpp ${CACHE_SOURCES})
+      target_link_libraries(vec2dTest sfml-graphics sfml-window sfml-system)
 
       #Graphical tests:
-#      add_executable (simpleBactTest  ${TEST_DIR}/GraphicalTests/SimpleBacteriaTest.cpp ${SOURCES_GFX})
-#      target_link_libraries(simpleBactTest sfml-graphics sfml-window sfml-system)
+  #    add_executable (simpleBactTest  ${TEST_DIR}/GraphicalTests/SimpleBacteriaTest.cpp ${SOURCES_GFX})
+  #    target_link_libraries(simpleBactTest sfml-graphics sfml-window sfml-system)
       #bacteriaTest target only valid in step 3
- #     add_executable (bacteriaTest  ${TEST_DIR}/GraphicalTests/BacteriaTest.cpp ${SOURCES_GFX})
-  #    target_link_libraries(bacteriaTest sfml-graphics sfml-window sfml-system)
+      add_executable (bacteriaTest  ${TEST_DIR}/GraphicalTests/BacteriaTest.cpp ${SOURCES_GFX})
+      target_link_libraries(bacteriaTest sfml-graphics sfml-window sfml-system)
       add_executable (nutrimentTest  ${TEST_DIR}/GraphicalTests/NutrimentTest.cpp ${SOURCES_GFX})
       target_link_libraries(nutrimentTest sfml-graphics sfml-window sfml-system)
       
@@ -114,22 +114,22 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
             #add_executable(application ${TEST_DIR}/GraphicalTests/FinalApplication.cpp ${SOURCES_GFX})
             #target_link_libraries(application ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
-	    #Units tests:
-#	    add_executable (mutableTest ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
-#            target_link_libraries(mutableTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-#            add_executable (circularBodyTest ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
-#            target_link_libraries(circularBodyTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-#	    add_executable (vec2dTest ${TEST_DIR}/UnitTests/Vec2dTest.cpp ${CACHE_SOURCES})
- #           target_link_libraries(vec2dTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+            #Units tests:
+  #          add_executable (mutableTest ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
+   #         target_link_libraries(mutableTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+            add_executable (circularBodyTest ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
+            target_link_libraries(circularBodyTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+            add_executable (vec2dTest ${TEST_DIR}/UnitTests/Vec2dTest.cpp ${CACHE_SOURCES})
+            target_link_libraries(vec2dTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 	    
 	    #Graphical tests:
-#	    add_executable(simpleBactTest ${TEST_DIR}/GraphicalTests/SimpleBacteriaTest.cpp ${SOURCES_GFX})
-#            target_link_libraries(simpleBactTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    #        add_executable(simpleBactTest ${TEST_DIR}/GraphicalTests/SimpleBacteriaTest.cpp ${SOURCES_GFX})
+     #       target_link_libraries(simpleBactTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 	    ###bacteriaTest target only valid in step 3
-           # add_executable(bacteriaTest ${TEST_DIR}/GraphicalTests/BacteriaTest.cpp ${SOURCES_GFX})
-           #target_link_libraries(bacteriaTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-          add_executable(nutrimentTest ${TEST_DIR}/GraphicalTests/NutrimentTest.cpp ${SOURCES_GFX})
-            target_link_libraries(nutrimentTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+            add_executable(bacteriaTest ${TEST_DIR}/GraphicalTests/BacteriaTest.cpp ${SOURCES_GFX})
+            target_link_libraries(bacteriaTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+             add_executable(nutrimentTest ${TEST_DIR}/GraphicalTests/NutrimentTest.cpp ${SOURCES_GFX})
+             target_link_libraries(nutrimentTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
 
         else()

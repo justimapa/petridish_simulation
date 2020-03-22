@@ -65,7 +65,7 @@ public:
      * @param Fraction of time dt after which the Lab:: is updates
      * @return true if update is a success, false if not
      */
-    bool update(sf::Time dt);
+    void update(sf::Time dt);
     /*!
      * @brief Destructs Lab::
      */

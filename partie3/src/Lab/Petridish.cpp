@@ -22,6 +22,7 @@ void Petridish::increaseTemperature(){
     temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
 bool Petridish::addBacterium(Bacterium* bacterium){
+
     if(contains(*bacterium)){
         bacteria.push_back(bacterium);
     }else{
@@ -30,6 +31,7 @@ bool Petridish::addBacterium(Bacterium* bacterium){
     return true;
 }
 bool Petridish::addNutriment(Nutriment* nutriment){
+
     if(contains(*nutriment)){
         nutriments.push_back(nutriment);
     } else {
@@ -38,18 +40,21 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     return true;
 }
 void Petridish::update(sf::Time dt){
-    for(auto nutriment : nutriments){
+    for(auto& nutriment : nutriments){
         nutriment->update(dt);
     }
-    for(auto bacterium:bacteria){
+    for(auto& bacterium:bacteria){
         bacterium->update(dt);
     }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const
 {
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
-    for(auto& nutriment_ : nutriments){
-        nutriment_->drawOn(targetWindow);
+    for(auto& nutriment : nutriments){
+        nutriment->drawOn(targetWindow);
+    }
+    for(auto& bacterium : bacteria){
+        bacterium->drawOn(targetWindow);
     }
     targetWindow.draw(border);
 }

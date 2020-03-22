@@ -44,10 +44,10 @@ void Lab::drawOn(sf::RenderTarget& targetWindow) const
 {
     dish.drawOn(targetWindow);
 }
-bool Lab::update(sf::Time dt)
+void Lab::update(sf::Time dt)
 {
-    dish.update(dt);
     generator.update(dt);
+    dish.update(dt);
 }
 bool Lab::contains(const CircularBody& body)
 {

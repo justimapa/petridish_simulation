@@ -11,7 +11,6 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
     color(color),
     abstinence(false)
 {
- //Done.
 }
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),
@@ -26,7 +25,8 @@ Bacterium::Bacterium(Bacterium& other):
 
 
     void Bacterium::drawOn(sf::RenderTarget& target) const{
-        auto const circle= buildCircle(getPosition(),getRadius(),(sf::Color)(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
+
+        auto const circle= buildCircle(getPosition(),getRadius(),sf::Color(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
         target.draw(circle);
         if(isDebugOn()){
             string message="Energy : "+to_string((int)energy);
