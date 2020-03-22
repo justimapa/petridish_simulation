@@ -5,7 +5,7 @@ using namespace std;
 
 Petridish::Petridish(Vec2d position,double radius, double Temperature)
 : CircularBody(position,radius),
-  temperature(Temperature),
+  temperature(Temperature)
 { }
 double Petridish::getTemperature() const
 {
