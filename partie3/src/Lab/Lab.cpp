@@ -47,6 +47,7 @@ void Lab::drawOn(sf::RenderTarget& targetWindow) const
 bool Lab::update(sf::Time dt)
 {
     dish.update(dt);
+    generator.update(dt);
 }
 bool Lab::contains(const CircularBody& body)
 {

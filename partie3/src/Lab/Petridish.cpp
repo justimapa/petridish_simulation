@@ -8,7 +8,7 @@ Petridish::Petridish(Vec2d position,double radius, double Temperature)
   temperature(Temperature)
 { }
 
-vector<Nutriment*>& getNutriments()const{
+vector<Nutriment*> Petridish::getNutriments()const{
     return nutriments;
 }
 double Petridish::getTemperature() const
@@ -21,9 +21,9 @@ void Petridish::decreaseTemperature(){
 void Petridish::increaseTemperature(){
     temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
-bool Petridish::addBacterium(Bacterium* bacteria){
-    if(contains(*bacteria)){
-        bacterium.push_back(bacteria);
+bool Petridish::addBacterium(Bacterium* bacterium){
+    if(contains(*bacterium)){
+        bacteria.push_back(bacterium);
     }else{
         return false;
     }
@@ -38,10 +38,10 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     return true;
 }
 void Petridish::update(sf::Time dt){
-    for(auto& nutriment : nutriments){
+    for(auto nutriment : nutriments){
         nutriment->update(dt);
     }
-    for(auto& bacterium:bacteria){
+    for(auto bacterium:bacteria){
         bacterium->update(dt);
     }
 }

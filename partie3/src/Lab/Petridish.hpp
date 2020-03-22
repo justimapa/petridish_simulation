@@ -23,7 +23,7 @@ public:
      * @brief Get Nutriments
      * @return Vector of nutriments of *this
      */
-    std::vector<Nutriment*>& getNutriments()const;
+    std::vector<Nutriment*> getNutriments()const;
     /*!
     * @brief Getter for the temperature
     * @return Temperature of the Petridish::
