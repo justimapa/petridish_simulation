@@ -26,7 +26,7 @@ Bacterium::Bacterium(Bacterium& other):
 
 
     void Bacterium::drawOn(sf::RenderTarget& target) const{
-        auto const circle= buildCircle(getPosition(),getRadius(),(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
+        auto const circle= buildCircle(getPosition(),getRadius(),(sf::Color)(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
         target.draw(circle);
         if(isDebugOn()){
             string message="Energy : "+to_string((int)energy);
@@ -36,13 +36,14 @@ Bacterium::Bacterium(Bacterium& other):
     }
 
     void Bacterium::update(sf::Time dt){
+        delay+=dt;
         move(dt);
         if(getAppEnv().doesCollideWithDish((*this))){
             direction=-direction;
         }
         if(getAppEnv().getNutrimentColliding((*this))!=nullptr
                 and not abstinence
-                //and time delay
+                and delay<=getDelay()
                 ){
             //Consumes energy of nutriment
         }
@@ -57,8 +58,11 @@ Bacterium::Bacterium(Bacterium& other):
         return getConfig()["energy"]["division"].toDouble();
     }
     sf::Time Bacterium::getDelay()const{
-        return getConfig()["meal"]["delay"].toDouble().asSeconds();
+        return sf::seconds(getConfig()["meal"]["delay"].toDouble());
     }
     Quantity Bacterium::getEnergyConsumption()const{
-    return getConfig()["energy"]["consumption"].toDouble();
+        return getConfig()["energy"]["consumption"].toDouble();
+    }
+    void Bacterium::reset(){
+        delay=sf::Time::Zero;
     }

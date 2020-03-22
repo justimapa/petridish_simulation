@@ -19,6 +19,7 @@ public:
     Quantity getMinEnergyDivision()const;
     sf::Time getDelay()const;
     Quantity getEnergyConsumption()const;
+    void reset();
     void consumeEnergy(Quantity qt);
     virtual void move(sf::Time) = 0;
     virtual Bacterium* clone()const = 0;
@@ -29,4 +30,5 @@ private:
     MutableColor color;
     bool abstinence;
     std::map <std::string,MutableNumber> mutations;
+    sf::Time delay;
 };
