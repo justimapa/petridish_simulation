@@ -2,12 +2,10 @@
 #include "Bacterium.hpp"
 #include "Utility/Vec2d.hpp"
 #include "Nutriment.hpp"
-#include "Interface/Drawable.hpp"
-#include "Interface/Updatable.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class Petridish : public CircularBody, public Drawable, public Updatable
+class Petridish : public CircularBody
 {
 public:
     /*!
@@ -55,12 +53,12 @@ public:
     * @param Fraction of time dt after which the Lab:: is updates
     * @return true if update is a success, false if not
     */
-    void update(sf::Time dt) override;
+    void update(sf::Time dt);
    /*!
     * @brief Draws Petridish:: on targetWindow
     * @param targetWindow
     */
-    void drawOn(sf::RenderTarget& targetWindow) const override;
+    void drawOn(sf::RenderTarget& targetWindow) const;
    /*!
     * @brief Destructs Lab::
     */

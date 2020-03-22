@@ -5,8 +5,7 @@
  */
 
 #include <Application.hpp>
-#include <Lab/NutrimentA.hpp>
-#include <Lab/NutrimentB.hpp>
+#include <Lab/Nutriment.hpp>
 
 class NutrimentTest : public Application
 {
