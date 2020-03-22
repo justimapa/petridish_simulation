@@ -41,7 +41,7 @@ public:
     * @param Bacterium:: to be added
     * @return True if the Bacterium:: could be added, false if not
     */
-    bool addBacterium(Bacterium*);
+    bool addBacterium(Bacterium*bacteria);
    /*!
     * @brief Adds a Nutriment:: to the Petridish::
     * @param Nutriment:: to be added

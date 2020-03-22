@@ -17,12 +17,17 @@ void Petridish::decreaseTemperature(){
 void Petridish::increaseTemperature(){
     temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
-bool Petridish::addBacterium(Bacterium*){
-   //TO DO: add a bacteria in the dish if impossible return false
+bool Petridish::addBacterium(Bacterium* bacteria){
+    if(contains(*bacteria)){
+        bacterium.push_back(bacteria);
+    }else{
+        return false;
+    }
+    return true;
 }
-bool Petridish::addNutriment(Nutriment* nutriment_){
-    if(contains(*nutriment_)){
-        nutriments.push_back(nutriment_);
+bool Petridish::addNutriment(Nutriment* nutriment){
+    if(contains(*nutriment)){
+        nutriments.push_back(nutriment);
     } else {
         return false;
     }
