@@ -10,8 +10,11 @@ public:
     virtual void drawOn(sf::RenderTarget& target) const override;
     virtual void update(sf::Time) override;
     void updateFlagella(sf::Time);
+    void updateProbability();
+    void tumble();
     void drawFlagella(sf::RenderTarget& target)const;
     void move(sf::Time) override;
+    bool isTumbling();
     Bacterium* clone()const override;
     j::Value& getConfig()const override;
     Vec2d getSpeedVector() const;
@@ -20,6 +23,11 @@ public:
 private:
     double t;
     double rotation;
+    double oldScore;
+    double tumblingProbability;
+    sf::Time tLastTumble;
+    double lambda;
+    std::string algo;
 };
 
 

@@ -4,9 +4,8 @@
 #include "Interface/Updatable.hpp"
 #include "Utility/Types.hpp"
 #include "Utility/Utility.hpp"
-
-typedef j::Value& MutableColor;
-typedef double MutableNumber;
+#include "Utility/MutableColor.hpp"
+#include "Utility/MutableNumber.hpp"
 
 class Bacterium : public CircularBody,public Drawable,public Updatable
 {
@@ -17,9 +16,11 @@ public:
     virtual void update(sf::Time);
     bool isDead()const;
     Vec2d getDirection()const;
+    void setDirection(const Vec2d&);
     Quantity getMinEnergyDivision()const;
     sf::Time getDelay()const;
     Quantity getEnergyConsumption()const;
+    MutableColor getColor()const;
     void reset();
     void consumeEnergy(Quantity qt);
     virtual void move(sf::Time)= 0;

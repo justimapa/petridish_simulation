@@ -15,7 +15,7 @@ Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
     return nullptr;
 }
 double Lab::getPositionScore(Vec2d const& position)const{
-    double score;
+    double score=0;
     for(auto& nutriment:dish.getNutriments()){
         score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),dish.getGradientExponent());
     }

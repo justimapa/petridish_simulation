@@ -2,6 +2,8 @@
 #include "Random/Random.hpp"
 #include "JSON/JSONImpl.hpp"
 #include "Application.hpp"
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -11,7 +13,9 @@ SimpleBacterium::SimpleBacterium(const Vec2d & position):
     uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
     getConfig()["color"]),
     t(uniform(0.0,PI)),
-    rotation(getDirection().angle())
+    rotation(getDirection().angle()),
+    oldScore(getAppEnv().getPositionScore(position)),
+    algo(getConfig()["tumble"]["algo"].toString())
 {
 
 }
@@ -30,6 +34,9 @@ void SimpleBacterium::drawOn(sf::RenderTarget& target) const{
 }
 void SimpleBacterium::update(sf::Time dt){
     Bacterium::update(dt);
+    tLastTumble+=dt;
+    updateProbability();
+    tumble();
     updateFlagella(dt);
 }
 void SimpleBacterium::updateFlagella(sf::Time dt){
@@ -44,15 +51,50 @@ void SimpleBacterium::updateFlagella(sf::Time dt){
 void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
 {
     auto flagella= sf::VertexArray(sf::TriangleStrip);
-    flagella.append( {{0,0},sf::Color::Black});
+    flagella.append( {{0,0},getColor().get()});
     for(int i=1; i<=30;++i){
-        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))},sf::Color::Black});
+        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))},getColor().get()});
     }
     auto transform = sf::Transform();
     transform.translate(getPosition());
     transform.rotate(rotation/DEG_TO_RAD);
     target.draw(flagella,transform);
 }
+void SimpleBacterium::updateProbability(){
+
+    if(getAppEnv().getPositionScore(getPosition())>=oldScore){
+        lambda=5;
+    }else{
+        lambda=0.05;
+    }
+    cerr<<"lambda "<<lambda<<endl;
+    cerr<<"new score "<<getAppEnv().getPositionScore(getPosition())<<endl;
+    cerr<<"old score "<<oldScore;
+    tumblingProbability=1-exp(-tLastTumble.asSeconds()/lambda);
+    oldScore=getAppEnv().getPositionScore(getPosition());
+}
+bool SimpleBacterium::isTumbling(){
+    return bernoulli(tumblingProbability);
+}
+void SimpleBacterium::tumble(){
+    if(isTumbling() and algo=="single random vector"){
+        setDirection(Vec2d::fromRandomAngle());
+        tLastTumble= sf::Time::Zero;
+
+    }
+    if(isTumbling() and algo=="best of N"){
+        setDirection(Vec2d::fromRandomAngle());
+        Vec2d nextDirection=Vec2d::fromRandomAngle();
+        for(int i=0;i<20;++i){
+            if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
+                  setDirection(nextDirection);
+            }
+                   nextDirection=Vec2d::fromRandomAngle();
+        }
+    }
+
+}
+
 j::Value& SimpleBacterium::getConfig()const{
     return getAppConfig()["simple bacterium"];
 }

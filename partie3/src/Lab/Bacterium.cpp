@@ -1,6 +1,6 @@
 #include "Bacterium.hpp"
 #include "Application.hpp"
-
+#include <cmath>
 using namespace std;
 
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
@@ -26,7 +26,7 @@ Bacterium::Bacterium(Bacterium& other):
 
     void Bacterium::drawOn(sf::RenderTarget& target) const{
 
-        auto const circle= buildCircle(getPosition(),getRadius(),sf::Color::Black);
+        auto const circle= buildCircle(getPosition(),getRadius(),color.get());
         target.draw(circle);
         //drawFlagella(target);
         if(isDebugOn()){
@@ -50,6 +50,7 @@ Bacterium::Bacterium(Bacterium& other):
             reset();
         }
 }
+
     void Bacterium::consumeEnergy(Quantity qt){
         energy-=qt;
     }
@@ -68,6 +69,12 @@ Bacterium::Bacterium(Bacterium& other):
     Vec2d Bacterium::getDirection()const{
         return direction;
     }
+    void Bacterium::setDirection(const Vec2d& direction_){
+        direction=direction_;
+    }
     void Bacterium::reset(){
         delay=sf::Time::Zero;
+    }
+    MutableColor Bacterium::getColor()const{
+        return color;
     }
