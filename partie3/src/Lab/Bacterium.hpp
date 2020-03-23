@@ -32,6 +32,7 @@ public:
     virtual void move(sf::Time)= 0;
     virtual Bacterium* clone() = 0;
     virtual j::Value& getConfig()const=0;
+    virtual ~Bacterium();
 
 private:
     Quantity energy;

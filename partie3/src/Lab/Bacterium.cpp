@@ -48,7 +48,7 @@ Bacterium::Bacterium(Bacterium& other):
                 and (not abstinence)
                 and (delay>=getDelay())
                 ){
-            energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(5);
+            energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(energy*getEnergyConsumption());
             getAppEnv().addBacterium(clone());
             reset();
         }
@@ -100,11 +100,14 @@ Bacterium::Bacterium(Bacterium& other):
     void Bacterium::mutation(Bacterium*){
         color.mutate();
         for(auto& mutation:mutations){
-           // (mutation->second).mutate();
+            cerr<<"XMEN"<<endl;
+            (mutation.second).mutate();
         }
 
     }
     void Bacterium::reset(){
         delay=sf::Time::Zero;
     }
+    Bacterium::~Bacterium(){
 
+    }

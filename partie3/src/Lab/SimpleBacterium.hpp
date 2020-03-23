@@ -8,8 +8,8 @@ public:
     SimpleBacterium(Vec2d const&);
     SimpleBacterium(SimpleBacterium &);
 
-    virtual void drawOn(sf::RenderTarget& target) const override;
-    virtual void update(sf::Time) override;
+    void drawOn(sf::RenderTarget& target) const override;
+    void update(sf::Time) override;
     void updateFlagella(sf::Time);
     void updateProbability();
     void tumble();
@@ -21,6 +21,7 @@ public:
     Vec2d getSpeedVector() ;
     void drawFlagella()const;
     Vec2d f(Vec2d position, Vec2d direction) const override;
+    ~SimpleBacterium() override;
 private:
     double t;
     double rotation;
