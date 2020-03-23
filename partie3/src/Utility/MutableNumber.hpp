@@ -6,6 +6,7 @@ class MutableNumber
 public:
     MutableNumber(double value_, double prob_mutation_, double StdDev_, bool hasLowerBound_=false, double LowerBound_=0.0, bool hasUpperBound_=false, double UpperBound_=0.0);
     MutableNumber(j::Value const& config);
+    MutableNumber();
     double get() const;
     void set(double value_);
     void mutate();

@@ -6,6 +6,7 @@
 #include "Utility/Utility.hpp"
 #include "Utility/MutableColor.hpp"
 #include "Utility/MutableNumber.hpp"
+#include <string>
 
 class Bacterium : public CircularBody,public Drawable,public Updatable
 {
@@ -17,14 +18,19 @@ public:
     bool isDead()const;
     Vec2d getDirection()const;
     void setDirection(const Vec2d&);
+    Quantity getEnergy()const;
+    void setEnergy(Quantity const&);
     Quantity getMinEnergyDivision()const;
     sf::Time getDelay()const;
     Quantity getEnergyConsumption()const;
     MutableColor getColor()const;
+    void addProperty(const std::string&, const MutableNumber &);
+    MutableNumber getProperty(const std::string&);
     void reset();
     void consumeEnergy(Quantity qt);
+    void mutation(Bacterium*);
     virtual void move(sf::Time)= 0;
-    virtual Bacterium* clone()const = 0;
+    virtual Bacterium* clone() = 0;
     virtual j::Value& getConfig()const=0;
 
 private:
@@ -34,4 +40,5 @@ private:
     bool abstinence;
     std::map <std::string,MutableNumber> mutations;
     sf::Time delay;
+    std::vector<Bacterium*> clones;
 };

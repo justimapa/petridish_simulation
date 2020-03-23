@@ -22,6 +22,9 @@ MutableNumber::MutableNumber(j::Value const& config)
   hasUpperBound(config["clamp max"].toBool()),
   UpperBound(config["max"].toDouble())
 { }
+MutableNumber::MutableNumber(){
+
+}
 
 void MutableNumber::set(double value_)
 {

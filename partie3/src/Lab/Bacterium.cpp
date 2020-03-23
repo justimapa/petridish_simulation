@@ -9,8 +9,10 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
     energy(energy),
     direction(direction),
     color(color),
-    abstinence(false)
+    abstinence(false),
+    clones({this})
 {
+
 }
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),
@@ -47,6 +49,7 @@ Bacterium::Bacterium(Bacterium& other):
                 and (delay>=getDelay())
                 ){
             energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(5);
+            getAppEnv().addBacterium(clone());
             reset();
         }
 }
@@ -57,6 +60,12 @@ Bacterium::Bacterium(Bacterium& other):
     bool Bacterium::isDead()const{
     return energy<=0;
 }
+    void Bacterium::setEnergy(Quantity const& energy_){
+        energy=energy_;
+    }
+    Quantity Bacterium::getEnergy()const{
+        return energy;
+    }
     Quantity Bacterium::getMinEnergyDivision()const{
         return getConfig()["energy"]["division"].toDouble();
     }
@@ -72,9 +81,30 @@ Bacterium::Bacterium(Bacterium& other):
     void Bacterium::setDirection(const Vec2d& direction_){
         direction=direction_;
     }
-    void Bacterium::reset(){
-        delay=sf::Time::Zero;
-    }
     MutableColor Bacterium::getColor()const{
         return color;
     }
+    void Bacterium::addProperty(const string& key,const MutableNumber& value){
+        mutations[key] = value;
+    }
+    MutableNumber Bacterium::getProperty(const string& key){
+        try{
+            auto paire=mutations.find(key);
+            return  paire->second;
+        }catch(std::out_of_range){
+            cerr<<"Out of range"<<endl;
+        }catch(std::invalid_argument){
+            cerr<<"Invalid_argument"<<endl;
+        }
+    }
+    void Bacterium::mutation(Bacterium*){
+        color.mutate();
+        for(auto& mutation:mutations){
+           // (mutation->second).mutate();
+        }
+
+    }
+    void Bacterium::reset(){
+        delay=sf::Time::Zero;
+    }
+

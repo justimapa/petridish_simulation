@@ -17,6 +17,16 @@ SimpleBacterium::SimpleBacterium(const Vec2d & position):
     oldScore(getAppEnv().getPositionScore(position)),
     algo(getConfig()["tumble"]["algo"].toString())
 {
+    addProperty("speed",MutableNumber::positive(getConfig()["speed"]));
+    addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
+    addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
+}
+SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
+    Bacterium(other),
+              rotation(other.rotation),
+              oldScore(other.oldScore),
+              algo(other.algo)
+{
 
 }
 void SimpleBacterium::move(sf::Time dt){
@@ -63,14 +73,11 @@ void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
 void SimpleBacterium::updateProbability(){
 
     if(getAppEnv().getPositionScore(getPosition())>=oldScore){
-        lambda=5;
+        tumblingProbability=1-exp(-tLastTumble.asSeconds()/getProperty("tumble better").get());
     }else{
-        lambda=0.05;
+        tumblingProbability=1-exp(-tLastTumble.asSeconds()/getProperty("tumble worse").get());
     }
-    cerr<<"lambda "<<lambda<<endl;
-    cerr<<"new score "<<getAppEnv().getPositionScore(getPosition())<<endl;
-    cerr<<"old score "<<oldScore;
-    tumblingProbability=1-exp(-tLastTumble.asSeconds()/lambda);
+
     oldScore=getAppEnv().getPositionScore(getPosition());
 }
 bool SimpleBacterium::isTumbling(){
@@ -98,12 +105,18 @@ void SimpleBacterium::tumble(){
 j::Value& SimpleBacterium::getConfig()const{
     return getAppConfig()["simple bacterium"];
 }
-Vec2d SimpleBacterium::getSpeedVector() const{
-    return getDirection().normalised()*10;
+Vec2d SimpleBacterium::getSpeedVector(){
+    return (getDirection().normalised())*(getProperty("speed").get());
 }
 Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
     return Vec2d(0,0);
 }
-Bacterium* SimpleBacterium::clone()const{
-    //I do jack shit for now
+Bacterium* SimpleBacterium::clone(){
+    if(getMinEnergyDivision()<=getEnergy()){
+        cerr<<"A new challenger approaches"<<endl;
+        setEnergy(getEnergy()/2);
+        Bacterium* new_Bact(new SimpleBacterium(*this));
+        mutation(new_Bact);
+        new_Bact->setDirection(-getDirection());
+}
 }
