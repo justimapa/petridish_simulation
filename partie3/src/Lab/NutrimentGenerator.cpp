@@ -15,18 +15,16 @@ void NutrimentGenerator::update(sf::Time dt)
     if(stopwatch > sf::seconds(getAppConfig()["generator"]["nutriment"]["delay"].toDouble())){
         reset();
         if(bernoulli(getAppConfig()["generator"]["nutriment"]["prob"].toDouble())){
-           NutrimentA to_add(uniform(getShortConfig().nutrimentA_min_qty,
+           getAppEnv().addNutriment(
+                       new NutrimentA (uniform(getShortConfig().nutrimentA_min_qty,
                                      getShortConfig().nutrimentA_max_qty),
-                             Vec2d(normal(getApp().getLabSize().x/2, (getApp().getLabSize()/4).dot(getApp().getLabSize()/4)),
-                             normal(getApp().getLabSize().y/2, (getApp().getLabSize()/4).dot(getApp().getLabSize()/4))));
-           NutrimentA* nutrA_to_add(&to_add);
-           getAppEnv().addNutriment(nutrA_to_add);
+                             Vec2d(normal(getApp().getLabSize()[0]/2, (getApp().getLabSize()[0]/4)*(getApp().getLabSize()[0]/4)),
+                             normal(getApp().getLabSize()[1]/2, (getApp().getLabSize()[1]/4)*(getApp().getLabSize()[1]/4)))));
         } else {
-            NutrimentB to_add(uniform(getShortConfig().nutrimentB_min_qty,
-                                      getShortConfig().nutrimentB_max_qty),
-                              normal(getApp().getLabSize()/2, getApp().getLabSize()/4));
-            NutrimentB* nutrB_to_add(&to_add);
-            getAppEnv().addNutriment(nutrB_to_add);
+            getAppEnv().addNutriment(new NutrimentB (uniform(getShortConfig().nutrimentB_min_qty,
+                          getShortConfig().nutrimentB_max_qty),
+                  Vec2d(normal(getApp().getLabSize()[0]/2, (getApp().getLabSize()[0]/4)*(getApp().getLabSize()[0]/4)),
+                  normal(getApp().getLabSize()[1]/2, (getApp().getLabSize()[1]/4)*(getApp().getLabSize()[1]/4)))));
         }
     }
 }
