@@ -17,6 +17,29 @@ public:
      */
     Nutriment* getNutrimentColliding(CircularBody const&)const;
     /*!
+     * @brief Gets the score of a given position
+     * @param Vec2d position who's score will be calculated
+     * @return Calculatated position
+     */
+    double getPositionScore(Vec2d const&)const;
+    /*!
+     * @brief Getter for the Petridish::'s GradientExponent
+     * @return GradientExponent of the Petridish::
+     */
+    double getGradientExponent() const;
+    /*!
+     * @brief Decreases GradientExponent
+     */
+    void decreaseGradientExponent();
+    /*!
+     * @brief Increases GradientExponent
+     */
+    void increaseGradientExponent();
+    /*!
+     * @brief Sets to config default
+     */
+    void refreshConfig();
+    /*!
      * @brief Getter for the Petridish::'s temperature
      * @return Temperature of the Petridish::
      */
@@ -29,10 +52,6 @@ public:
      * @brief Increases temperature
      */
     void increaseTemperature();
-    /*!
-     * @brief Sets to config default
-     */
-    void refreshConfig();
     /*!
      * @brief Tests if a CircularBody:: is inside another
      * @param The other CircularBody::

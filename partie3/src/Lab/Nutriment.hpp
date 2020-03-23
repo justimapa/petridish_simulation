@@ -32,6 +32,11 @@ public:
     * @param Quantity that will be set
     */
     void setQuantity(Quantity quantity_);
+    /*!
+     * @brief Getter for the quantity
+     * @return Quantity of current instance
+     */
+    Quantity getQuantity()const;
    /*!
     * @brief draws the Nutriment::
     * @param targetWindow where the Nutriment:: will be drawn

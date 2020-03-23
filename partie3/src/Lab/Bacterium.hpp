@@ -13,9 +13,8 @@ class Bacterium : public CircularBody,public Drawable,public Updatable
 public:
     Bacterium(Quantity const&,Vec2d const&,Vec2d const&,double const&,MutableColor const&);
     Bacterium(Bacterium&);
-    void drawOn(sf::RenderTarget&)const;
-
-    void update(sf::Time);
+    virtual void drawOn(sf::RenderTarget&)const;
+    virtual void update(sf::Time);
     bool isDead()const;
     Vec2d getDirection()const;
     Quantity getMinEnergyDivision()const;

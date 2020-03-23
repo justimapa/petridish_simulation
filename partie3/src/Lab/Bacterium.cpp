@@ -26,7 +26,7 @@ Bacterium::Bacterium(Bacterium& other):
 
     void Bacterium::drawOn(sf::RenderTarget& target) const{
 
-        auto const circle= buildCircle(getPosition(),getRadius(),sf::Color(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
+        auto const circle= buildCircle(getPosition(),getRadius(),sf::Color::Black);
         target.draw(circle);
         //drawFlagella(target);
         if(isDebugOn()){

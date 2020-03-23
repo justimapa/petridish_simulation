@@ -1,16 +1,32 @@
 #include "Petridish.hpp"
 #include "Application.hpp"
 
+
 using namespace std;
 
-Petridish::Petridish(Vec2d position,double radius, double Temperature)
+Petridish::Petridish(Vec2d position,double radius, double Temperature,double gradientExponent)
 : CircularBody(position,radius),
-  temperature(Temperature)
+  temperature(Temperature),
+  gradientExponent(gradientExponent)
 { }
 
 vector<Nutriment*> Petridish::getNutriments()const{
     return nutriments;
 }
+double Petridish::getGradientExponent()const{
+    return gradientExponent;
+}
+void Petridish::decreaseGradientExponent(){
+    cerr<<gradientExponent<<endl;
+    gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+}
+void Petridish::increaseGradientExponent(){
+    gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+}
+void Petridish::resetGradientExponent(){
+    gradientExponent=getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2;
+}
+
 double Petridish::getTemperature() const
 {
     return temperature;
@@ -20,6 +36,9 @@ void Petridish::decreaseTemperature(){
 }
 void Petridish::increaseTemperature(){
     temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
+}
+void Petridish::resetTemperature(){
+    temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 bool Petridish::addBacterium(Bacterium* bacterium){
 
@@ -39,6 +58,7 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     }
     return true;
 }
+
 void Petridish::update(sf::Time dt){
     for(auto& nutriment : nutriments){
         nutriment->update(dt);
@@ -67,9 +87,6 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
     }
     targetWindow.draw(border);
 }
-void Petridish::resetTemperature(){
-    temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
-}
 void Petridish::reset(){
     nutriments.clear();
     for(auto* nutr: nutriments){
@@ -79,6 +96,7 @@ void Petridish::reset(){
     for(auto* bact : bacteria){
         delete bact;
     }
+    resetGradientExponent();
     resetTemperature();
 }
 Petridish::~Petridish(){

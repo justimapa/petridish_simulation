@@ -9,7 +9,9 @@ SimpleBacterium::SimpleBacterium(const Vec2d & position):
     Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
     position,Vec2d::fromRandomAngle(),
     uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-    getConfig()["color"])
+    getConfig()["color"]),
+    t(uniform(0.0,PI)),
+    rotation(getDirection().angle())
 {
 
 }
@@ -21,12 +23,35 @@ void SimpleBacterium::move(sf::Time dt){
     consumeEnergy((movement).length()*getEnergyConsumption());
     }
 }
-void SimpleBacterium::drawFlagella(sf::RenderTarget& target,sf::Time dt)const{
+
+void SimpleBacterium::drawOn(sf::RenderTarget& target) const{
+    Bacterium::drawOn(target);
+    drawFlagella(target);
+}
+void SimpleBacterium::update(sf::Time dt){
+    Bacterium::update(dt);
+    updateFlagella(dt);
+}
+void SimpleBacterium::updateFlagella(sf::Time dt){
+    t+=(3*dt.asSeconds());
+    auto const angleDiff = angleDelta(getDirection().angle(),rotation);
+    auto dalpha = PI * dt.asSeconds();
+    dalpha= min(dalpha,abs(angleDiff));
+    dalpha=copysign(dalpha,angleDiff);
+    rotation+=dalpha;
+
+}
+void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
+{
     auto flagella= sf::VertexArray(sf::TriangleStrip);
     flagella.append( {{0,0},sf::Color::Black});
     for(int i=1; i<=30;++i){
-        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(dt.asSeconds())*sin(2*i/10.0))},sf::Color::Black});
+        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))},sf::Color::Black});
     }
+    auto transform = sf::Transform();
+    transform.translate(getPosition());
+    transform.rotate(rotation/DEG_TO_RAD);
+    target.draw(flagella,transform);
 }
 j::Value& SimpleBacterium::getConfig()const{
     return getAppConfig()["simple bacterium"];
