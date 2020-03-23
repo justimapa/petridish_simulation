@@ -82,8 +82,17 @@ J'ai codé jusqu'au test 5 de l'étape 3.1.
 
 Dimanche 22.03.2020
 
+Justin
 J'ai initializé l'environnement pour la partie 3 du projet ainsi que créé les 
 fichiers des classes demandé vide ensuite j'ai codé pour la classe Bacterium jusqu'à la question 3.14.
+
+Umut
+J'ai terminé de coder les classes NutrimentA et NutrimentB.
+J'ai commencé à coder la classe NutrimentGenerator.
+
+Umut & Justin
+
+Nous avons essayé de trouver une solution pour classe NutrimentGenerator.
 
 Lundi 23.03.2020
 
@@ -93,5 +102,13 @@ Il y a eu quelque soucis. La flagelle de SimpleBacterium apparaît mais elle
 est peu visible, la simulation semble crasher lorsqu'il y a trop de bacterie
 et il arrive qu'une bactérie augmente soudainement de vitesse suite à une
 appel de méthode clone().
+
+Umut
+J'ai terminé de coder la classe NutrimentGenerator.
+J'ai terminé de coder les classes MutableNumber et Mutable Color.
+
+Mardi 23.03.2020
+
+
 
 
