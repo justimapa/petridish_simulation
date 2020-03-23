@@ -71,7 +71,7 @@ Justin
 J'ai modifié le mode debug pour que le nutriment affiche un simple cercle vert
 et non et le sprite pour que ce mode soit plus lisible.
 
-<<<<<<< HEAD
+
 Dimanche 22.03.2020
 
 Umut
@@ -83,5 +83,15 @@ J'ai codé jusqu'au test 5 de l'étape 3.1.
 Dimanche 22.03.2020
 
 J'ai initializé l'environnement pour la partie 3 du projet ainsi que créé les 
-fichiers des classes demandé vide.
->>>>>>> 7a4c7ad0adaba5890542fd71652f2339edaa9298
+fichiers des classes demandé vide ensuite j'ai codé pour la classe Bacterium jusqu'à la question 3.14.
+
+Lundi 23.03.2020
+
+Justin
+J'ai codé pour la classe Bacterium et SimpleBacterium dans son entièreté.
+Il y a eu quelque soucis. La flagelle de SimpleBacterium apparaît mais elle
+est peu visible, la simulation semble crasher lorsqu'il y a trop de bacterie
+et il arrive qu'une bactérie augmente soudainement de vitesse suite à une
+appel de méthode clone().
+
+
