@@ -47,6 +47,7 @@ public:
     * @return True if the Bacterium:: could be added, false if not
     */
     bool addBacterium(Bacterium*bacteria);
+    void removeBacterium(size_t);
    /*!
     * @brief Adds a Nutriment:: to the Petridish::
     * @param Nutriment:: to be added

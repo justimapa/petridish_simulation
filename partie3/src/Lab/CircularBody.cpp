@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CircularBody.hpp"
 
+
 using namespace std;
 
 Vec2d CircularBody::getPosition()const

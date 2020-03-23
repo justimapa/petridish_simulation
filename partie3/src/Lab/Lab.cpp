@@ -7,7 +7,7 @@ Lab::Lab()
 { }
 Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
     for(auto& nutriment:dish.getNutriments()){
-        if(*nutriment&body){
+        if((*nutriment)&body){
             return nutriment;
         }
     }
@@ -37,8 +37,8 @@ void Lab::addNutriment(Nutriment* nutriment)
 {
     dish.addNutriment(nutriment);
 }
-bool Lab::doesCollideWithDish(const CircularBody & body){
-    return dish&body;
+bool Lab::doesCollideWithDish(CircularBody const& body){
+    return ((dish&body) and not (dish>body));
 }
 void Lab::drawOn(sf::RenderTarget& targetWindow) const
 {

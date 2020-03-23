@@ -28,24 +28,30 @@ Bacterium::Bacterium(Bacterium& other):
 
         auto const circle= buildCircle(getPosition(),getRadius(),sf::Color(color["r"]["initial"].toDouble(),color["g"]["initial"].toDouble(),color["b"]["initial"].toDouble()));
         target.draw(circle);
+        //drawFlagella(target);
         if(isDebugOn()){
             string message="Energy : "+to_string((int)energy);
-            auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
+            auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Black);
             target.draw(text);
         }
     }
+    void Bacterium::drawFlagella(sf::RenderTarget& target)const{
+        auto flagella= sf::VertexArray(<sf::TriangleStrip>);
+        flagella.append({0,0});
 
+    }
     void Bacterium::update(sf::Time dt){
         delay+=dt;
         move(dt);
         if(getAppEnv().doesCollideWithDish((*this))){
             direction=-direction;
         }
-        if(getAppEnv().getNutrimentColliding((*this))!=nullptr
-                and not abstinence
-                and delay<=getDelay()
+        if((getAppEnv().getNutrimentColliding((*this))!=nullptr)
+                and (not abstinence)
+                and (delay>=getDelay())
                 ){
-            //Consumes energy of nutriment
+            energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(5);
+            reset();
         }
 }
     void Bacterium::consumeEnergy(Quantity qt){
@@ -61,7 +67,10 @@ Bacterium::Bacterium(Bacterium& other):
         return sf::seconds(getConfig()["meal"]["delay"].toDouble());
     }
     Quantity Bacterium::getEnergyConsumption()const{
-        return getConfig()["energy"]["consumption"].toDouble();
+        return getConfig()["energy"]["consumption factor"].toDouble();
+    }
+    Vec2d Bacterium::getDirection()const{
+        return direction;
     }
     void Bacterium::reset(){
         delay=sf::Time::Zero;

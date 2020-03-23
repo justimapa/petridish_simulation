@@ -62,6 +62,7 @@ public:
     * @return True if it is, false if not
     */
     bool isContained() const;
+    bool isDead()const;
 
 private:
     Quantity quantity;

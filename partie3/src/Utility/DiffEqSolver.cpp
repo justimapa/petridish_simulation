@@ -12,7 +12,7 @@ DiffEqResult stepDiffEq(Vec2d position, Vec2d speed, sf::Time dt, DiffEqFunction
 
     switch (algo) {
     case DiffEqAlgorithm::EC: {
-        auto const& newSpeed = speed + ds * eq.f(position, speed);
+        auto const& newSpeed = speed  + ds * eq.f(position, speed);
         auto const& newPosition = position + ds * newSpeed;
         return { newPosition, newSpeed };
     }

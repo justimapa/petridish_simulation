@@ -41,7 +41,7 @@ void Nutriment::drawOn(sf::RenderTarget& target) const
     target.draw(nutrimentSprite);
     }else{
         string message="Qte : "+to_string((int)quantity);
-        auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
+        auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Black);
         auto border = buildAnnulus(getPosition(),getRadius(),sf::Color::Green,2);
         target.draw(text);
         target.draw(border);
@@ -71,4 +71,7 @@ bool Nutriment::isQuantityOK() const
 bool Nutriment::isContained() const
 {
     return getAppEnv().contains(*this);
+}
+bool Nutriment::isDead()const{
+    return quantity<=0;
 }
