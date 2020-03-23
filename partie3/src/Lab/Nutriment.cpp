@@ -31,6 +31,9 @@ void Nutriment::setQuantity(Quantity quantity_)
         quantity = 0.0;
     }
 }
+Quantity Nutriment::getQuantity()const{
+    return quantity;
+}
 void Nutriment::drawOn(sf::RenderTarget& target) const
 {
     if(not isDebugOn()){

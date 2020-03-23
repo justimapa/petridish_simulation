@@ -1,9 +1,10 @@
 #include "Application.hpp"
 #include "Lab.hpp"
-
+#include <cmath>
 Lab::Lab()
     : dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2),
-           getAppConfig()["petri dish"]["temperature"]["default"].toDouble())
+           getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
+      getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2)
 { }
 Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
     for(auto& nutriment:dish.getNutriments()){
@@ -12,6 +13,25 @@ Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
         }
     }
     return nullptr;
+}
+double Lab::getPositionScore(Vec2d const& position)const{
+    double score;
+    for(auto& nutriment:dish.getNutriments()){
+        score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),dish.getGradientExponent());
+    }
+    return score;
+}
+double Lab::getGradientExponent() const
+{
+    return dish.getGradientExponent();
+}
+void Lab::decreaseGradientExponent()
+{
+    dish.decreaseGradientExponent();
+}
+void Lab::increaseGradientExponent()
+{
+    dish.increaseGradientExponent();
 }
 double Lab::getTemperature() const
 {
@@ -27,6 +47,7 @@ void Lab::increaseTemperature()
 }
 void Lab::refreshConfig(){
     dish.resetTemperature();
+    dish.resetGradientExponent();
 }
 
 void Lab::addBacterium(Bacterium* bact){

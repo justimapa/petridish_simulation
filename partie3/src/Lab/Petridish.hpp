@@ -18,12 +18,34 @@ public:
     * @param Radius of the Petridish::
     * @param Temperature of the Petridish::
     */
-    Petridish(Vec2d position,double radius, double Temperature);
+    Petridish(Vec2d position,double radius, double Temperature,double gradientExponent);
     /*!
      * @brief Get Nutriments
      * @return Vector of nutriments of *this
      */
     std::vector<Nutriment*> getNutriments()const;
+    /*!
+     * @brief Getter for the power
+     * @return Power of the the Petridish::
+     */
+    double getPower()const;
+    /*!
+    * @brief Getter for the GradientExponent
+    * @return GradientExponent of the Petridish::
+    */
+    double getGradientExponent() const;
+   /*!
+    * @brief Decreases GradientExponent of the Petridish::
+    */
+    void decreaseGradientExponent();
+   /*!
+    * @brief Increases GradientExponent of the Petridish::
+    */
+    void increaseGradientExponent();
+    /*!
+     * @brief resets GradientExponent of the petridish to config default
+     */
+    void resetGradientExponent();
     /*!
     * @brief Getter for the temperature
     * @return Temperature of the Petridish::
@@ -60,6 +82,7 @@ public:
     * @return true if update is a success, false if not
     */
     void update(sf::Time dt);
+    double score(Vec2d position);
    /*!
     * @brief Draws Petridish:: on targetWindow
     * @param targetWindow
@@ -76,5 +99,6 @@ private:
     std::vector<Bacterium*> bacteria;
     std::vector<Nutriment*> nutriments;
     double temperature;
+    double gradientExponent;
 };
 
