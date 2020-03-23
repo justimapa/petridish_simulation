@@ -21,6 +21,13 @@ void SimpleBacterium::move(sf::Time dt){
     consumeEnergy((movement).length()*getEnergyConsumption());
     }
 }
+void SimpleBacterium::drawFlagella(sf::RenderTarget& target,sf::Time dt)const{
+    auto flagella= sf::VertexArray(sf::TriangleStrip);
+    flagella.append( {{0,0},sf::Color::Black});
+    for(int i=1; i<=30;++i){
+        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(dt.asSeconds())*sin(2*i/10.0))},sf::Color::Black});
+    }
+}
 j::Value& SimpleBacterium::getConfig()const{
     return getAppConfig()["simple bacterium"];
 }

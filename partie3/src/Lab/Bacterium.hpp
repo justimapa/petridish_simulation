@@ -14,7 +14,7 @@ public:
     Bacterium(Quantity const&,Vec2d const&,Vec2d const&,double const&,MutableColor const&);
     Bacterium(Bacterium&);
     void drawOn(sf::RenderTarget&)const;
-    void drawFlagella(sf::RenderTarget& target)const;
+
     void update(sf::Time);
     bool isDead()const;
     Vec2d getDirection()const;

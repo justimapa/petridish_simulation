@@ -35,11 +35,7 @@ Bacterium::Bacterium(Bacterium& other):
             target.draw(text);
         }
     }
-    void Bacterium::drawFlagella(sf::RenderTarget& target)const{
-        auto flagella= sf::VertexArray(<sf::TriangleStrip>);
-        flagella.append({0,0});
 
-    }
     void Bacterium::update(sf::Time dt){
         delay+=dt;
         move(dt);

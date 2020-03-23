@@ -6,6 +6,7 @@ class SimpleBacterium : public Bacterium, public DiffEqFunction
 {
 public:
     SimpleBacterium(Vec2d const&);
+    void drawFlagella(sf::RenderTarget& target, sf::Time dt)const;
     void move(sf::Time) override;
     Bacterium* clone()const override;
     j::Value& getConfig()const override;
