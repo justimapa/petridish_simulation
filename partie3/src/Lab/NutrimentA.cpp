@@ -14,5 +14,4 @@ j::Value const& NutrimentA::getConfig()const
     return getAppConfig()["nutriments"]["A"];
 }
 NutrimentA::~NutrimentA(){
-    cerr<<"You dead nutriment A"<<endl;
 }

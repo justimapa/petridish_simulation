@@ -14,5 +14,4 @@ j::Value const& NutrimentB::getConfig() const
 }
 
 NutrimentB::~NutrimentB(){
-    cerr<<"You dead nutriment B"<<endl;
 }

@@ -21,7 +21,6 @@ public:
     * @param Value of the CircularBody::
     * @return New value of the CircularBody::
     */
-
    CircularBody& operator=(CircularBody& other);
    /*!
     * @brief Overloading the > operator for the class
@@ -45,7 +44,6 @@ public:
     * @brief Changes the position of the CircularBody::
     * @param The amount of the movement
     */
-
    void move(Vec2d distance);
    /*!
     * @brief Tests if a CircularBody:: is inside another

@@ -41,13 +41,14 @@ void Petridish::resetTemperature(){
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 bool Petridish::addBacterium(Bacterium* bacterium){
-
-    if(contains(*bacterium)){
-        bacteria.push_back(bacterium);
-    }else{
-        return false;
+    if(bacterium!=nullptr){
+        if(contains(*bacterium)){
+            bacteria.push_back(bacterium);
+            return true;
+        }
     }
-    return true;
+    return false;
+
 }
 bool Petridish::addNutriment(Nutriment* nutriment){
 

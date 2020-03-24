@@ -49,7 +49,9 @@ Bacterium::Bacterium(Bacterium& other):
                 and (delay>=getDelay())
                 ){
             energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(energy*getEnergyConsumption());
+            if(getMinEnergyDivision()<=energy){
             getAppEnv().addBacterium(clone());
+            }
             reset();
         }
 }

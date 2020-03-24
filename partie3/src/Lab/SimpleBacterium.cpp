@@ -64,6 +64,7 @@ void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
     flagella.append( {{0,0},getColor().get()});
     for(int i=1; i<=30;++i){
         flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))},getColor().get()});
+        flagella.append({{static_cast<float>(-i*getRadius()/10.0)+1.25,static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))+1.25},getColor().get()});
     }
     auto transform = sf::Transform();
     transform.translate(getPosition());
@@ -112,15 +113,12 @@ Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
     return Vec2d(0,0);
 }
 Bacterium* SimpleBacterium::clone(){
-    if(getMinEnergyDivision()<=getEnergy()){
         setEnergy(getEnergy()/2);
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
         setDirection(-getDirection());
         return new_Bact;
-    }
 }
 SimpleBacterium::~SimpleBacterium()
 {
-    cerr<<"You dead bacterium"<<endl;
 }
