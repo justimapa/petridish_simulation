@@ -33,7 +33,7 @@ Bacterium::Bacterium(Bacterium& other):
         //drawFlagella(target);
         if(isDebugOn()){
             string message="Energy : "+to_string((int)energy);
-            auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Black);
+            auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Red);
             target.draw(text);
         }
     }
@@ -100,7 +100,6 @@ Bacterium::Bacterium(Bacterium& other):
     void Bacterium::mutation(Bacterium*){
         color.mutate();
         for(auto& mutation:mutations){
-            cerr<<"XMEN"<<endl;
             (mutation.second).mutate();
         }
 

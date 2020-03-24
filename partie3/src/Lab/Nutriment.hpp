@@ -68,7 +68,7 @@ public:
     */
     bool isContained() const;
     bool isDead()const;
-
+    virtual ~Nutriment();
 private:
     Quantity quantity;
 };

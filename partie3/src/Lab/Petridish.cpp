@@ -63,6 +63,7 @@ void Petridish::update(sf::Time dt){
     for(auto& nutriment : nutriments){
         nutriment->update(dt);
         if(nutriment->isDead()){
+            delete nutriment;
             nutriment=nullptr;
         }
     }
@@ -70,6 +71,7 @@ void Petridish::update(sf::Time dt){
     for(auto& bacterium:bacteria){
         bacterium->update(dt);
         if(bacterium->isDead()){
+            delete bacterium;
             bacterium=nullptr;
         }
     }
@@ -88,14 +90,14 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
     targetWindow.draw(border);
 }
 void Petridish::reset(){
-    nutriments.clear();
     for(auto* nutr: nutriments){
         delete nutr;
     }
-    bacteria.clear();
+    nutriments.clear();
     for(auto* bact : bacteria){
         delete bact;
     }
+    bacteria.clear();
     resetGradientExponent();
     resetTemperature();
 }

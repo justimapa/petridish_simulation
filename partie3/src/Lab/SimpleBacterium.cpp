@@ -118,9 +118,9 @@ Bacterium* SimpleBacterium::clone(){
         mutation(new_Bact);
         setDirection(-getDirection());
         return new_Bact;
-}
+    }
 }
 SimpleBacterium::~SimpleBacterium()
 {
-
+    cerr<<"You dead bacterium"<<endl;
 }
