@@ -63,8 +63,8 @@ void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
     auto flagella= sf::VertexArray(sf::TriangleStrip);
     flagella.append( {{0,0},getColor().get()});
     for(int i=1; i<=30;++i){
-        flagella.append({{static_cast<float>(-i*getRadius()/10.0),static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))},getColor().get()});
-        flagella.append({{static_cast<float>(-i*getRadius()/10.0)+1.25,static_cast<float>(getRadius()*sin(t)*sin(2*i/10.0))+1.25},getColor().get()});
+        flagella.append({{static_cast<float>((-i*getRadius()/10.0)-0.75),static_cast<float>((getRadius()*sin(t)*sin(2*i/10.0))-0.75)},getColor().get()});
+        flagella.append({{static_cast<float>((-i*getRadius()/10.0)+0.75),static_cast<float>((getRadius()*sin(t)*sin(2*i/10.0))+0.75)},getColor().get()});
     }
     auto transform = sf::Transform();
     transform.translate(getPosition());

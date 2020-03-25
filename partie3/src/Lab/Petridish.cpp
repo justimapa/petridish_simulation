@@ -51,13 +51,13 @@ bool Petridish::addBacterium(Bacterium* bacterium){
 
 }
 bool Petridish::addNutriment(Nutriment* nutriment){
-
+    if(nutriment!=nullptr){
     if(contains(*nutriment)){
         nutriments.push_back(nutriment);
-    } else {
-        return false;
+        return true;
+        }
     }
-    return true;
+    return false;
 }
 
 void Petridish::update(sf::Time dt){

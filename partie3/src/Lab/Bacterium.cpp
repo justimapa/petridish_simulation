@@ -48,7 +48,7 @@ Bacterium::Bacterium(Bacterium& other):
                 and (not abstinence)
                 and (delay>=getDelay())
                 ){
-            energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(energy*getEnergyConsumption());
+            energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(getConfig()["meal"]["max"].toDouble());
             if(getMinEnergyDivision()<=energy){
             getAppEnv().addBacterium(clone());
             }
