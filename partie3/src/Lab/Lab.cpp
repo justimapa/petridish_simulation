@@ -1,25 +1,16 @@
 #include "Application.hpp"
 #include "Lab.hpp"
-#include <cmath>
+
 Lab::Lab()
     : dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2),
            getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
       getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2)
 { }
 Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
-    for(auto& nutriment:dish.getNutriments()){
-        if((*nutriment)&body){
-            return nutriment;
-        }
-    }
-    return nullptr;
+    return dish.getNutrimentColliding(body);
 }
 double Lab::getPositionScore(Vec2d const& position)const{
-    double score=0;
-    for(auto& nutriment:dish.getNutriments()){
-        score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),dish.getGradientExponent());
-    }
-    return score;
+    return dish.getPositionScore(position);
 }
 double Lab::getGradientExponent() const
 {

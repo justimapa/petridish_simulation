@@ -19,11 +19,8 @@ public:
     * @param Temperature of the Petridish::
     */
     Petridish(Vec2d position,double radius, double Temperature,double gradientExponent);
-    /*!
-     * @brief Get Nutriments
-     * @return Vector of nutriments of *this
-     */
-    std::vector<Nutriment*> getNutriments()const;
+    Nutriment* getNutrimentColliding(CircularBody const& body)const;
+    double getPositionScore(Vec2d const& position)const;
     /*!
      * @brief Getter for the power
      * @return Power of the the Petridish::

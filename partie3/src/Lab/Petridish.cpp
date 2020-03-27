@@ -1,6 +1,6 @@
 #include "Petridish.hpp"
 #include "Application.hpp"
-
+#include <cmath>
 
 using namespace std;
 
@@ -10,9 +10,6 @@ Petridish::Petridish(Vec2d position,double radius, double Temperature,double gra
   gradientExponent(gradientExponent)
 { }
 
-vector<Nutriment*> Petridish::getNutriments()const{
-    return nutriments;
-}
 double Petridish::getGradientExponent()const{
     return gradientExponent;
 }
@@ -89,6 +86,21 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
 
     }
     targetWindow.draw(border);
+}
+Nutriment* Petridish::getNutrimentColliding(CircularBody const& body)const{
+    for(auto& nutriment:nutriments){
+        if((*nutriment)&body){
+            return nutriment;
+        }
+    }
+    return nullptr;
+}
+double Petridish::getPositionScore(Vec2d const& position)const{
+    double score=0;
+    for(auto& nutriment:nutriments){
+        score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),gradientExponent);
+    }
+    return score;
 }
 void Petridish::reset(){
     for(auto* nutr: nutriments){
