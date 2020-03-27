@@ -109,6 +109,7 @@ J'ai terminé de coder les classes MutableNumber et Mutable Color.
 
 Mardi 23.03.2020
 
+Vendredi 27.03.2020
 
-
-
+Umut
+J'ai nettoyé le code de la classe CircularBody.
