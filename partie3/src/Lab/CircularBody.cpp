@@ -1,14 +1,12 @@
-#include <iostream>
 #include "CircularBody.hpp"
-
 
 using namespace std;
 
-Vec2d CircularBody::getPosition()const
+const Vec2d& CircularBody::getPosition() const
 {
     return position;
 }
-double  CircularBody::getRadius()const
+double  CircularBody::getRadius() const
 {
     return radius;
 }
@@ -19,46 +17,47 @@ CircularBody& CircularBody::operator=(CircularBody& other)
     radius=other.radius;
     return (*this);
 }
-bool CircularBody::operator>(CircularBody const& body)
+bool CircularBody::operator>(CircularBody const& body) const
 {
     return contains(body);
 }
-bool CircularBody::operator&(CircularBody const& body)
+bool CircularBody::operator&(CircularBody const& body) const
 {
     return isColliding(body);
 }
-bool CircularBody::operator>(Vec2d const& point)
+bool CircularBody::operator>(Vec2d const& point) const
 {
     return contains(point);
 }
 
-void CircularBody::move(Vec2d distance)
+void CircularBody::move(const Vec2d& distance)
 {
     position+=distance;
 }
-bool CircularBody::contains(CircularBody const& other)const
+bool CircularBody::contains(const CircularBody& other) const
 {
-    return(radius>=other.radius and distance(position,other.position)<=radius-other.radius);
+    return(radius>=other.radius) and (distance(position,other.position)<=radius-other.radius);
 }
-bool CircularBody::contains(Vec2d const& point)const
-{
-    return distance(position,point)<=radius;
-}
-bool CircularBody::isColliding(CircularBody const& other)const
+bool CircularBody::isColliding(const CircularBody& other) const
 {
     return distance(position,other.position)<=radius+other.radius;
 }
+bool CircularBody::contains(const Vec2d& point) const
+{
+    return distance(position,point)<=radius;
+}
+
 ostream& CircularBody::print(ostream& out) const
 {
     out << "CircularBody: position = " << position << " radius = " << radius;
     return out;
 }
 
-CircularBody::CircularBody(Vec2d const& position,double const& radius)
+CircularBody::CircularBody(const Vec2d& position,double radius)
 : position(position),
   radius(radius)
 { }
-CircularBody::CircularBody(CircularBody const& copy)
+CircularBody::CircularBody(const CircularBody& copy)
 : position(copy.getPosition()),
   radius(copy.getRadius())
 { }
