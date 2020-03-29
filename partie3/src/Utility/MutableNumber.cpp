@@ -22,6 +22,7 @@ MutableNumber::MutableNumber(j::Value const& config)
   hasUpperBound(config["clamp max"].toBool()),
   UpperBound(config["max"].toDouble())
 { }
+
 MutableNumber::MutableNumber(){
 
 }
@@ -56,9 +57,7 @@ MutableNumber MutableNumber::probability(double initialValue, double prob_mutati
 
 MutableNumber MutableNumber::probability(j::Value const& config)
 {
-    MutableNumber number(config);
-    number.set(number.value);
-    return number;
+    return MutableNumber(config["initial"].toDouble(), config["rate"].toDouble(), config["sigma"].toDouble(), true, 0.0, true, 1.0);
 }
 
 MutableNumber MutableNumber::positive(double initialValue, double prob_mutation_, double StdDev_, bool hasMax, double max)
