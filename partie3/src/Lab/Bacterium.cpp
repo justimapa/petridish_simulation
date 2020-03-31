@@ -9,20 +9,19 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
     energy(energy),
     direction(direction),
     color(color),
-    abstinence(false),
-    clones({this})
+    abstinence(false)
 {
 
 }
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),
-    energy(other.energy),
-    direction(other.direction),
+    energy(other.energy/2),
+    direction(-other.direction),
     color(other.color),
     abstinence(other.abstinence),
     mutations(other.mutations)
 {
-//Done.
+    other.energy=energy;
 }
 
 

@@ -113,11 +113,12 @@ Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
     return Vec2d(0,0);
 }
 Bacterium* SimpleBacterium::clone(){
-        setEnergy(getEnergy()/2);
+    if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
-        setDirection(-getDirection());
         return new_Bact;
+    }
+    return nullptr;
 }
 SimpleBacterium::~SimpleBacterium()
 {
