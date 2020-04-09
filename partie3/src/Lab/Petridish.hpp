@@ -8,10 +8,6 @@
 class Petridish : public CircularBody,public Drawable,public Updatable
 {
 public:
-    /*!
-     * Deletes = operator inherited from CircularBody:: to avoid unnecessary memory usage
-     */
-    Petridish& operator=(Petridish const &) = delete;
    /*!
     * @brief Constructor for the Petridish::
     * @param Position of the Petridish::
@@ -19,6 +15,10 @@ public:
     * @param Temperature of the Petridish::
     */
     Petridish(Vec2d position,double radius, double Temperature,double gradientExponent);
+    /*!
+     * Deletes = operator inherited from CircularBody:: to avoid unnecessary memory usage
+     */
+    Petridish& operator=(Petridish const &) = delete;
     Nutriment* getNutrimentColliding(CircularBody const& body)const;
     double getPositionScore(Vec2d const& position)const;
     /*!
@@ -27,68 +27,70 @@ public:
      */
     double getPower()const;
     /*!
-    * @brief Getter for the GradientExponent
-    * @return GradientExponent of the Petridish::
-    */
+     * @brief Getter for the GradientExponent
+     * @return GradientExponent of the Petridish::
+     */
     double getGradientExponent() const;
-   /*!
-    * @brief Decreases GradientExponent of the Petridish::
-    */
+    /*!
+     * @brief Decreases GradientExponent of the Petridish::
+     */
     void decreaseGradientExponent();
-   /*!
-    * @brief Increases GradientExponent of the Petridish::
-    */
+    /*!
+     * @brief Increases GradientExponent of the Petridish::
+     */
     void increaseGradientExponent();
     /*!
      * @brief resets GradientExponent of the petridish to config default
      */
     void resetGradientExponent();
     /*!
-    * @brief Getter for the temperature
-    * @return Temperature of the Petridish::
-    */
+     * @brief Getter for the temperature
+     * @return Temperature of the Petridish::
+     */
     double getTemperature() const;
-   /*!
-    * @brief Decreases temperature of the Petridish::
-    */
+    /*!
+     * @brief Decreases temperature of the Petridish::
+     */
     void decreaseTemperature();
-   /*!
-    * @brief Increases temperature of the Petridish::
-    */
+    /*!
+     * @brief Increases temperature of the Petridish::
+     */
     void increaseTemperature();
     /*!
      * @brief resets temperature of the petridish to config default
      */
     void resetTemperature();
-   /*!
-    * @brief Adds a Bacterium:: to the Petridish::
-    * @param Bacterium:: to be added
-    * @return True if the Bacterium:: could be added, false if not
-    */
-    bool addBacterium(Bacterium*bacteria);
+    /*!
+     * @brief Adds a Bacterium:: to the Petridish::
+     * @param Bacterium:: to be added
+     * @return True if the Bacterium:: could be added, false if not
+     */
+    bool addBacterium(Bacterium* bacterium);
     void removeBacterium(size_t);
-   /*!
-    * @brief Adds a Nutriment:: to the Petridish::
-    * @param Nutriment:: to be added
-    * @return True if the Nutriment:: could be added, false if not
-    */
-    bool addNutriment(Nutriment*);
-   /*!
-    * @brief Updates Lab:: after every fraction of time dt
-    * @param Fraction of time dt after which the Lab:: is updates
-    * @return true if update is a success, false if not
-    */
+    /*!
+     * @brief Adds a Nutriment:: to the Petridish::
+     * @param Nutriment:: to be added
+     * @return True if the Nutriment:: could be added, false if not
+     */
+    bool addNutriment(Nutriment* nutriment);
+    /*!
+     * @brief Updates Petridish:: after every fraction of time dt
+     * @param Fraction of time dt after which the Petridish:: is updated
+     */
     void update(sf::Time dt);
     double score(Vec2d position);
-   /*!
-    * @brief Draws Petridish:: on targetWindow
-    * @param targetWindow
-    */
+    /*!
+     * @brief Draws Petridish:: on targetWindow
+     * @param targetWindow where the Petridish:: will be drawn
+     */
     void drawOn(sf::RenderTarget& targetWindow) const;
-   /*!
-    * @brief Destructs Lab::
-    */
+    /*!
+     * @brief Erases all nutriments and bacteria within the Petridish::
+     */
     void reset();
+    /*!
+     * @brief Destructor for the Petridish::
+     */
     ~Petridish();
 
 private:

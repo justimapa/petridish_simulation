@@ -50,9 +50,10 @@ an "IS-A" relationship. The subclass Petridish is a CircularBody.
 
 ##Q2.2
 
-We will declare as const all the methods (getTemperature(), drawOn())
-that do not modifiy the current instance. This allows an eventual user-programmer
-to read the code of our class more easily.
+We will declare as const all the methods that do not modifiy the 
+current instance. In this case, the only method we will declare as
+const is drawOn(). This allows an eventual user-programmer to read 
+the code of our class more easily.
 - answer to question 2.2
 
 *******************************************************
@@ -68,7 +69,7 @@ objects, we must explicily delete operator=.
 ##Q2.4
 
 As we destroy the Petridish, we must deallocate the memory space we had 
-previously allocated for the nutrients and bacteria, as they were
+previously dynamically allocated for the nutrients and bacteria, as they were
 represented by a vector of pointers. This can be done through the 
 reset() function of our class.
 - answer to question 2.4
@@ -78,8 +79,7 @@ reset() function of our class.
 ##Q2.5
 
 The methods drawOn and update of the class Lab will simply
-call the methods of the same name in the class Petridish,
-through its attribute, which is a Petridish.
+call the methods of the same name of its own Petridish.
 - answer to question 2.5
 
 *******************************************************

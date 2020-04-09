@@ -8,7 +8,7 @@ class Lab
 {
 public:
     /*!
-     * @brief Default constructor
+     * @brief Default constructor for class Lab::
      */
     Lab();
     /*!
@@ -75,20 +75,22 @@ public:
      */
     bool doesCollideWithDish(const CircularBody &);
     /*!
-     * @brief Draws Petridish:: on targetWindow
-     * @param targetWindow
+     * @brief Draws dish on targetWindow
+     * @param targetWindow where dish will be drawn
      */
     void drawOn(sf::RenderTarget& targetWindow) const;
     /*!
      * @brief Updates Lab:: after every fraction of time dt
-     * @param Fraction of time dt after which the Lab:: is updates
-     * @return true if update is a success, false if not
+     * @param Fraction of time dt after which the Lab:: is updated
      */
     void update(sf::Time dt);
     /*!
-     * @brief Destructs Lab::
+     * @brief Erases all nutriments and bacteria within the dish
      */
     void reset();
+    /*!
+     * @brief Destructor for the Lab::
+     */
     ~Lab();
 
 private:

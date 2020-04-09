@@ -10,33 +10,6 @@ Petridish::Petridish(Vec2d position,double radius, double Temperature,double gra
   gradientExponent(gradientExponent)
 { }
 
-double Petridish::getGradientExponent()const{
-    return gradientExponent;
-}
-void Petridish::decreaseGradientExponent(){
-    cerr<<gradientExponent<<endl;
-    gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
-}
-void Petridish::increaseGradientExponent(){
-    gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
-}
-void Petridish::resetGradientExponent(){
-    gradientExponent=getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2;
-}
-
-double Petridish::getTemperature() const
-{
-    return temperature;
-}
-void Petridish::decreaseTemperature(){
-    temperature-=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
-}
-void Petridish::increaseTemperature(){
-    temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
-}
-void Petridish::resetTemperature(){
-    temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
-}
 bool Petridish::addBacterium(Bacterium* bacterium){
     if(bacterium!=nullptr){
         if(contains(*bacterium)){
@@ -45,7 +18,6 @@ bool Petridish::addBacterium(Bacterium* bacterium){
         }
     }
     return false;
-
 }
 bool Petridish::addNutriment(Nutriment* nutriment){
     if(nutriment!=nullptr){
@@ -87,21 +59,7 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const
     }
     targetWindow.draw(border);
 }
-Nutriment* Petridish::getNutrimentColliding(CircularBody const& body)const{
-    for(auto& nutriment:nutriments){
-        if((*nutriment)&body){
-            return nutriment;
-        }
-    }
-    return nullptr;
-}
-double Petridish::getPositionScore(Vec2d const& position)const{
-    double score=0;
-    for(auto& nutriment:nutriments){
-        score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),gradientExponent);
-    }
-    return score;
-}
+
 void Petridish::reset(){
     for(auto* nutr: nutriments){
         delete nutr;
@@ -116,6 +74,49 @@ void Petridish::reset(){
 }
 Petridish::~Petridish(){
     reset();
+}
+
+double Petridish::getGradientExponent()const{
+    return gradientExponent;
+}
+void Petridish::decreaseGradientExponent(){
+    cerr<<gradientExponent<<endl;
+    gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+}
+void Petridish::increaseGradientExponent(){
+    gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+}
+void Petridish::resetGradientExponent(){
+    gradientExponent=getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2;
+}
+
+double Petridish::getTemperature() const
+{
+    return temperature;
+}
+void Petridish::decreaseTemperature(){
+    temperature-=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
+}
+void Petridish::increaseTemperature(){
+    temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
+}
+void Petridish::resetTemperature(){
+    temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
+}
+Nutriment* Petridish::getNutrimentColliding(CircularBody const& body)const{
+    for(auto& nutriment:nutriments){
+        if((*nutriment)&body){
+            return nutriment;
+        }
+    }
+    return nullptr;
+}
+double Petridish::getPositionScore(Vec2d const& position)const{
+    double score=0;
+    for(auto& nutriment:nutriments){
+        score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),gradientExponent);
+    }
+    return score;
 }
 
 

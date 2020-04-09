@@ -2,10 +2,27 @@
 #include "Lab.hpp"
 
 Lab::Lab()
-    : dish(getApp().getCentre(),getApp().getLabSize().x*(0.95/2),
+    : dish(getApp().getCentre(), getApp().getLabSize().x*(0.95/2),
            getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
       getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2)
 { }
+void Lab::drawOn(sf::RenderTarget& targetWindow) const
+{
+    dish.drawOn(targetWindow);
+}
+void Lab::update(sf::Time dt)
+{
+    generator.update(dt);
+    dish.update(dt);
+}
+void Lab::reset(){
+    dish.reset();
+    generator.reset();
+}
+Lab::~Lab()
+{
+    reset();
+}
 Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
     return dish.getNutrimentColliding(body);
 }
@@ -52,24 +69,10 @@ void Lab::addNutriment(Nutriment* nutriment)
 bool Lab::doesCollideWithDish(CircularBody const& body){
     return ((dish&body) and not (dish>body));
 }
-void Lab::drawOn(sf::RenderTarget& targetWindow) const
-{
-    dish.drawOn(targetWindow);
-}
-void Lab::update(sf::Time dt)
-{
-    generator.update(dt);
-    dish.update(dt);
-}
+
+
 bool Lab::contains(const CircularBody& body)
 {
     return (dish > body);
 }
-void Lab::reset(){
-    dish.reset();
-    generator.reset();
-}
-Lab::~Lab()
-{
-    reset();
-}
+
