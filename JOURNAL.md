@@ -113,3 +113,8 @@ Vendredi 27.03.2020
 
 Umut
 J'ai nettoyé le code de la classe CircularBody.
+
+Vendredi 10.04.2020
+
+Umut
+J'ai nettoyé le code de la classe Nutriment.
