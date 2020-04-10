@@ -3,7 +3,11 @@
 #include "Petridish.hpp"
 #include "NutrimentGenerator.hpp"
 
-
+/*!
+ * @class Lab
+ * @brief class representing the lab where the simulations
+ * take place
+ */
 class Lab
 {
 public:

@@ -89,6 +89,7 @@ call the methods of the same name of its own Petridish.
 Just like the class Petridish, the class Nutriment will
 also be a subclass of CircularBody and thus inherit all
 its attributes amd methods (apart for constructors).
+A Nutriment is a CircularBody.
 - answer to question 2.7
 
 *******************************************************

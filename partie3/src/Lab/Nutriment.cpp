@@ -5,23 +5,15 @@
 
 using namespace std;
 
-Nutriment::Nutriment(Quantity const& quantity,Vec2d const& position)
-: CircularBody(position, quantity),
-  quantity(quantity)
+Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_)
+: CircularBody(position_, quantity_),
+  quantity(quantity_)
 { }
+
 Quantity Nutriment::takeQuantity(Quantity quantity_)
 {
-    Quantity quantity_taken(quantity_);
-    if(quantity >= quantity_){
-        quantity -= quantity_;
-        setRadius(quantity);
-        return quantity_taken;
-    } else {
-        quantity_taken = quantity;
-        quantity = 0.0;
-        setRadius(0.0);
-        return quantity_taken;
-    }
+    setQuantity(quantity - quantity_);
+    return getQuantity();
 }
 void Nutriment::setQuantity(Quantity quantity_)
 {
@@ -30,21 +22,22 @@ void Nutriment::setQuantity(Quantity quantity_)
     } else {
         quantity = 0.0;
     }
+    setRadius(quantity);
 }
-Quantity Nutriment::getQuantity()const{
+Quantity Nutriment::getQuantity() const{
     return quantity;
 }
 void Nutriment::drawOn(sf::RenderTarget& target) const
 {
     if(not isDebugOn()){
     auto const& texture = getAppTexture(getConfig()["texture"].toString());
-    auto nutrimentSprite = buildSprite(getPosition(),getRadius(), texture);
-    nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
-                             texture.getSize().y);
+    auto nutrimentSprite = buildSprite(getPosition(), 6, texture);
+    nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x,
+                             2 * getRadius() / texture.getSize().y);
     target.draw(nutrimentSprite);
     }else{
-        string message="Qte : "+to_string((int)quantity);
-        auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Black);
+        string message="Qte : " + to_string((int)quantity);
+        auto const text=buildText(message,TextPosition(),getAppFont(),15,sf::Color::Black);
         auto circle = buildCircle(getPosition(),getRadius(),sf::Color::Green);
         target.draw(text);
         target.draw(circle);
@@ -52,7 +45,7 @@ void Nutriment::drawOn(sf::RenderTarget& target) const
 }
 void Nutriment::update(sf::Time dt)
 {
-    if(isTemperatureOK() and isQuantityOK() ){
+    if(isTemperatureOK() and isQuantityOK()){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
         quantity+=growth;
         setRadius(quantity);
@@ -78,6 +71,8 @@ bool Nutriment::isContained() const
 bool Nutriment::isDead()const{
     return quantity<=0;
 }
+Vec2d Nutriment::TextPosition() const{
+    return Vec2d(getPosition()[0], getPosition()[1]+getRadius());
+}
 Nutriment::~Nutriment(){
-
 }

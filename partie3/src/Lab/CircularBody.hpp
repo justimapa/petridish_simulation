@@ -3,6 +3,10 @@
 #include "Utility/Vec2d.hpp"
 #include "Utility/Utility.hpp"
 
+/*!
+ * @class CircularBody::
+ * @brief class the geometry and properties of a circular bodt
+ */
 class CircularBody
 {
 public:
