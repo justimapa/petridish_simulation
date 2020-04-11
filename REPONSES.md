@@ -138,12 +138,17 @@ itself use a for loop to call the update method of all its Nutriments.
 
 We must add increaseTemperature and decreaseTemperature methods in 
 both Lab and Petridish, to allow changes in temperature of the lab's
-petri dish.
+dish.
 
 We must also add a resetTemperature method in the class Petridish,
-which will also be called by our initial reset method in Petridish. This
-will allow the temperature to go back to its default amount, when we
-used the 'R' or 'C' keys.
+which will also be called by our initial reset method in Petridish.
+
+Thus:
+- 'R' key pressed: getEnv().reset() calls reset() method of Lab,
+  which in turn calls its dish's reset() method, where after removal
+  of the nutriments, the resetTemperature() method is called.
+- 'C' key pressed: getEnv().refreshConfig() calls refreshConfig()
+  method of Lab::, which resets its dish's temperature.  
 - answer to question 2.12
 
 

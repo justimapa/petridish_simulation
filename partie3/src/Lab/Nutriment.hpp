@@ -49,29 +49,35 @@ public:
      * and NutrimentB::
      */
     virtual j::Value const& getConfig() const = 0;
-   /*!
-    * @brief updates nutriments within Petridish:: at every fraction
-    * of time dt
-    * @param Fraction of time dt
-    */
+    /*!
+     * @brief Updates nutriments within Petridish:: at every fraction
+     * of time dt
+     * @param Fraction of time dt
+     */
     void update(sf::Time dt) override;
-   /*!
-    * @brief Checks whether temperature is within specified boundaries
-    * @return True if temperature is within boundaries, false if not
-    */
+    /*!
+     * @brief Checks whether temperature is within specified boundaries
+     * @return True if temperature is within boundaries, false if not
+     */
     bool isTemperatureOK() const;
-   /*!
-    * @brief Checks whether the quantity of Nutriment:: does not surpass specified quota
-    * @return True if quantity is within boundaries, false if not
-    */
+    /*!
+     * @brief Checks whether the quantity of Nutriment:: does not surpass specified quota
+     * @return True if quantity is within boundaries, false if not
+     */
     bool isQuantityOK() const;
-   /*!
-    * @brief Checks whether the Nutriment:: is still within the Petridish::
-    * @return True if it is, false if not
-    */
+    /*!
+     * @brief Checks whether the Nutriment:: is still within the Petridish::
+     * @return True if it is, false if not
+     */
     bool isContained() const;
+    /*!
+     * @brief Checks whether the Nutriment::'s quantity is greater than 0
+     * @return True if it is, false if not
+     */
     bool isDead() const;
-    Vec2d TextPosition() const;
+    /*!
+     * @brief Destructor for the Nutriment::
+     */
     virtual ~Nutriment();
 private:
     Quantity quantity;

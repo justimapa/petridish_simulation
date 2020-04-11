@@ -44,25 +44,25 @@ public:
      */
     void refreshConfig();
     /*!
-     * @brief Getter for the Petridish::'s temperature
-     * @return Temperature of the Petridish::
+     * @brief Getter for the dish's temperature
+     * @return Temperature of the dish::
      */
     double getTemperature() const;
     /*!
-     * @brief Decreases temperature
+     * @brief Decreases temperature of the dish
      */
     void decreaseTemperature();
     /*!
-     * @brief Increases temperature
+     * @brief Increases temperature of the dish
      */
     void increaseTemperature();
     /*!
-     * @brief Tests if a CircularBody:: is inside another
-     * @param The other CircularBody::
+     * @brief Tests if a CircularBody:: is inside the Lab::'s dish
+     * @param A CircularBody::
      * @return true if the other CircularBody:: has a smaller radius and the center is
-     * within our CircularBody::, false if not
+     * within the dish, false if not
      */
-    bool contains(const CircularBody&);
+    bool contains(const CircularBody&) const;
     /*!
      * @brief Adds a Nutriment:: to the Petridish::
      * @param Nutriment:: to be added

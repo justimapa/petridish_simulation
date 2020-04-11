@@ -46,7 +46,7 @@ public:
      */
     void increaseGradientExponent();
     /*!
-     * @brief resets GradientExponent of the petridish to config default
+     * @brief Resets GradientExponent of the petridish to config default
      */
     void resetGradientExponent();
     /*!
@@ -63,7 +63,7 @@ public:
      */
     void increaseTemperature();
     /*!
-     * @brief resets temperature of the petridish to config default
+     * @brief resets temperature of the Petridish:: to config default
      */
     void resetTemperature();
     /*!
