@@ -118,3 +118,9 @@ Vendredi 10.04.2020
 
 Umut
 J'ai nettoyé le code de la classe Nutriment.
+
+Dimanche 12.04.2020
+
+Umut
+J'ai commenté/nettoyé le code des classes NutrimentA/B, NutrimentGenerator et MutableNumber/Color.
+J'ai répondu aux questions 3.1 à 3.7.

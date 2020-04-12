@@ -18,7 +18,7 @@ bool Lab::contains(const CircularBody& body) const{
 }
 void Lab::reset(){
     dish.reset();
-    generator.reset();
+    generator.resetStopwatch();
 }
 Lab::~Lab(){
     reset();

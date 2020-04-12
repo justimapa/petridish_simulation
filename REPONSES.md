@@ -151,6 +151,67 @@ Thus:
   method of Lab::, which resets its dish's temperature.  
 - answer to question 2.12
 
+*******************************************************
+
+##Q3.1
+All classes that are drawable and updatable will inherit from
+these classes. In this case, we have thes classes Lab::,
+Petridish::, Nutirment:: and Bacterium::.
+This will allow the drawOn() and update() functions
+of their subclasses to be used polymorphically without
+needing to constantly redfine them in the subclasses.
+-answer to question 3.1
+
+*******************************************************
+
+##Q3.2
+The methods drawOn() and update() in the class Nutriment:: must be
+virtual (which is already the case as they inherit the virtuaity
+from the pure virtual functions in Drawable and Updatable).
+-answer to question 3.2
+
+*******************************************************
+
+##Q3.3
+In the superclass Nutriment::, the getConfig() method must be
+pure virtual, which will make Nutriment:: an absract class.
+The getConfig() method wil then be used polymorphically
+in the classes NutrimentA:: and NutrimentB::.
+-answer to question 3.3
+
+*******************************************************
+
+##Q3.4
+The polymorphic getConfig() method is used in the drawOn() and update()
+methods of Nutriment::. So for example when a NutrimentA:: uses them,
+the getConfig() method access the texture and other parameters
+corresponding to NutirmentA:: in the app.json file. Same process
+if we have a NutrimentB::.
+-answer to question 3.4
+
+*******************************************************
+
+##Q3.5
+We need to modify the update() method in Lab::, making it call
+its generator's update() function as well.
+-answer to question 3.5
+
+*******************************************************
+
+##Q3.6
+The set() method, which will be called by mutate() will be responsible
+to make the checks on the upper and lower bounds of the mutable number.
+-answer to question 3.6
+
+*******************************************************
+
+##Q3.7
+The probability() and positive() methods will be set as static,
+allowing their utilization even without the creation of an
+instance of a MutableNumber::.
+-answer to question 3.7
+
+
 
 
 

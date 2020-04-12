@@ -43,7 +43,7 @@ public:
      * @brief Draws the Nutriment::
      * @param targetWindow where the Nutriment:: will be drawn
      */
-    void drawOn(sf::RenderTarget& target) const override;
+    virtual void drawOn(sf::RenderTarget& target) const override;
     /*!
      * @brief Pure virtual method, inherited by classes NutrimentA::
      * and NutrimentB::
@@ -54,7 +54,7 @@ public:
      * of time dt
      * @param Fraction of time dt
      */
-    void update(sf::Time dt) override;
+    virtual void update(sf::Time dt) override;
     /*!
      * @brief Checks whether temperature is within specified boundaries
      * @return True if temperature is within boundaries, false if not

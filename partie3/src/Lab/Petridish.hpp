@@ -9,7 +9,8 @@
  * @class Petridish::
  * @brief class representing the Petri dish where the
  * simulation takes place
- * Subclass of CircularBody::, Drawable:: and Updatable
+ *
+ * Subclass of CircularBody::, Drawable:: and Updatable::
  */
 class Petridish : public CircularBody, public Drawable, public Updatable
 {
