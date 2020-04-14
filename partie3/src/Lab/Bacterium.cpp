@@ -22,12 +22,13 @@ Bacterium::Bacterium(Bacterium& other):
     other.energy=energy;
 }
 void Bacterium::drawOn(sf::RenderTarget& target) const{
-    auto const circle= buildCircle(getPosition(),getRadius(),color.get());
+    auto const circle = buildCircle(getPosition(),getRadius(),color.get());
     target.draw(circle);
     //drawFlagella(target);
     if(isDebugOn()){
         string message="Energy : "+to_string((int)energy);
-        auto const text=buildText(message,Vec2d(getPosition()[0],getPosition()[1]+getRadius()),getAppFont(),15,sf::Color::Red);
+        Vec2d textposition(getPosition()[0], getPosition()[1]+getRadius());
+        auto const text=buildText(message, textposition, getAppFont(), 15, sf::Color::Red);
         target.draw(text);
     }
 }

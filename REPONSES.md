@@ -241,11 +241,29 @@ Methods:
 The methods drawOn() and update() are already virtual as they are inherited from
 the abstract classes Drawable:: and Updatable::.
 
-The methods move() will be pure virtual as it will have different definitions for
+The methods move() will be pure virtual as it isn't well defined without
 the different types of bacteria subclasses.
 -answer to question 3.9
 
+*******************************************************
 
+##Q3.10
+The getConfig() method will be pure virtual, just like the one in Nutriment::
+as it isn't well defined without its subclasses and will fetch different
+config values according to the real nature (bacteria type) of the instance
+calling it.
+-answer to question 3.10
+
+*******************************************************
+
+##Q3.11
+We use the get() method of the class MutableColor (color.get()), which returns
+in this case the SFML color of bacterium at hand.
+- answer to question 3.11
+
+*******************************************************
+
+##Q3.12
 
 
 

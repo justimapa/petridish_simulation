@@ -12,7 +12,7 @@ Petridish::Petridish(Vec2d position_,double radius_, double temperature_,double 
 
 bool Petridish::addBacterium(Bacterium* bacterium){
     if(bacterium!=nullptr){
-        if(contains(*bacterium)){
+        if(*this > *bacterium){
             bacteria.push_back(bacterium);
             return true;
         }

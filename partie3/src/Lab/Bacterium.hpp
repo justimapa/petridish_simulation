@@ -40,8 +40,20 @@ public:
     void setDirection(const Vec2d&);
     Quantity getEnergy() const;
     void setEnergy(Quantity const&);
+    /*!
+     * @brief Gets config value for min division energy
+     * @return Minimum energy qty required for division
+     */
     Quantity getMinEnergyDivision() const;
+    /*!
+     * @brief Gets config value for meal delay
+     * @return Time between nutrient consumption
+     */
     sf::Time getDelay() const;
+    /*!
+     * @brief Gets config value for consumption factor
+     * @return Energy spent per movement
+     */
     Quantity getEnergyConsumption() const;
     MutableColor getColor() const;
     void addProperty(const std::string&, const MutableNumber &);
@@ -55,7 +67,7 @@ public:
      *
      * Pure virtual method
      */
-    virtual void move(sf::Time dt)= 0;
+    virtual void move(sf::Time dt) = 0;
     /*!
      * @brief Clones the Bacterium::
      * @return Copy of the initial Bacterium::
@@ -63,7 +75,16 @@ public:
      * Pure virtual method
      */
     virtual Bacterium* clone() = 0;
-    virtual j::Value& getConfig()const=0;
+    /*!
+     * @brief Gets config value corresponding to each subclass
+     * of Bacterium::
+     *
+     * Pure virtual method
+     */
+    virtual j::Value& getConfig() const = 0;
+    /*!
+     * @brief Destructor for the class
+     */
     virtual ~Bacterium();
 
 private:
