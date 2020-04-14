@@ -8,28 +8,60 @@
 #include "Utility/MutableNumber.hpp"
 #include <string>
 
-class Bacterium : public CircularBody,public Drawable,public Updatable
+/*!
+ * @class Bacterium
+ * @brief classthat represents the functions and behavior
+ * of bacteria within a Petridish
+ *
+ * Subclass of CircularBody, Drawable and Updatable
+ */
+class Bacterium : public CircularBody, public Drawable, public Updatable
 {
 public:
-    Bacterium(Quantity const&,Vec2d const&,Vec2d const&,double const&,MutableColor const&);
+    /*!
+     * @brief Constructs a Bacterium:: fully set up
+     * @param Energy qty
+     * @param Position
+     * @param Direction unit vector
+     * @param Radius
+     * @param Color that can change over time
+     * @return A Bacterium:: with all parameters set
+     */
+    Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&);
     Bacterium(Bacterium&);
     virtual void drawOn(sf::RenderTarget&)const;
     virtual void update(sf::Time);
-    bool isDead()const;
-    Vec2d getDirection()const;
+    /*!
+     * @brief Checks whether Bacterium:: has no energy left
+     * @return True if it has no energy, false otherwise
+     */
+    bool isDead() const;
+    Vec2d getDirection() const;
     void setDirection(const Vec2d&);
-    Quantity getEnergy()const;
+    Quantity getEnergy() const;
     void setEnergy(Quantity const&);
-    Quantity getMinEnergyDivision()const;
-    sf::Time getDelay()const;
-    Quantity getEnergyConsumption()const;
-    MutableColor getColor()const;
+    Quantity getMinEnergyDivision() const;
+    sf::Time getDelay() const;
+    Quantity getEnergyConsumption() const;
+    MutableColor getColor() const;
     void addProperty(const std::string&, const MutableNumber &);
     MutableNumber getProperty(const std::string&);
     void reset();
     void consumeEnergy(Quantity qt);
     void mutation(Bacterium*);
-    virtual void move(sf::Time)= 0;
+    /*!
+     * @brief Moves the Bacterium:: with in the Petridish::
+     * @param Time dt after which movement will take place
+     *
+     * Pure virtual method
+     */
+    virtual void move(sf::Time dt)= 0;
+    /*!
+     * @brief Clones the Bacterium::
+     * @return Copy of the initial Bacterium::
+     *
+     * Pure virtual method
+     */
     virtual Bacterium* clone() = 0;
     virtual j::Value& getConfig()const=0;
     virtual ~Bacterium();

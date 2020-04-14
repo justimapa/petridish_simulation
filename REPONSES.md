@@ -211,6 +211,40 @@ allowing their utilization even without the creation of an
 instance of a MutableNumber::.
 -answer to question 3.7
 
+*******************************************************
+
+##Q3.8
+Inherits from:
+- CircularBody::
+- Drawable::
+- Updatable::
+
+Attributes:
+- MutableColor color
+- Vec2d direction
+- bool abstinence
+- Quantity energy
+- std::map <std::string, MutableNumber> mutations
+
+Methods:
+- void move(sf::Time dt)
+- Bacterium* clone()
+- bool isDead()
+- void drawOn (sf::RenderTarget targetWindow)
+- void update(sf::Time dt)
+
+-answer to question 3.8
+
+*******************************************************
+
+##Q3.9
+The methods drawOn() and update() are already virtual as they are inherited from
+the abstract classes Drawable:: and Updatable::.
+
+The methods move() will be pure virtual as it will have different definitions for
+the different types of bacteria subclasses.
+-answer to question 3.9
+
 
 
 
