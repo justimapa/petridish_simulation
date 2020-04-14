@@ -23,10 +23,10 @@ void Lab::reset(){
 Lab::~Lab(){
     reset();
 }
-Nutriment* Lab::getNutrimentColliding(CircularBody const& body)const{
+Nutriment* Lab::getNutrimentColliding(CircularBody const& body) const{
     return dish.getNutrimentColliding(body);
 }
-double Lab::getPositionScore(Vec2d const& position)const{
+double Lab::getPositionScore(Vec2d const& position) const{
     return dish.getPositionScore(position);
 }
 double Lab::getGradientExponent() const{

@@ -259,13 +259,19 @@ calling it.
 ##Q3.11
 We use the get() method of the class MutableColor (color.get()), which returns
 in this case the SFML color of bacterium at hand.
-- answer to question 3.11
+-answer to question 3.11
 
 *******************************************************
 
 ##Q3.12
+The fact that the move() is not an issue at all. As a pure virtual
+method, the compiler knows that it will gain definitions in
+evetual subclasses.
+-answer to question 3.12
 
+*******************************************************
 
+##Q3.13
 
 
 

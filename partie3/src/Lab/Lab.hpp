@@ -77,7 +77,7 @@ public:
      * @brief Tests if a CircularBody:: is in collision with Petridish::
      * @return True if CircularBody is in collision false if not
      */
-    bool doesCollideWithDish(const CircularBody &);
+    bool doesCollideWithDish(const CircularBody &) const;
     /*!
      * @brief Draws dish on targetWindow
      * @param targetWindow where dish will be drawn

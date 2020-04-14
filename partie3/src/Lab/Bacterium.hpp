@@ -29,7 +29,16 @@ public:
      */
     Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&);
     Bacterium(Bacterium&);
-    virtual void drawOn(sf::RenderTarget&)const;
+    /*!
+     * @brief Draws the Bacterium::
+     * @param targetWindow where the Bacterium:: will be drawn
+     */
+    virtual void drawOn(sf::RenderTarget&) const;
+    /*!
+     * @brief Updates bacteria within Petridish:: at every fraction
+     * of time dt
+     * @param Fraction of time dt
+     */
     virtual void update(sf::Time);
     /*!
      * @brief Checks whether Bacterium:: has no energy left
