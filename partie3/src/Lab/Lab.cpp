@@ -57,6 +57,6 @@ void Lab::addBacterium(Bacterium* bact){
 void Lab::addNutriment(Nutriment* nutriment){
     dish.addNutriment(nutriment);
 }
-bool Lab::doesCollideWithDish(CircularBody const& body){
+bool Lab::doesCollideWithDish(CircularBody const& body) const{
     return ((dish&body) and not (dish>body));
 }

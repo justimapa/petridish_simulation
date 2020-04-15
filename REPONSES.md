@@ -272,8 +272,32 @@ evetual subclasses.
 *******************************************************
 
 ##Q3.13
+The getNutrimentColliding() method in Lab:: will call the method
+of the same name of its dish.
+-answer to question 3.13
 
+*******************************************************
 
+##Q3.14
+The update() method of the class PetriDish:: will be modified to
+also have a for loop calling the update() method of every bacteria
+contained within it.
+-answer to question 3.14
+
+*******************************************************
+
+##Q3.15
+In the class PetriDish, the for loops of the update() method will
+also contain an if loop using the isDead() methods of Nutriment::
+and Bacterium::, erasing them if there is no quantity/energy left.
+
+We will also make sure to erase the bacteria and nutriments within
+the reset() method of Petridish::.
+-answer to question 3.15
+
+*******************************************************
+
+##Q3.16
 
 
 

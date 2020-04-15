@@ -33,7 +33,6 @@ void Petridish::update(sf::Time dt){
     for(auto& nutriment : nutriments){
         nutriment->update(dt);
         if(nutriment->isDead()){
-            delete nutriment;
             nutriment=nullptr;
         }
     }
@@ -41,7 +40,6 @@ void Petridish::update(sf::Time dt){
     for(auto& bacterium:bacteria){
         bacterium->update(dt);
         if(bacterium->isDead()){
-            delete bacterium;
             bacterium=nullptr;
         }
     }
@@ -59,14 +57,14 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
 }
 
 void Petridish::reset(){
-    for(auto* nutr: nutriments){
-        delete nutr;
+    for(auto& nutr: nutriments){
+        nutr = nullptr;
     }
-    nutriments.clear();
-    for(auto* bact : bacteria){
-        delete bact;
+    nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
+    for(auto& bact : bacteria){
+        bact = nullptr;
     }
-    bacteria.clear();
+    bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
     resetGradientExponent();
     resetTemperature();
 }
@@ -101,7 +99,7 @@ void Petridish::resetTemperature(){
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
 Nutriment* Petridish::getNutrimentColliding(CircularBody const& body) const{
-    for(auto& nutriment:nutriments){
+    for(auto* nutriment:nutriments){
         if((*nutriment)&body){
             return nutriment;
         }

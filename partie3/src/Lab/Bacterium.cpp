@@ -38,9 +38,10 @@ void Bacterium::update(sf::Time dt){
     if(getAppEnv().doesCollideWithDish((*this))){
         direction=-direction;
     }
+    double max_consumption(getConfig()["meal"]["max"].toDouble());
     if((getAppEnv().getNutrimentColliding((*this))!=nullptr)
         and (not abstinence) and (delay>=getDelay())){
-        energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(getConfig()["meal"]["max"].toDouble());
+        energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(max_consumption);
         if(getMinEnergyDivision()<=energy){
             getAppEnv().addBacterium(clone());
         }
