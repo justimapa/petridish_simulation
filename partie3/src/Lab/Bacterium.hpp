@@ -28,6 +28,11 @@ public:
      * @return A Bacterium:: with all parameters set
      */
     Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&);
+    /*!
+     * @brief Copy Constructor for Bacterium::
+     * @param Original Bacterium:: who's energy will be halved
+     * @return Returns a Copy of the Original Bacterium with half of original energy and the other direction
+     */
     Bacterium(Bacterium&);
     /*!
      * @brief Draws the Bacterium::
@@ -50,8 +55,18 @@ public:
      * @return Direction (unit vector) of the Bacterium::
      */
     Vec2d getDirection() const;
+    /*!
+     * @brief Setter for the Direction of the Bacterium::
+     */
     void setDirection(const Vec2d&);
+    /*!
+     * @brief Getter for the Energy of the Bacterium::
+     * @return Energy of the Bacterium::
+     */
     Quantity getEnergy() const;
+    /*!
+     * @brief Setter for the Energy of the Bacterium::
+     */
     void setEnergy(Quantity const&);
     /*!
      * @brief Gets config value for min division energy
@@ -73,14 +88,31 @@ public:
      * @return Color of the Bacterium::
      */
     MutableColor getColor() const;
+    /*!
+     * @brief Adds a new property to mutations map
+     * @param Key of the property
+     * @param Value of the Property
+     */
     void addProperty(const std::string&, const MutableNumber &);
+    /*!
+     * @brief Gets a Property from the mutations map
+     * @param Key of the Property
+     * @return Value (Mutable Number) of the Property
+     */
     MutableNumber getProperty(const std::string&);
+    /*!
+     * @brief Resets the Delay between energy consumptions
+     */
     void reset();
     /*!
      * @brief Subtracts certain quantity of energy
      * @param Energy to be subtracted
      */
     void consumeEnergy(Quantity qt);
+    /*!
+     * @brief Mutates the mutations of a Bacterium::
+     * @param The Bacterium:: that will be mutated
+     */
     void mutation(Bacterium*);
     /*!
      * @brief Moves the Bacterium:: with in the Petridish::

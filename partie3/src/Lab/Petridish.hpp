@@ -26,7 +26,17 @@ public:
      * Deletes = operator inherited from CircularBody:: to avoid unnecessary memory usage
      */
     Petridish& operator=(Petridish const &) = delete;
+    /*!
+     * @brief Gets the Nutriment:: colliding with a CircularBody::
+     * @param The CircularBody::
+     * @return A pointer of a Nutriment:: that is colldiing with the CircularBody::
+     */
     Nutriment* getNutrimentColliding(CircularBody const& body)const;
+    /*!
+     * @brief Gets the Score of a position on the Petridish::
+     * @param A position
+     * @return The Score of the position
+     */
     double getPositionScore(Vec2d const& position)const;
     /*!
      * @brief Getter for the power

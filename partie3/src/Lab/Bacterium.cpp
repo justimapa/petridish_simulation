@@ -91,9 +91,9 @@ MutableNumber Bacterium::getProperty(const string& key){
         cerr<<"Invalid_argument"<<endl;
     }
 }
-void Bacterium::mutation(Bacterium*){
-    color.mutate();
-    for(auto& mutation:mutations){
+void Bacterium::mutation(Bacterium* bact){
+    bact->color.mutate();
+    for(auto& mutation:bact->mutations){
         (mutation.second).mutate();
     }
 }
