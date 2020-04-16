@@ -19,12 +19,19 @@ public:
      */
     SimpleBacterium(Vec2d const&);
     SimpleBacterium(SimpleBacterium &);
-
-    void drawOn(sf::RenderTarget& target) const override;
+    /*!
+     * @brief Draws a SimpleBacterium::
+     * @param TargetWindow where the SimpleBacterium:: will be drawn
+     */
+    void drawOn(sf::RenderTarget& targetWindow) const override;
     void update(sf::Time) override;
     void updateFlagella(sf::Time);
     void updateProbability();
     void tumble();
+    /*!
+     * @brief Draws a flagella connected to the SimpleBacterium::
+     * @param TargetWindow where the flagella will be drawn
+     */
     void drawFlagella(sf::RenderTarget& target)const;
     /*!
      * @brief Moves the SimpleBacterium:: at every fraction of time dt

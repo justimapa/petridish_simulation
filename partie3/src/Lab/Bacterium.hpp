@@ -68,6 +68,10 @@ public:
      * @return Energy spent per movement
      */
     Quantity getEnergyConsumption() const;
+    /*!
+     * @brief Getter for the color of the Bacterium::
+     * @return Color of the Bacterium::
+     */
     MutableColor getColor() const;
     void addProperty(const std::string&, const MutableNumber &);
     MutableNumber getProperty(const std::string&);

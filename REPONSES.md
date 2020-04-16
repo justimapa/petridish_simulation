@@ -306,6 +306,18 @@ to use it polymorphically with the EC or RG4 algorithms.
 *******************************************************
 
 ##Q3.17
+t will be declared as an attribute of the class SimpleBacterium::
+and will be initialized by default using the uniform() method 
+within the constructor.
+-answer to question 3.17
+
+*******************************************************
+
+##Q3.18
+rotation will also be declared as an attribute of the class
+SimpleBacterium:: and will be initialized by default to getDirection().angle()
+in the constructor.
+-answer to question 3.18
 
 
 

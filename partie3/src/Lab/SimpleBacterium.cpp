@@ -51,17 +51,8 @@ void SimpleBacterium::update(sf::Time dt){
     tumble();
     updateFlagella(dt);
 }
-void SimpleBacterium::updateFlagella(sf::Time dt){
-    t+=(3*dt.asSeconds());
-    auto const angleDiff = angleDelta(getDirection().angle(),rotation);
-    auto dalpha = PI * dt.asSeconds();
-    dalpha= min(dalpha,abs(angleDiff));
-    dalpha=copysign(dalpha,angleDiff);
-    rotation+=dalpha;
-
-}
 void SimpleBacterium::drawFlagella(sf::RenderTarget& target) const{
-    auto flagella= sf::VertexArray(sf::TriangleStrip);
+    auto flagella = sf::VertexArray(sf::LinesStrip);
     flagella.append( {{0,0},getColor().get()});
     for(int i=1; i<=30;++i){
         flagella.append({{static_cast<float>((-i*getRadius()/10.0)-0.75),static_cast<float>((getRadius()*sin(t)*sin(2*i/10.0))-0.75)},getColor().get()});
@@ -71,6 +62,14 @@ void SimpleBacterium::drawFlagella(sf::RenderTarget& target) const{
     transform.translate(getPosition());
     transform.rotate(rotation/DEG_TO_RAD);
     target.draw(flagella,transform);
+}
+void SimpleBacterium::updateFlagella(sf::Time dt){
+    t+=(3*dt.asSeconds());
+    auto const angleDiff = angleDelta(getDirection().angle(),rotation);
+    auto dalpha = PI * dt.asSeconds();
+    dalpha = min(dalpha,abs(angleDiff));
+    dalpha = copysign(dalpha,angleDiff);
+    rotation+=dalpha;
 }
 void SimpleBacterium::updateProbability(){
     if(getAppEnv().getPositionScore(getPosition())>=oldScore){
