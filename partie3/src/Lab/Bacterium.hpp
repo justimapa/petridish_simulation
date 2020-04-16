@@ -10,7 +10,7 @@
 
 /*!
  * @class Bacterium
- * @brief classthat represents the functions and behavior
+ * @brief class that represents the functions and behavior
  * of bacteria within a Petridish
  *
  * Subclass of CircularBody, Drawable and Updatable
@@ -45,6 +45,10 @@ public:
      * @return True if it has no energy, false otherwise
      */
     bool isDead() const;
+    /*!
+     * @brief Getter for the direction of the Bacterium::
+     * @return Direction (unit vector) of the Bacterium::
+     */
     Vec2d getDirection() const;
     void setDirection(const Vec2d&);
     Quantity getEnergy() const;
@@ -68,6 +72,10 @@ public:
     void addProperty(const std::string&, const MutableNumber &);
     MutableNumber getProperty(const std::string&);
     void reset();
+    /*!
+     * @brief Subtracts certain quantity of energy
+     * @param Energy to be subtracted
+     */
     void consumeEnergy(Quantity qt);
     void mutation(Bacterium*);
     /*!

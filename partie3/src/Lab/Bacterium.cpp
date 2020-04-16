@@ -4,12 +4,12 @@
 using namespace std;
 
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
-                     double const& radius,MutableColor const& color):
-    CircularBody(position,radius),
-    energy(energy),
-    direction(direction),
-    color(color),
-    abstinence(false)
+                     double const& radius,MutableColor const& color)
+: CircularBody(position,radius),
+  energy(energy),
+  direction(direction),
+  color(color),
+  abstinence(false)
 { }
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),

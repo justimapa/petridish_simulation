@@ -7,15 +7,15 @@
 
 using namespace std;
 
-SimpleBacterium::SimpleBacterium(const Vec2d & position):
-    Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
-    position,Vec2d::fromRandomAngle(),
-    uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-    getConfig()["color"]),
-    t(uniform(0.0,PI)),
-    rotation(getDirection().angle()),
-    oldScore(getAppEnv().getPositionScore(position)),
-    algo(getConfig()["tumble"]["algo"].toString())
+SimpleBacterium::SimpleBacterium(const Vec2d& position)
+: Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
+            position,Vec2d::fromRandomAngle(),
+            uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
+            getConfig()["color"]),
+  t(uniform(0.0,PI)),
+  rotation(getDirection().angle()),
+  oldScore(getAppEnv().getPositionScore(position)),
+  algo(getConfig()["tumble"]["algo"].toString())
 {
     addProperty("speed",MutableNumber::positive(getConfig()["speed"]));
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
@@ -26,18 +26,20 @@ SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
               rotation(other.rotation),
               oldScore(other.oldScore),
               algo(other.algo)
-{
-
-}
+{ }
 void SimpleBacterium::move(sf::Time dt){
-
-    Vec2d movement=stepDiffEq(getPosition(),getSpeedVector(),dt,(*this),DiffEqAlgorithm::EC).position-getPosition();
-    if((movement).lengthSquared()>0.001){
+    Vec2d movement = stepDiffEq(getPosition(),getSpeedVector(),dt,(*this),DiffEqAlgorithm::EC).position - getPosition();
+    if(movement.lengthSquared()>0.001){
     (*this).CircularBody::move(movement);
     consumeEnergy((movement).length()*getEnergyConsumption());
     }
 }
-
+Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
+    return Vec2d(0,0);
+}
+Vec2d SimpleBacterium::getSpeedVector(){
+    return getDirection()*(getProperty("speed").get());
+}
 void SimpleBacterium::drawOn(sf::RenderTarget& target) const{
     Bacterium::drawOn(target);
     drawFlagella(target);
@@ -58,8 +60,7 @@ void SimpleBacterium::updateFlagella(sf::Time dt){
     rotation+=dalpha;
 
 }
-void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
-{
+void SimpleBacterium::drawFlagella(sf::RenderTarget& target) const{
     auto flagella= sf::VertexArray(sf::TriangleStrip);
     flagella.append( {{0,0},getColor().get()});
     for(int i=1; i<=30;++i){
@@ -72,7 +73,6 @@ void SimpleBacterium::drawFlagella(sf::RenderTarget& target)const
     target.draw(flagella,transform);
 }
 void SimpleBacterium::updateProbability(){
-
     if(getAppEnv().getPositionScore(getPosition())>=oldScore){
         tumblingProbability=1-exp(-tLastTumble.asSeconds()/getProperty("tumble better").get());
     }else{
@@ -100,17 +100,9 @@ void SimpleBacterium::tumble(){
                    nextDirection=Vec2d::fromRandomAngle();
         }
     }
-
 }
-
-j::Value& SimpleBacterium::getConfig()const{
+j::Value& SimpleBacterium::getConfig() const{
     return getAppConfig()["simple bacterium"];
-}
-Vec2d SimpleBacterium::getSpeedVector(){
-    return (getDirection().normalised())*(getProperty("speed").get());
-}
-Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
-    return Vec2d(0,0);
 }
 Bacterium* SimpleBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){
@@ -121,5 +113,4 @@ Bacterium* SimpleBacterium::clone(){
     return nullptr;
 }
 SimpleBacterium::~SimpleBacterium()
-{
-}
+{ }

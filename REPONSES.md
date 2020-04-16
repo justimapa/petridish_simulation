@@ -298,8 +298,14 @@ the reset() method of Petridish::.
 *******************************************************
 
 ##Q3.16
+The class SimpleBacterium:: will inherit the pure virtual method f() from
+the class DiffEqFunction::. This will allow it, and other types of bacterium
+to use it polymorphically with the EC or RG4 algorithms.
+-answer to question 3.16
 
+*******************************************************
 
+##Q3.17
 
 
 
