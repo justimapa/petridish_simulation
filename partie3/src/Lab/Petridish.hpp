@@ -47,7 +47,7 @@ public:
      */
     void increaseGradientExponent();
     /*!
-     * @brief Resets GradientExponent of the petridish to config default
+     * @brief Resets GradientExponent of the Petridish:: to config default
      */
     void resetGradientExponent();
     /*!
@@ -64,7 +64,7 @@ public:
      */
     void increaseTemperature();
     /*!
-     * @brief resets temperature of the Petridish:: to config default
+     * @brief Resets temperature of the Petridish:: to config default
      */
     void resetTemperature();
     /*!
@@ -85,6 +85,11 @@ public:
      * @param Fraction of time dt after which the Petridish:: is updated
      */
     void update(sf::Time dt);
+    /*!
+     * @brief Computes score which controls the perception of Gradient
+     * @param Position
+     * @return Value of the score
+     */
     double score(Vec2d position);
     /*!
      * @brief Draws Petridish:: on targetWindow

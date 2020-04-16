@@ -83,7 +83,7 @@ void Petridish::increaseGradientExponent(){
     gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
 }
 void Petridish::resetGradientExponent(){
-    gradientExponent=getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2;
+    gradientExponent=(getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2;
 }
 
 double Petridish::getTemperature() const{
@@ -107,7 +107,7 @@ Nutriment* Petridish::getNutrimentColliding(CircularBody const& body) const{
     return nullptr;
 }
 double Petridish::getPositionScore(Vec2d const& position) const{
-    double score=0;
+    double score = 0.0;
     for(auto& nutriment:nutriments){
         score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),gradientExponent);
     }

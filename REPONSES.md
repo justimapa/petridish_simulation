@@ -319,5 +319,19 @@ SimpleBacterium:: and will be initialized by default to getDirection().angle()
 in the constructor.
 -answer to question 3.18
 
+*******************************************************
+
+##Q3.19
+The class Petridish:: will have a new gradientExponent attribute,
+which will be initialized when the constructor of Lab:: calls the
+constructor of its Petridish::.
+-answer to question 3.19
+
+*******************************************************
+
+##Q3.20
+-answer to question 3.20
+
+*******************************************************
 
 

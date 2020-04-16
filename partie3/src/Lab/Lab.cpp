@@ -4,7 +4,7 @@
 Lab::Lab()
     : dish(getApp().getCentre(), getApp().getLabSize().x*(0.95/2),
            getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
-      getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble()/2)
+      (getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2)
 { }
 void Lab::drawOn(sf::RenderTarget& targetWindow) const{
     dish.drawOn(targetWindow);
