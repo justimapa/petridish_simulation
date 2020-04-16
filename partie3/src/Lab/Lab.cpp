@@ -58,5 +58,5 @@ void Lab::addNutriment(Nutriment* nutriment){
     dish.addNutriment(nutriment);
 }
 bool Lab::doesCollideWithDish(CircularBody const& body) const{
-    return ((dish&body) and not (dish>body));
+    return ((dish&body) and not (dish>body.getPosition()));
 }

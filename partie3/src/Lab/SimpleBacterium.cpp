@@ -9,12 +9,14 @@ using namespace std;
 
 SimpleBacterium::SimpleBacterium(const Vec2d& position)
 : Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
-            position,Vec2d::fromRandomAngle(),
+            position,
+            Vec2d::fromRandomAngle(),
             uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
             getConfig()["color"]),
   t(uniform(0.0,PI)),
   rotation(getDirection().angle()),
-  oldScore(getAppEnv().getPositionScore(position)),
+  oldScore(0.0),
+  tLastTumble(sf::Time::Zero),
   algo(getConfig()["tumble"]["algo"].toString())
 {
     addProperty("speed",MutableNumber::positive(getConfig()["speed"]));
@@ -86,17 +88,16 @@ bool SimpleBacterium::isTumbling(){
 void SimpleBacterium::tumble(){
     if(isTumbling() and algo=="single random vector"){
         setDirection(Vec2d::fromRandomAngle());
-        tLastTumble= sf::Time::Zero;
-
+        tLastTumble = sf::Time::Zero;
     }
     if(isTumbling() and algo=="best of N"){
         setDirection(Vec2d::fromRandomAngle());
         Vec2d nextDirection=Vec2d::fromRandomAngle();
         for(int i=0;i<20;++i){
             if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
-                  setDirection(nextDirection);
+                setDirection(nextDirection);
             }
-                   nextDirection=Vec2d::fromRandomAngle();
+            nextDirection=Vec2d::fromRandomAngle();
         }
     }
 }

@@ -124,3 +124,9 @@ Dimanche 12.04.2020
 Umut
 J'ai commenté/nettoyé le code des classes NutrimentA/B, NutrimentGenerator et MutableNumber/Color.
 J'ai répondu aux questions 3.1 à 3.7.
+
+Jeudi 16.04.2020
+
+Umut
+J'ai modifié la méthode reset() de la classe Petridish pour (j'éspère) ne plus avoir de segfaults.
+J'ai répondu aux questions 3.15 à 3.20.

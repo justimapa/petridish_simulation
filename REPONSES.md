@@ -330,6 +330,12 @@ constructor of its Petridish::.
 *******************************************************
 
 ##Q3.20
+We will add two new attributes to the class SimpleBacterium::,
+oldscore and tLastTumble, which will respectively represent
+the previous score and the time spent since the last tumble.
+
+They will both be initialized to 0 (sf::Time::Zero for the time
+since the last tumble).
 -answer to question 3.20
 
 *******************************************************
