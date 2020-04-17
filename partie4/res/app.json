@@ -12,14 +12,14 @@
     },
     "generator" : {
         "nutriment" : {
-            "delay" : 2,
+            "delay" : 0.2,
             "prob" : 0
         }
     },
     "map" : "map.json",
     "nutriments" : {
 	"growth" : {
-            "speed" : 5, 
+            "speed" : 5,
             "max temperature" : 60,
             "min temperature" : 30
         },
@@ -202,7 +202,7 @@
             "min" : 5
         },
         "speed" : {
-            "initial" : 50
+            "initial" : 30
         }
     },
     "swarms" : {
