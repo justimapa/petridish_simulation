@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Petridish::Petridish(Vec2d position_,double radius_, double temperature_,double gradientExponent_)
+Petridish::Petridish(const Vec2d &position_, const double &radius_, const double &temperature_, const double &gradientExponent_)
 : CircularBody(position_,radius_),
   temperature(temperature_),
   gradientExponent(gradientExponent_)
@@ -28,6 +28,13 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     }
     return false;
 }
+bool Petridish::addSwarm(Swarm* swarm){
+    if(swarm!=nullptr){
+            swarms.push_back(swarm);
+            return true;
+    }
+    return false;
+}
 
 void Petridish::update(sf::Time dt){
     for(auto& nutriment : nutriments){
@@ -44,6 +51,9 @@ void Petridish::update(sf::Time dt){
         }
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
+    for(auto& swarm:swarms){
+        swarm->update(dt);
+    }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
@@ -114,4 +124,12 @@ double Petridish::getPositionScore(Vec2d const& position) const{
     return score;
 }
 
+Swarm* Petridish::getSwarmWithId(const string &id)const{
+    for(Swarm* swarm:swarms){
+        if(id==swarm->getId()){
+            return swarm;
+        }
+    }
+    return nullptr;
+}
 

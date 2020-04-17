@@ -1,6 +1,7 @@
 #pragma once
 #include "Bacterium.hpp"
 #include "Nutriment.hpp"
+#include "Swarm.hpp"
 #include <vector>
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
@@ -21,7 +22,7 @@ public:
     * @param Radius of the Petridish::
     * @param Temperature of the Petridish::
     */
-    Petridish(Vec2d position,double radius, double Temperature,double gradientExponent);
+    Petridish(Vec2d const& position,double const& radius, double const& Temperature,double const& gradientExponent);
     /*!
      * Deletes = operator inherited from CircularBody:: to avoid unnecessary memory usage
      */
@@ -83,13 +84,24 @@ public:
      * @return True if the Bacterium:: could be added, false if not
      */
     bool addBacterium(Bacterium* bacterium);
-    void removeBacterium(size_t);
     /*!
      * @brief Adds a Nutriment:: to the Petridish::
      * @param Nutriment:: to be added
      * @return True if the Nutriment:: could be added, false if not
      */
     bool addNutriment(Nutriment* nutriment);
+    /*!
+     * @brief Adds a Swarm:: to the Petridish::
+     * @param Swarm:: to be added:
+     * @return True if the Swarm:: could be added, false if not
+     */
+    bool addSwarm(Swarm* swarm);
+    /*!
+     * @brief Gets the Swarm__ corresponding to an id
+     * @param id of the Swarm
+     * @return Pointer to the Swarm::
+     */
+    Swarm* getSwarmWithId(const std::string& id)const;
     /*!
      * @brief Updates Petridish:: after every fraction of time dt
      * @param Fraction of time dt after which the Petridish:: is updated
@@ -119,6 +131,7 @@ private:
 
     std::vector<Bacterium*> bacteria;
     std::vector<Nutriment*> nutriments;
+    std::vector<Swarm*> swarms;
     double temperature;
     double gradientExponent;
 };

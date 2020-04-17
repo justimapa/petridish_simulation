@@ -26,19 +26,17 @@ Quantity Nutriment::getQuantity() const{
     return quantity;
 }
 void Nutriment::drawOn(sf::RenderTarget& target) const{
-    if(not isDebugOn()){
+
     auto const& texture = getAppTexture(getConfig()["texture"].toString());
     auto nutrimentSprite = buildSprite(getPosition(),6,texture);
     nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x,
                              2 * getRadius() / texture.getSize().y);
     target.draw(nutrimentSprite);
-    }else{
+    if(isDebugOn()){
         string message="Qte : " + to_string((int)quantity);
         Vec2d textposition(getPosition()[0], getPosition()[1]+getRadius());
         auto const text=buildText(message,textposition,getAppFont(),15,sf::Color::Black);
-        auto circle = buildCircle(getPosition(),getRadius(),sf::Color::Green);
         target.draw(text);
-        target.draw(circle);
     }
 }
 void Nutriment::update(sf::Time dt){

@@ -57,6 +57,12 @@ void Lab::addBacterium(Bacterium* bact){
 void Lab::addNutriment(Nutriment* nutriment){
     dish.addNutriment(nutriment);
 }
+Swarm* Lab::getSwarmWithId(const std::string& id)const{
+    return dish.getSwarmWithId(id);
+}
+void Lab::addSwarm(Swarm* swarm){
+    dish.addSwarm(swarm);
+}
 bool Lab::doesCollideWithDish(CircularBody const& body) const{
     return ((dish&body) and not (dish>body.getPosition()));
 }
