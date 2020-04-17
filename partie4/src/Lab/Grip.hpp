@@ -1,11 +1,30 @@
-#ifndef GRIP_HPP
-#define GRIP_HPP
+#pragma once
+#include "CircularBody.hpp"
 
-
-class Grip
+/*!
+ * @class Grip
+ * @brief class that represents the tentacle
+ * of a bacteria
+ *
+ * Subclass of CircularBody, Drawable
+ */
+class Grip : public CircularBody
 {
 public:
-    Grip();
+    /*!
+     * @brief Constructs a Grip:: fully set up
+     * @param Position
+     * @param Radius
+     * @return A Grip:: with all parameters set
+     */
+    Grip(const Vec2d& position_, double radius_);
+    /*!
+     * @brief Changes the position of the Grip::
+     * @param The amount of the movement
+     */
+    void move(const Vec2d& distance);
+    /*!
+     * @brief Destructor of the Grip::
+     */
+    ~Grip();
 };
-
-#endif // GRIP_HPP

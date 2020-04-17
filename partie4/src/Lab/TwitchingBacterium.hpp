@@ -1,5 +1,7 @@
 #pragma once
 #include "Bacterium.hpp"
+#include "Grip.hpp"
+
 
 /*!
  * @class TwitchingBacterium
@@ -48,8 +50,15 @@ public:
      */
     j::Value& getTentacleEnergy() const;
     /*!
+     * @brief Moves the grip of the TwitchingBacterium::
+     * @param delta
+     */
+    void moveGrip(const Vec2d& delta);
+    /*!
      * @brief Destructor of the TwitchingBacterium::
      */
     virtual ~TwitchingBacterium() override;
+private:
+    Grip grip;
 };
 
