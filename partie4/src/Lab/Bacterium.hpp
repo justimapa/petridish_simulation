@@ -82,7 +82,7 @@ public:
      * @brief Gets config value for consumption factor
      * @return Energy spent per movement
      */
-    Quantity getEnergyConsumption() const;
+    j::Value& getEnergyConsumption() const;
     /*!
      * @brief Getter for the color of the Bacterium::
      * @return Color of the Bacterium::
@@ -115,7 +115,7 @@ public:
      */
     void mutation(Bacterium*);
     /*!
-     * @brief Moves the Bacterium:: with in the Petridish::
+     * @brief Moves the Bacterium:: within the Petridish::
      * @param Time dt after which movement will take place
      *
      * Pure virtual method

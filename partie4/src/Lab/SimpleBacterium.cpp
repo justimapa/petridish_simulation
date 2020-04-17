@@ -33,7 +33,7 @@ void SimpleBacterium::move(sf::Time dt){
     Vec2d movement = stepDiffEq(getPosition(),getSpeedVector(),dt,(*this),DiffEqAlgorithm::EC).position - getPosition();
     if(movement.lengthSquared()>0.001){
     (*this).CircularBody::move(movement);
-    consumeEnergy((movement).length()*getEnergyConsumption());
+    consumeEnergy((movement).length()*getEnergyConsumption().toDouble());
     }
 }
 Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{

@@ -74,7 +74,7 @@ public:
      * @brief Clones the SimpleBacterium::
      * @return A pointer to a mutated copy of the SimpleBacterium::
      */
-    Bacterium* clone() override;
+    virtual Bacterium* clone() override;
     /*!
      * @brief Getter for the "simple bacterium" config
      * @return The JSON configuration of the SimpleBacterium::
