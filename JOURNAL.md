@@ -130,3 +130,17 @@ Jeudi 16.04.2020
 Umut
 J'ai modifié la méthode reset() de la classe Petridish pour (j'éspère) ne plus avoir de segfaults.
 J'ai répondu aux questions 3.15 à 3.20.
+
+Justin
+
+J'ai fini de commenter les classes de la partie 3.
+
+Vendredi 17.04.2020
+
+Justin
+
+J'ai fini de coder les classes Swarm et SwarmBacterium. Je dois encore commenter
+le code.
+Il y a un bug avec la mise à jour du leader qui doit être régler.
+À première vu, je pense qu c'est une erreur avec la gestion des SwarmBacterium
+dans le tableau.
