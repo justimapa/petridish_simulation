@@ -340,4 +340,31 @@ since the last tumble).
 
 *******************************************************
 
+##Q4.1
+The class TwitchingBacterium:: will inherit from the class Bacterium::.
+-answer to question 4.1
+
+*******************************************************
+
+##Q4.2
+We will redefine the pure virtual method getConfig() in the class 
+TwitchingBacterium:: so that it fetches the corresponding config
+values polymorphically.
+-answer to question 4.2
+
+*******************************************************
+
+##Q4.3
+We must redefine all the pure virtual methods in the class Bacterium::
+so that we may create instances of TwitchingBacterium::.
+-answer to question 4.3
+
+*******************************************************
+
+##Q4.4
+We will utilize
+-answer to question 4.4
+
+*******************************************************
+
 

@@ -66,8 +66,8 @@ Quantity Bacterium::getMinEnergyDivision() const{
 sf::Time Bacterium::getDelay() const{
     return sf::seconds(getConfig()["meal"]["delay"].toDouble());
 }
-Quantity Bacterium::getEnergyConsumption() const{
-    return getConfig()["energy"]["consumption factor"].toDouble();
+j::Value& Bacterium::getEnergyConsumption() const{
+    return getConfig()["energy"]["consumption factor"];
 }
 Vec2d Bacterium::getDirection() const{
     return direction;
