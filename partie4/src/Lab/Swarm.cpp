@@ -17,14 +17,7 @@ void Swarm::addSwarmBacterium(SwarmBacterium* bacterium){
     }
 }
 void Swarm::removeSwarmBacterium(SwarmBacterium* bacterium){
-    if(bacterium!=nullptr){
-        for(SwarmBacterium* bact:group){
-            if(bact==bacterium){
-                bact=nullptr;
-            }
-        }
-    }
-    group.erase(remove(group.begin(),group.end(),nullptr),group.end());
+    group.erase(remove(group.begin(),group.end(),bacterium),group.end());
 }
 const Vec2d& Swarm::getLeaderPosition()const{
     return leader->getPosition();
@@ -33,19 +26,21 @@ j::Value& Swarm::getInitialColor()const{
     return getAppConfig()["swarms"][id]["color"];
 }
 void Swarm::update(sf::Time dt){
-    group.erase(remove(group.begin(),group.end(),nullptr),group.end());
-
     leader=nullptr;
     double leaderScore(0);
     double temp(0);
-    for (SwarmBacterium* swarmbacterium: group){
+    for (auto& swarmbacterium: group){
+        if(swarmbacterium->isDead()){
+            swarmbacterium=nullptr;
+        }else{
         temp=getAppEnv().getPositionScore(swarmbacterium->getPosition());
-        if (temp> leaderScore){
+        if (temp>= leaderScore){
                 leaderScore = temp;
-                cerr<<leaderScore<<endl;
                 leader = swarmbacterium;
             }
         }
+    }
+    removeSwarmBacterium(nullptr);
    }
 bool Swarm::isLeader(const SwarmBacterium* bacterium)const {
     return leader==bacterium;

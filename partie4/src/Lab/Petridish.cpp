@@ -41,23 +41,25 @@ void Petridish::update(sf::Time dt){
         nutriment->update(dt);
         if(nutriment->isDead()){
             nutriment=nullptr;
+
         }
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
     for(auto& bacterium:bacteria){
         bacterium->update(dt);
         if(bacterium->isDead()){
-            bacterium=nullptr;
+            bacterium=nullptr;      
         }
     }
-    bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
     for(auto& swarm:swarms){
         swarm->update(dt);
     }
+
+    bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
-    for(auto nutriment : nutriments){
+    for(auto& nutriment : nutriments){
         nutriment->drawOn(targetWindow);
     }
     for(auto& bacterium : bacteria){

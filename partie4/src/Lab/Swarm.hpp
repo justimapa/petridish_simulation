@@ -4,7 +4,6 @@
 #include "Utility/Vec2d.hpp"
 #include "Utility/Utility.hpp"
 
-
 class SwarmBacterium;
 
 class Swarm: public Updatable

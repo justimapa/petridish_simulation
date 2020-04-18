@@ -24,7 +24,6 @@ Bacterium::Bacterium(Bacterium& other):
 void Bacterium::drawOn(sf::RenderTarget& target) const{
     auto const circle = buildCircle(getPosition(),getRadius(),color.get());
     target.draw(circle);
-    //drawFlagella(target);
     if(isDebugOn()){
         string message="Energy : "+to_string((int)energy);
         Vec2d textposition(getPosition()[0], getPosition()[1]+getRadius());

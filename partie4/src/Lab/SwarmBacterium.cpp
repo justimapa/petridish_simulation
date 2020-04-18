@@ -29,7 +29,7 @@ void SwarmBacterium::move(sf::Time dt){
     (*this).CircularBody::move(movement);
     consumeEnergy((movement).length()*getEnergyConsumption().toDouble());
     }
-    if(swarm->isLeader(this)){
+    if(swarm->isLeader(this) or not swarm->hasLeader()){
         tumble();
     }
 }
@@ -60,7 +60,6 @@ Bacterium* SwarmBacterium::clone(){
     return nullptr;
 }
 Vec2d SwarmBacterium::f(Vec2d position, Vec2d direction) const{
-
     if(swarm->hasLeader()){
     return getAppConfig()["swarms"][swarm->getId()]["force factor"].toDouble()*(swarm->getLeaderPosition()-position);
     }
