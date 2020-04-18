@@ -154,3 +154,9 @@ Samedi 18.04.2020
 Umut
 
 J'ai terminé de coder la classe TwitchingBacterium.
+
+Justin 
+
+J'ai corrigé le bug. :)
+
+
