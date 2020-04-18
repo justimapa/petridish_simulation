@@ -3,6 +3,7 @@
 #include "Grip.hpp"
 #include "Utility/Vec2d.hpp"
 
+enum STATES{IDLE, WAIT_TO_DEPLOY, DEPLOY, ATTRACT, RETRACT, EAT};
 /*!
  * @class TwitchingBacterium
  * @brief class that represents bacteria
@@ -60,5 +61,6 @@ public:
     virtual ~TwitchingBacterium() override;
 private:
     Grip grip;
+    STATES current_state;
 };
 
