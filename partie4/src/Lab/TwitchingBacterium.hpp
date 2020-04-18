@@ -1,7 +1,7 @@
 #pragma once
 #include "Bacterium.hpp"
 #include "Grip.hpp"
-
+#include "Utility/Vec2d.hpp"
 
 /*!
  * @class TwitchingBacterium

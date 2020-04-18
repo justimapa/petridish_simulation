@@ -22,7 +22,33 @@ void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     Bacterium::drawOn(targetWindow);
 }
 void TwitchingBacterium::move(sf::Time dt){
-
+    enum STATES{IDLE, WAIT_TO_DEPLOY, DEPLOY, ATTRACT, RETRACT, EAT};
+    STATES initial(IDLE);
+    switch(initial){
+    case IDLE: {}
+    case WAIT_TO_DEPLOY: {
+        Vec2d nextDirection=Vec2d::fromRandomAngle();
+        for(int i=0;i<20;++i){
+            if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
+                setDirection(nextDirection);
+            }
+            nextDirection=Vec2d::fromRandomAngle();
+        }
+    }
+    case DEPLOY: {
+        double tentacle_speed(getProperty("tentacle speed").get());
+        grip.move(getDirection()*tentacle_speed*dt.asSeconds());
+        consumeEnergy(getTentacleEnergy().toDouble()*tentacle_speed*dt.asSeconds());
+        if(getAppEnv().getNutrimentColliding(grip)){
+        case ATTRACT: {
+            if(!getAppEnv().getNutrimentColliding(*this)){
+                Vec2d dir_tentacle((grip.getPosition()-getPosition())/distance(grip.getPosition(),getPosition()));
+                CircularBody::move(getDirection()*
+            }
+        }
+        }
+    }
+    }
 }
 Bacterium* TwitchingBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){

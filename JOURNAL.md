@@ -144,3 +144,7 @@ le code.
 Il y a un bug avec la mise à jour du leader qui doit être régler.
 À première vu, je pense qu c'est une erreur avec la gestion des SwarmBacterium
 dans le tableau.
+
+Umut
+
+J'ai codé jusqu'au test 13 de la classe TwitchingBacterium.
