@@ -148,3 +148,9 @@ dans le tableau.
 Umut
 
 J'ai codé jusqu'au test 13 de la classe TwitchingBacterium.
+
+Samedi 18.04.2020
+
+Umut
+
+J'ai terminé de coder la classe TwitchingBacterium.

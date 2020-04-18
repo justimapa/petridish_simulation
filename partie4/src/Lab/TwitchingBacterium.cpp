@@ -17,12 +17,34 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
     addProperty("max tentacle length", MutableNumber::positive(getConfig()["tentacle"]["length"]));
     addProperty("tentacle speed", MutableNumber::positive(getConfig()["tentacle"]["speed"]));
 }
+TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
+:
+    Bacterium(other),
+    grip(other.grip),
+    current_state(IDLE)
+{ }
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
     auto border = buildAnnulus(grip.getPosition(),grip.getRadius(), getColor().get(), 1);
     targetWindow.draw(line);
     targetWindow.draw(border);
     Bacterium::drawOn(targetWindow);
+}
+void TwitchingBacterium::update(sf::Time dt){
+    Bacterium::update(dt);
+    if(getAppEnv().getNutrimentColliding(grip)!=nullptr){
+        current_state = ATTRACT;
+        if(getAppEnv().getNutrimentColliding(*this)!=nullptr){
+            current_state = EAT;
+        }
+    }
+    if ((grip.getPosition()-getPosition()).length() >= getProperty("max tentacle length").get()){
+            current_state = RETRACT;
+    }
+    if((grip.getPosition()-getPosition()).length() <= getRadius()){
+                current_state = IDLE;
+    }
+
 }
 void TwitchingBacterium::move(sf::Time dt){
     switch(current_state){
@@ -40,39 +62,29 @@ void TwitchingBacterium::move(sf::Time dt){
     case DEPLOY: {
         grip.move(getDirection()*getProperty("tentacle speed").get()*dt.asSeconds());
         consumeEnergy(getTentacleEnergy().toDouble()*getProperty("tentacle speed").get()*dt.asSeconds());
-        if(getAppEnv().getNutrimentColliding(grip)!=nullptr){
-        case ATTRACT: {
-            Vec2d dir_tentacle((grip.getPosition()-getPosition()).normalised());
-            Vec2d distance(dir_tentacle*getProperty("tentacle speed").get()*(getConfig()["speed factor"].toDouble())*dt.asSeconds());
-            CircularBody::move(distance);
-            consumeEnergy(distance.length()*getMovementEnergy().toDouble());
+        break;
+    }
+    case ATTRACT: {
+        Vec2d dir_tentacle((grip.getPosition()-getPosition()).normalised());
+        Vec2d distance(dir_tentacle*getProperty("tentacle speed").get()*(getConfig()["speed factor"].toDouble())*dt.asSeconds());
+        CircularBody::move(distance);
+        consumeEnergy(distance.length()*getMovementEnergy().toDouble());
+        break;
+    }
+    case RETRACT: {
+    Vec2d dir_tentacle((getPosition()-grip.getPosition()).normalised());
+    grip.move(dir_tentacle*getProperty("tentacle speed").get()*dt.asSeconds());
+    consumeEnergy(getTentacleEnergy().toDouble()*getProperty("tentacle speed").get()*dt.asSeconds());
+    break;
+    }
+    case EAT: {
+        if(getAppEnv().getNutrimentColliding(*this)== nullptr){
+            current_state = IDLE;
         }
-            if(getAppEnv().getNutrimentColliding(*this)!=nullptr){
-            case EAT: {
-                if(getAppEnv().getNutrimentColliding(*this)==nullptr){
-                    break;
-                }
-            }
-
-            }
-        }
-        }
-        if((grip.getPosition()-getPosition()).length() >= getProperty("max tentacle length").get()){
-            case RETRACT: {
-            Vec2d dir_tentacle((getPosition()-grip.getPosition()).normalised());
-            cout << "Tentacle: " << dir_tentacle << endl;
-            cout << "Bacteria: " << getDirection() << endl;
-            grip.move(dir_tentacle*getProperty("tentacle speed").get()*dt.asSeconds());
-            consumeEnergy(getTentacleEnergy().toDouble()*getProperty("tentacle speed").get()*dt.asSeconds());
-            if((grip.getPosition()-getPosition()).length() <= getRadius()){
-                break;
-            }
-            }
-        }
+    break;
+    }
     }
 }
-
-
 Bacterium* TwitchingBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new TwitchingBacterium(*this));

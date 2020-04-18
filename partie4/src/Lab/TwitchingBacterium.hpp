@@ -21,10 +21,22 @@ public:
      */
     TwitchingBacterium(Vec2d const& position_);
     /*!
+     * @brief Constructs a TwitchingBacterium:: from another
+     * @param The TwitchingBacterium:: to be copied
+     * @return A copy of the original TwitchingBacterium::
+     */
+    TwitchingBacterium(TwitchingBacterium&);
+    /*!
      * @brief Draws the TwitchingBacterium::
      * @param targetWindow where the TwitchingBacterium:: will be drawn
      */
     virtual void drawOn(sf::RenderTarget& targetWindow) const override;
+    /*!
+     * @brief Updates TwitchingBacterium:: within Petridish:: at every fraction
+     * of time dt
+     * @param Fraction of time dt
+     */
+    virtual void update(sf::Time dt) override;
     /*!
      * @brief Moves the Bacterium:: within the Petridish::
      * @param Time dt after which movement will take place
