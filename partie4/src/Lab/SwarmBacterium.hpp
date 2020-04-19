@@ -2,13 +2,32 @@
 #include "Bacterium.hpp"
 #include "Utility/DiffEqSolver.hpp"
 
-
+/*!
+ *Predeclaration of the Swarm:: class
+ */
 class Swarm;
 
+/*!
+ * @class SwarmBacterium
+ * @brief class that represents the behavior and movement
+ * of swarm bacteria within a Petridish
+ *
+ * Subclass of Bacterium
+ */
 class SwarmBacterium: public Bacterium, public DiffEqFunction
 {
 public:
+    /*!
+     * @brief Constructor for the SwarmBacterium::
+     * @param The position of the SwarmBacterium::
+     * @param The Swarm of the SwarmBacterium::
+     * @return a Fully constructed SwarmBacterium::
+     */
     SwarmBacterium(Vec2d const& position, Swarm* swarm);
+    /*!
+     * @brief Copy Constructory for the SwarmBacterium::
+     * @param The SwarmBacterium:: that will be copied.
+     */
     SwarmBacterium(SwarmBacterium & other);
     /*!
      * @brief Getter for the "Swarm Bacterium" config
@@ -19,7 +38,7 @@ public:
      * @brief Force vector
      * @param Position
      * @param Direction
-     * @return Returns the force vector exercised by the leader
+     * @return Returns the force vector exercised by the leader or a null vector when it is the leader
      */
     Vec2d f(Vec2d position, Vec2d direction) const override;
     /*!
@@ -27,10 +46,30 @@ public:
      * @return The speed vector of the SwarmBacterium::
      */
     Vec2d getSpeedVector();
+    /*!
+     * @brief Draws the SwarmBacterium::
+     * @param The Window where it will be drawn.
+     */
     void drawOn(sf::RenderTarget &targetWindow) const override;
+    /*!
+     * @brief Clones the SwarmBacterium::
+     * @return A mutated copy of the SwarmBacterium::
+     */
     Bacterium* clone() override;
+    /*!
+     * @brief Moves the SwarmBacterium::
+     * @param The delay between moves
+     *
+     * If the SwarmBacterium:: is the leader it will choose a new direction after moving.
+     */
     void move(sf::Time dt) override;
+    /*!
+     * @brief Chooses the best direction from 20 random directions
+     */
     void tumble();
+    /*!
+      *@ Destructor for the SwarmBacterium::
+      */
     ~SwarmBacterium();
 private:
     Swarm* swarm;
