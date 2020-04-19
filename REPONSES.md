@@ -366,5 +366,43 @@ We will utilize
 -answer to question 4.4
 
 *******************************************************
+##Q4.5
 
+-answer to question 4.5
 
+*******************************************************
+
+##Q4.6
+We add an attribut which is a vector of Swarm pointers to the Petridish::.
+Then,we add the method, void  addSwarm(), to the Lab:: and Petridish::.
+The Lab addSwarm() will call the addSwarm of the Petridish which will add a Swarm
+to the attribut swarms of Petridish.
+-answer to question 4.6
+
+*******************************************************
+##Q4.7
+The SwarmBacterium:: will inherit from DiffEqFunction similar to the SimpleBacterium::.
+-answer to question 4.7
+
+*******************************************************
+##Q4.8
+We need to redefine move, clone and getConfig as the were defined as virtual pures in the Bacterium:: class.
+-answer to question 4.8
+
+*******************************************************
+##Q4.9
+We add the method, Swarm * getSwarmWithId(id), to the Lab:: and Petridish::.
+The lab getSwarmWithId will call the Petrdish's getSwarmwithId to get the pointer towards the swarm we want.
+-answer to question 4.9
+
+*******************************************************
+##Q4.10
+The Swarm Destructor must simply destroy the pointers to the now deleted Bacteria.
+-answer to question 4.10
+
+*******************************************************
+##Q4.11
+The Swarm Update(), will control if the SwarmBacterium is dead and will remove it if it is the case.
+-answer to question 4.11
+
+*******************************************************
