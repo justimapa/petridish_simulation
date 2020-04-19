@@ -22,7 +22,9 @@ TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
     Bacterium(other),
     grip(other.grip),
     current_state(IDLE)
-{ }
+{
+    CircularBody::move(Vec2d(5,5));
+}
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
     auto border = buildAnnulus(grip.getPosition(),grip.getRadius(), getColor().get(), 1);

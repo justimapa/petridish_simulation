@@ -17,6 +17,7 @@ bool Petridish::addBacterium(Bacterium* bacterium){
             return true;
         }
     }
+    delete bacterium;
     return false;
 }
 bool Petridish::addNutriment(Nutriment* nutriment){
@@ -26,6 +27,7 @@ bool Petridish::addNutriment(Nutriment* nutriment){
             return true;
         }
     }
+    delete nutriment;
     return false;
 }
 bool Petridish::addSwarm(Swarm* swarm){
@@ -33,12 +35,18 @@ bool Petridish::addSwarm(Swarm* swarm){
             swarms.push_back(swarm);
             return true;
     }
+    delete swarm;
     return false;
 }
 
 void Petridish::update(sf::Time dt){
+    for(auto& swarm:swarms){
+        swarm->update(dt);
+    }
     for(auto& nutriment : nutriments){
+        if(nutriment!=nullptr){
         nutriment->update(dt);
+        }
         if(nutriment->isDead()){
             nutriment=nullptr;
 
@@ -46,15 +54,13 @@ void Petridish::update(sf::Time dt){
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
     for(auto& bacterium:bacteria){
+        if(bacterium!=nullptr){
         bacterium->update(dt);
+        }
         if(bacterium->isDead()){
             bacterium=nullptr;      
         }
     }
-    for(auto& swarm:swarms){
-        swarm->update(dt);
-    }
-
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
@@ -88,8 +94,10 @@ double Petridish::getGradientExponent() const{
     return gradientExponent;
 }
 void Petridish::decreaseGradientExponent(){
-    cerr<<gradientExponent<<endl;
+    if(gradientExponent>getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble()){
     gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+
+    }
 }
 void Petridish::increaseGradientExponent(){
     gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();

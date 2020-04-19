@@ -52,7 +52,7 @@ string Swarm::getId()const{
     return id;
 }
 Swarm::~Swarm(){
-    for(SwarmBacterium* bacterium:group){
+    for(auto& bacterium:group){
         bacterium=nullptr;
     }
     group.erase(remove(group.begin(),group.end(),nullptr),group.end());
