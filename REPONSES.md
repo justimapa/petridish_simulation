@@ -362,12 +362,23 @@ so that we may create instances of TwitchingBacterium::.
 *******************************************************
 
 ##Q4.4
-We will utilize
+We will utilize two getters, getMovementEnergy() and getTentacleEnergy(),
+which will get the corresponing config values from the JSON file.
+They will both call upon the getEnergyConsumption() method in class
+Bacterium::.
 -answer to question 4.4
 
 *******************************************************
 ##Q4.5
+We will declare an enum, containing all the different states of
+the TwitchingBacterium:: as an attribute of the class. It will be
+initialized to IDLE with the class' constructor and will be further
+controlled by the update() method, which will affect the different
+possible states to the current instance according to the situation it
+is in.
 
+This allows the move method to be much more concise through a
+switch statement, without using too many if statements.
 -answer to question 4.5
 
 *******************************************************

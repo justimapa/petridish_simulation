@@ -164,5 +164,15 @@ Dimanche 19.04.2020
 
 Justin
 
-Commented Swarm and SwarmBacteria and answered questions in REPONSES.mdr
+J' ai commenté Swarm and SwarmBacteria et répondu à des questions dans REPONSES.md
+
+Umut
+
+J'ai répondu à deux questions.
+
+Umut et Justin
+
+Rendu intermédiaire!
+
+=======
 
