@@ -1,7 +1,5 @@
 #pragma once
 #include "CircularBody.hpp"
-#include "NutrimentA.hpp"
-#include "NutrimentB.hpp"
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
 #include "Utility/Types.hpp"
@@ -9,6 +7,10 @@
 #include "Utility/MutableColor.hpp"
 #include "Utility/MutableNumber.hpp"
 #include <string>
+
+class Nutriment;
+class NutrimentA;
+class NutrimentB;
 
 /*!
  * @class Bacterium
@@ -149,7 +151,7 @@ public:
      *
      * Pure virtual method
      */
-    virtual Quantity eatableQuantity(NutrimentA& nutriment) const = 0;
+    virtual Quantity eatableQuantity(NutrimentA& nutriment) = 0;
     /*!
      * @brief Looks at the value of the quantity of NutrimentB::
      * that is eatable
@@ -158,7 +160,7 @@ public:
      *
      * Pure virtual method
      */
-    virtual Quantity eatableQuantity(NutrimentB& nutriment) const = 0;
+    virtual Quantity eatableQuantity(NutrimentB& nutriment) = 0;
     /*!
      * @brief Gets config value corresponding to each subclass
      * of Bacterium::

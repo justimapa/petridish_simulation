@@ -7,7 +7,8 @@
  *
  * Subclass of Nutriment::
  */
-class NutrimentA:public Nutriment
+
+class NutrimentA: public Nutriment
 {
 public:
     /*!
@@ -23,10 +24,10 @@ public:
      * @param Bacterium:: that is eating
      * @return Quantity eaten
      */
-    virtual Quantity eatenBy(Bacterium& bact) const override;
-    virtual Quantity eatenBy(SimpleBacterium& bact) const override;
-    virtual Quantity eatenBy(TwitchingBacterium& bact) const override;
-    virtual Quantity eatenBy(SwarmBacterium& bact) const override;
+    virtual Quantity eatenBy(Bacterium& bact) override;
+    virtual Quantity eatenBy(SimpleBacterium& bact) override;
+    virtual Quantity eatenBy(TwitchingBacterium& bact) override;
+    virtual Quantity eatenBy(SwarmBacterium& bact) override;
     /*!
      * @brief Shortcut for access to config parameters
      * @return The config parameters of NurtimentA::

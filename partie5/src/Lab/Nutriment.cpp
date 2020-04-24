@@ -1,4 +1,8 @@
 #include "Nutriment.hpp"
+#include "Bacterium.hpp"
+#include "SimpleBacterium.hpp"
+#include "TwitchingBacterium.hpp"
+#include "SwarmBacterium.hpp"
 #include <string>
 #include "Application.hpp"
 #include "Petridish.hpp"
@@ -11,8 +15,9 @@ Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_)
 { }
 
 Quantity Nutriment::takeQuantity(Quantity quantity_){
+    Quantity initial_quantity(quantity);
     setQuantity(quantity - quantity_);
-    return getQuantity();
+    return initial_quantity-getQuantity();
 }
 void Nutriment::setQuantity(Quantity quantity_){
     if(quantity_ >= 0.0){

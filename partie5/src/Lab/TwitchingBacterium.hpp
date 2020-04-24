@@ -53,14 +53,14 @@ public:
      * @param A NutrimentA::
      * @return Quantity that is consumable
      */
-    virtual Quantity eatableQuantity(NutrimentA& nutriment) const override;
+    virtual Quantity eatableQuantity(NutrimentA& nutriment) override;
     /*!
      * @brief Looks at the value of the quantity of NutrimentB::
      * that is eatable
      * @param A NutrimentB::
      * @return Quantity that is consumable
      */
-    virtual Quantity eatableQuantity(NutrimentB& nutriment) const override;
+    virtual Quantity eatableQuantity(NutrimentB& nutriment) override;
     /*!
      * @brief Getter for the "twitching bacterium" config
      * @return The JSON configuration of the TwitchingBacterium::

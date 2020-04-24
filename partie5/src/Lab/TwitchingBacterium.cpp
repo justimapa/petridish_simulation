@@ -1,4 +1,7 @@
 #include "TwitchingBacterium.hpp"
+#include "Nutriment.hpp"
+#include "NutrimentA.hpp"
+#include "NutrimentB.hpp"
 #include "Application.hpp"
 #include "Random/Random.hpp"
 #include "Utility/Utility.hpp"
@@ -95,10 +98,10 @@ Bacterium* TwitchingBacterium::clone(){
     }
     return nullptr;
 }
-Quantity TwitchingBacterium::eatableQuantity(NutrimentA& nutriment) const{
+Quantity TwitchingBacterium::eatableQuantity(NutrimentA& nutriment){
     return nutriment.eatenBy(*this);
 }
-Quantity TwitchingBacterium::eatableQuantity(NutrimentB& nutriment) const{
+Quantity TwitchingBacterium::eatableQuantity(NutrimentB& nutriment){
     return nutriment.eatenBy(*this);
 }
 j::Value& TwitchingBacterium::getConfig() const{

@@ -1,4 +1,7 @@
 #include "Bacterium.hpp"
+#include "Nutriment.hpp"
+#include "NutrimentA.hpp"
+#include "NutrimentB.hpp"
 #include "Application.hpp"
 #include <cmath>
 using namespace std;
@@ -37,10 +40,9 @@ void Bacterium::update(sf::Time dt){
     if(getAppEnv().doesCollideWithDish((*this))){
         direction=-direction;
     }
-    double max_consumption(getConfig()["meal"]["max"].toDouble());
     if((getAppEnv().getNutrimentColliding((*this))!=nullptr)
         and (not abstinence) and (delay>=getDelay())){
-        energy+=getAppEnv().getNutrimentColliding((*this))->takeQuantity(max_consumption);
+        eat(*getAppEnv().getNutrimentColliding((*this)));
         if(getMinEnergyDivision()<=energy){
             getAppEnv().addBacterium(clone());
         }
@@ -49,6 +51,7 @@ void Bacterium::update(sf::Time dt){
 }
 void Bacterium::eat(Nutriment& nutriment) {
     Quantity eaten(nutriment.eatenBy(*this));
+    energy += eaten;
 }
 void Bacterium::consumeEnergy(Quantity qt){
     energy-=qt;

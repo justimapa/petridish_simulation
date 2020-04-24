@@ -1,4 +1,7 @@
 #include "SimpleBacterium.hpp"
+#include "Nutriment.hpp"
+#include "NutrimentA.hpp"
+#include "NutrimentB.hpp"
 #include "Random/Random.hpp"
 #include "JSON/JSONImpl.hpp"
 #include "Application.hpp"
@@ -36,10 +39,10 @@ void SimpleBacterium::move(sf::Time dt){
     consumeEnergy((movement).length()*getEnergyConsumption().toDouble());
     }
 }
-Quantity SimpleBacterium::eatableQuantity(NutrimentA& nutriment) const{
+Quantity SimpleBacterium::eatableQuantity(NutrimentA& nutriment){
     return nutriment.eatenBy(*this);
 }
-Quantity SimpleBacterium::eatableQuantity(NutrimentB& nutriment) const{
+Quantity SimpleBacterium::eatableQuantity(NutrimentB& nutriment){
     return nutriment.eatenBy(*this);
 }
 Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{

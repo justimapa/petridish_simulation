@@ -1,14 +1,15 @@
 #pragma once
 #include "CircularBody.hpp"
-#include "TwitchingBacterium.hpp"
-#include "SimpleBacterium.hpp"
-#include "SwarmBacterium.hpp"
 #include "Utility/Types.hpp"
 #include "Utility/Vec2d.hpp"
 #include <SFML/Graphics.hpp>
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
 
+class Bacterium;
+class SimpleBacterium;
+class TwitchingBacterium;
+class SwarmBacterium;
 /*!
  * @class Nutriment
  * @brief class representing the nutrient sources within the PetriDish:: which
@@ -30,10 +31,10 @@ public:
      * @brief Pure virtual method, inherited by classes NutrimentA::
      * and NutrimentB::, specific to each type of Bacterium
      */
-    virtual Quantity eatenBy(Bacterium& bact) const = 0;
-    virtual Quantity eatenBy(SimpleBacterium& bact) const = 0;
-    virtual Quantity eatenBy(TwitchingBacterium& bact) const = 0;
-    virtual Quantity eatenBy(SwarmBacterium& bact) const = 0;
+    virtual Quantity eatenBy(Bacterium& bact) = 0;
+    virtual Quantity eatenBy(SimpleBacterium& bact) = 0;
+    virtual Quantity eatenBy(TwitchingBacterium& bact) = 0;
+    virtual Quantity eatenBy(SwarmBacterium& bact) = 0;
     /*!
      * @brief Take a certain quantity of Nutriment::
      * @param Quantity of Nutriment:: to take

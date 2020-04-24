@@ -54,14 +54,14 @@ public:
      * @param A NutrimentA::
      * @return Quantity that is consumable
      */
-    virtual Quantity eatableQuantity(NutrimentA& nutirment) const override;
+    virtual Quantity eatableQuantity(NutrimentA& nutirment) override;
     /*!
      * @brief Looks at the value of the quantity of NutrimentB::
      * that is eatable
      * @param A NutrimentB::
      * @return Quantity that is consumable
      */
-    virtual Quantity eatableQuantity(NutrimentB& nutriment) const override;
+    virtual Quantity eatableQuantity(NutrimentB& nutriment) override;
     /*!
      * @brief Draws a flagella connected to the SimpleBacterium::
      * @param TargetWindow where the flagella will be drawn

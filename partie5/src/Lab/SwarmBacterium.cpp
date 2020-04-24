@@ -1,5 +1,8 @@
 #include "SwarmBacterium.hpp"
 #include "Swarm.hpp"
+#include "Nutriment.hpp"
+#include "NutrimentA.hpp"
+#include "NutrimentB.hpp"
 #include "Random/Random.hpp"
 #include "Application.hpp"
 
@@ -59,10 +62,10 @@ Bacterium* SwarmBacterium::clone(){
     }
     return nullptr;
 }
-Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment) const{
+Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment){
     return nutriment.eatenBy(*this);
 }
-Quantity SwarmBacterium::eatableQuantity(NutrimentB& nutriment) const{
+Quantity SwarmBacterium::eatableQuantity(NutrimentB& nutriment) {
     return nutriment.eatenBy(*this);
 }
 Vec2d SwarmBacterium::f(Vec2d position, Vec2d direction) const{
