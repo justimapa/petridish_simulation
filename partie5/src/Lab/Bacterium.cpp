@@ -6,6 +6,7 @@
 #include <cmath>
 using namespace std;
 
+double Bacterium::speed_tot(0);
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
                      double const& radius,MutableColor const& color)
 : CircularBody(position,radius),
@@ -13,7 +14,9 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
   direction(direction),
   color(color),
   abstinence(false)
-{ }
+{
+
+}
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),
     energy(other.energy/2),
@@ -96,7 +99,7 @@ MutableNumber Bacterium::getProperty(const string& key){
     }catch(std::out_of_range){
         cerr<<"Out of range"<<endl;
     }catch(std::invalid_argument){
-        cerr<<"Invalid_argument"<<endl;
+        cerr<<"Invalid argument"<<endl;
     }
 }
 void Bacterium::mutation(Bacterium* bact){
@@ -109,4 +112,5 @@ void Bacterium::reset(){
     delay=sf::Time::Zero;
 }
 Bacterium::~Bacterium(){
+
 }

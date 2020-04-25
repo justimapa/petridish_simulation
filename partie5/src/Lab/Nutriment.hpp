@@ -20,6 +20,8 @@ class SwarmBacterium;
  */
 class Nutriment : public CircularBody,public Drawable,public Updatable{
 public:
+    static int counter;
+    static Quantity quantitycounter;
     /*!
      * @brief Constructs a Nutriment:: fully set up
      * @param Position of the Nutriment::

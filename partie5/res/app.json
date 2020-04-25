@@ -12,8 +12,8 @@
     },
     "generator" : {
         "nutriment" : {
-            "delay" : 2,
-            "prob" : 0.5
+            "delay" : 0.5,
+            "prob" : 1
         }
     },
     "map" : "map.json",
@@ -126,7 +126,7 @@
             "min" : 5
         },
         "speed" : {
-            "initial" : 200,
+            "initial" : 30,
             "rate" : 0.8,
             "sigma" : 0.4
         },

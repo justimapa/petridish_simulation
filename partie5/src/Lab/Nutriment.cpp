@@ -9,14 +9,21 @@
 
 using namespace std;
 
+int Nutriment::counter(0);
+Quantity Nutriment::quantitycounter(0);
+
 Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_)
 : CircularBody(position_, quantity_),
   quantity(quantity_)
-{ }
+{
+    ++counter;
+    quantitycounter+=quantity;
+}
 
 Quantity Nutriment::takeQuantity(Quantity quantity_){
     Quantity initial_quantity(quantity);
     setQuantity(quantity - quantity_);
+    quantitycounter-=(initial_quantity-getQuantity());
     return initial_quantity-getQuantity();
 }
 void Nutriment::setQuantity(Quantity quantity_){
@@ -48,9 +55,11 @@ void Nutriment::update(sf::Time dt){
     if(isTemperatureOK() and isQuantityOK()){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
         quantity+=growth;
+        quantitycounter+=growth;
         setRadius(quantity);
         if(not isContained()){
             quantity-=growth;
+            quantitycounter-=growth;
             setRadius(quantity);
         }
     }
@@ -69,4 +78,6 @@ bool Nutriment::isDead()const{
     return quantity<=0;
 }
 Nutriment::~Nutriment(){
+    --counter;
 }
+

@@ -14,6 +14,9 @@ enum STATES{IDLE, WAIT_TO_DEPLOY, DEPLOY, ATTRACT, RETRACT, EAT};
 class TwitchingBacterium : public Bacterium
 {
 public:
+    static int counter;
+    static double tentacle_length_tot;
+    static double tentacle_speed_tot;
     /*!
      * @brief Constructs a TwitchingBacterium:: fully set up
      * @param Position

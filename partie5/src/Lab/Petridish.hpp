@@ -127,6 +127,7 @@ public:
      */
     ~Petridish();
 
+
 private:
 
     std::vector<Bacterium*> bacteria;

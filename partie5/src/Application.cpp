@@ -247,7 +247,7 @@ void Application::run()
                 elapsedTime -= dt;
 				getEnv().update(dt);
 				// A DECOMMENTER
-//				getStats().update(dt);
+                getStats().update(dt);
                 onUpdate(dt);
 				--nbCycles;
 
@@ -502,7 +502,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 				mIsResetting = true;
 				getEnv().reset();
 // A DECOMMENTER:
-//				getStats().reset();
+                getStats().reset();
 				onSimulationStart();
 				createViews();
 				mSimulationBackground= mLabBackground;
@@ -538,9 +538,8 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 					case GRADIENT :
 						mLab->decreaseGradientExponent();
 						break;
-					case STATS:
-						// A DECOMMENTER
-//						mStats->previous(); 
+                    case STATS:
+                        mStats->previous();
 						break;
 					default:
 						break;
@@ -555,8 +554,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 						mLab->increaseGradientExponent();
 						break;
 					case STATS:
-// A DECOMMENTER
-//						mStats->next();
+                        mStats->next();
 						break;
 					default:
 						break;
@@ -668,7 +666,7 @@ void Application::render(sf::Drawable const& simulationBackground,
 	if (isStatsOn)
 	{
 // A DECOMENTER
-		//getStats().drawOn(mRenderWindow);
+        getStats().drawOn(mRenderWindow);
 	}
 	
 	
@@ -737,7 +735,7 @@ void Application::switchDebug()
 void Application::drawOnHelp(sf::RenderWindow& window) const
 {
 	window.draw(helpText);
-//	window.draw(helpBox);
+    //window.draw(helpBox);
 }
 
 
@@ -788,7 +786,7 @@ void Application::drawControls(sf::RenderWindow& target) {
 	auto const LEGEND_MARGIN(10);
 	auto lastLegendY(LEGEND_MARGIN);
 	auto const FONT_SIZE = 12;
-	//drawTitle(target, sf::Color::Red, LEGEND_MARGIN, lastLegendY, FONT_SIZE);
+    drawTitle(target, sf::Color::Red, LEGEND_MARGIN, lastLegendY, FONT_SIZE);
 	lastLegendY += FONT_SIZE + 4;
 	for (size_t ctrl(STATS); ctrl <NB_CONTROLS; ++ctrl){
 		drawOneControl(target, static_cast<Control>(ctrl), LEGEND_MARGIN, lastLegendY, FONT_SIZE);
@@ -826,8 +824,8 @@ void Application::drawOneControl(sf::RenderWindow& target
 			break;
 		case STATS :
 			text = "Current stat : ";
-			// A DECOMMENTER
-			//text += (isStatsOn ? mStats->getCurrentTitle() : "disabled");
+
+            text += (isStatsOn ? mStats->getCurrentTitle() : "disabled");
 			break;
 		default:
 			/* nothing to do */
@@ -850,7 +848,7 @@ void Application::addGraph(std::string const& title, std::vector<std::string> co
     if (series.size() > 0){
 		++mCurrentGraphId;
 		// A DECOMMENTER
-//    getStats().addGraph(mCurrentGraphId, title, series, min, max, getStatsSize() );
+    getStats().addGraph(mCurrentGraphId, title, series, min, max, getStatsSize() );
 	}
 }
 
@@ -863,5 +861,5 @@ Stats& Application::getStats()
 void Application::setActiveGraph(int id)
 {
 	// A DECOMMENTER
-	//getStats().setActive(id);
+    getStats().setActive(id);
 }
