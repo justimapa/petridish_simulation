@@ -41,6 +41,7 @@ SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
               algo(other.algo)
 {
     ++counter;
+    speed_tot+=getProperty("speed").get();
     better+=getProperty("tumble better").get();
     worse+=getProperty("tumble worse").get();
 }

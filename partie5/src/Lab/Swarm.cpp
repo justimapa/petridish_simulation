@@ -51,8 +51,15 @@ bool Swarm::hasLeader()const{
 string Swarm::getId()const{
     return id;
 }
+void Swarm::resetSwarm(){
+    for(auto& bacterium:group){
+        bacterium = nullptr;
+    }
+    group.erase(remove(group.begin(),group.end(),nullptr),group.end());
+}
 Swarm::~Swarm(){
     for(auto& bacterium:group){
+        delete bacterium;
         bacterium=nullptr;
     }
     group.erase(remove(group.begin(),group.end(),nullptr),group.end());

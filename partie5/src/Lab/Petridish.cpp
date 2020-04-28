@@ -77,11 +77,16 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
 }
 
 void Petridish::reset(){
+    for(auto& swarm: swarms){
+        swarm->resetSwarm();
+    }
     for(auto& nutr: nutriments){
+        delete nutr;
         nutr = nullptr;
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
     for(auto& bact : bacteria){
+        delete bact;
         bact = nullptr;
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());

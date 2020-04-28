@@ -90,7 +90,8 @@ std::unordered_map<std::string, double> Lab::fetchData(const std::string & str){
        mymap[s::TENTACLE_SPEED]=TwitchingBacterium::tentacle_speed_tot/TwitchingBacterium::counter;
    }
    if(str==s::BACTERIA){
-       mymap[s::SPEED]=Bacterium::speed_tot/(SimpleBacterium::counter+SwarmBacterium::counter);
+       mymap[s::SPEED]=Bacterium::speed_tot/double(SimpleBacterium::counter+SwarmBacterium::counter);
+       std::cerr << Bacterium::speed_tot/double(SimpleBacterium::counter+SwarmBacterium::counter) << std::endl;
    }
    return mymap;
 

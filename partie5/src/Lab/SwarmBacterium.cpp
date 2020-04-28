@@ -26,6 +26,8 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 {
     swarm->addSwarmBacterium(this);
     ++counter;
+    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
+
 }
 Vec2d SwarmBacterium::getSpeedVector(){
     return getDirection()*(getConfig()["speed"]["initial"].toDouble());
@@ -84,4 +86,5 @@ j::Value& SwarmBacterium::getConfig( )const{
 }
 SwarmBacterium::~SwarmBacterium(){
    speed_tot-=(getConfig()["speed"]["initial"].toDouble());
+   --counter;
 }

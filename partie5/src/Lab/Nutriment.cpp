@@ -79,5 +79,6 @@ bool Nutriment::isDead()const{
 }
 Nutriment::~Nutriment(){
     --counter;
+    quantitycounter-=quantity;
 }
 

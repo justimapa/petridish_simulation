@@ -26,7 +26,6 @@ void Stats::update(sf::Time dt){
             cerr<<"out of range"<<endl;
         }
         resetStopwatch();
-
     }
 }
 
