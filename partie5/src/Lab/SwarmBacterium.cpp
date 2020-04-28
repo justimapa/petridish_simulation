@@ -6,6 +6,8 @@
 #include "Random/Random.hpp"
 #include "Application.hpp"
 
+int SwarmBacterium::counter(0);
+
 SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
 : Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
   position,
@@ -15,12 +17,15 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   swarm(group)
 {
     swarm->addSwarmBacterium(this);
+    ++counter;
+    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
   swarm(other.swarm)
 {
     swarm->addSwarmBacterium(this);
+    ++counter;
 }
 Vec2d SwarmBacterium::getSpeedVector(){
     return getDirection()*(getConfig()["speed"]["initial"].toDouble());
@@ -78,5 +83,5 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-
+   speed_tot-=(getConfig()["speed"]["initial"].toDouble());
 }

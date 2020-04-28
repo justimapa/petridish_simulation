@@ -12,6 +12,9 @@
 class SimpleBacterium : public Bacterium, public DiffEqFunction
 {
 public:
+    static int counter;
+    static double better;
+    static double worse;
     /*!
      * @brief Constructs a SimpleBacterium:: fully set up
      * @param Position

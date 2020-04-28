@@ -46,19 +46,21 @@ void Petridish::update(sf::Time dt){
     for(auto& nutriment : nutriments){
         if(nutriment!=nullptr){
         nutriment->update(dt);
-        }
         if(nutriment->isDead()){
+            delete nutriment;
             nutriment=nullptr;
-
+        }
         }
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
     for(auto& bacterium:bacteria){
         if(bacterium!=nullptr){
         bacterium->update(dt);
-        }
+
         if(bacterium->isDead()){
-            bacterium=nullptr;      
+            delete bacterium;
+            bacterium=nullptr;
+            }
         }
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
@@ -142,4 +144,3 @@ Swarm* Petridish::getSwarmWithId(const string &id) const{
     }
     return nullptr;
 }
-

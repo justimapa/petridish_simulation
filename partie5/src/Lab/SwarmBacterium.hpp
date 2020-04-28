@@ -17,6 +17,7 @@ class Swarm;
 class SwarmBacterium: public Bacterium, public DiffEqFunction
 {
 public:
+    static int counter;
     /*!
      * @brief Constructor for the SwarmBacterium::
      * @param The position of the SwarmBacterium::

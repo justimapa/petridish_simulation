@@ -22,6 +22,7 @@ class NutrimentB;
 class Bacterium : public CircularBody, public Drawable, public Updatable
 {
 public:
+    static double speed_tot;
     /*!
      * @brief Constructs a Bacterium:: fully set up
      * @param Energy qty
