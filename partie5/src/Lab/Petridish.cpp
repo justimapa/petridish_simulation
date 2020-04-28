@@ -134,7 +134,7 @@ double Petridish::getPositionScore(Vec2d const& position) const{
     return score;
 }
 
-Swarm* Petridish::getSwarmWithId(const string &id)const{
+Swarm* Petridish::getSwarmWithId(const string &id) const{
     for(Swarm* swarm:swarms){
         if(id==swarm->getId()){
             return swarm;
