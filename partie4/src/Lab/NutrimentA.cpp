@@ -13,5 +13,6 @@ j::Value const& NutrimentA::getConfig()const
 {
     return getAppConfig()["nutriments"]["A"];
 }
-NutrimentA::~NutrimentA(){
+NutrimentA::~NutrimentA()
+{
 }

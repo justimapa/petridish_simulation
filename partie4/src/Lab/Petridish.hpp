@@ -16,12 +16,12 @@
 class Petridish : public CircularBody, public Drawable, public Updatable
 {
 public:
-   /*!
-    * @brief Constructor for the Petridish::
-    * @param Position of the Petridish::
-    * @param Radius of the Petridish::
-    * @param Temperature of the Petridish::
-    */
+    /*!
+     * @brief Constructor for the Petridish::
+     * @param Position of the Petridish::
+     * @param Radius of the Petridish::
+     * @param Temperature of the Petridish::
+     */
     Petridish(Vec2d const& position,double const& radius, double const& Temperature,double const& gradientExponent);
     /*!
      * Deletes = operator inherited from CircularBody:: to avoid unnecessary memory usage

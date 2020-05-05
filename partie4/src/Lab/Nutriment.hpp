@@ -14,7 +14,8 @@
  * Subclass of CircularBody::, Drawable:: and Updatable
  * Abstract class that can't have any instances
  */
-class Nutriment : public CircularBody,public Drawable,public Updatable{
+class Nutriment : public CircularBody,public Drawable,public Updatable
+{
 public:
     /*!
      * @brief Constructs a Nutriment:: fully set up

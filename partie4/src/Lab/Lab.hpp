@@ -83,7 +83,7 @@ public:
       * @param Id of the Swarm
       * @return Pointer to the Swarm::
       */
-     Swarm* getSwarmWithId(const std::string& id)const;
+    Swarm* getSwarmWithId(const std::string& id)const;
     /*!
      * @brief Tests if a CircularBody:: is in collision with Petridish::
      * @return True if CircularBody is in collision false if not

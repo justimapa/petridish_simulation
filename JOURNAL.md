@@ -174,5 +174,14 @@ Umut et Justin
 
 Rendu intermédiaire!
 
+Dimanche 26.04.2020
+
+Justin 
+J'ai codé la classe stats.Il y a encore des soucis pour les stats de vitesse et de quantité de nutriments.
+
+
+Mardi 28.04.2020
+Justin & Umut
+Nous avons réglé les soucis de calculs de stats. 
 =======
 
