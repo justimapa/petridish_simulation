@@ -6,7 +6,6 @@
  *Predeclaration of the Swarm:: class
  */
 class Swarm;
-
 /*!
  * @class SwarmBacterium
  * @brief class that represents the behavior and movement
@@ -17,7 +16,7 @@ class Swarm;
 class SwarmBacterium: public Bacterium, public DiffEqFunction
 {
 public:
-    static int counter;
+    static std::map<int,int> swarmCounterMap;
     /*!
      * @brief Constructor for the SwarmBacterium::
      * @param The position of the SwarmBacterium::

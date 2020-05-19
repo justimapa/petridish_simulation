@@ -12,9 +12,9 @@
 class SimpleBacterium : public Bacterium, public DiffEqFunction
 {
 public:
-    static int counter;
-    static double better;
-    static double worse;
+    static std::map<int,int> simpleCounterMap;
+    static std::map<int,double> betterMap;
+    static std::map<int,double> worseMap;
     /*!
      * @brief Constructs a SimpleBacterium:: fully set up
      * @param Position

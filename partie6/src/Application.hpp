@@ -133,7 +133,7 @@ public:
      */
     Vec2d getCursorPositionInView() const;
 	
-	enum Control { STATS, TEMPERATURE, GRADIENT, NB_CONTROLS=3	};
+    enum Control { PETRIDISH, STATS, TEMPERATURE, GRADIENT, NB_CONTROLS=4};
 protected:
 	/**
      *  @brief controls the display of statitics

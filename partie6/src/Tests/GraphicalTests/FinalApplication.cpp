@@ -26,13 +26,20 @@ void FinalApplication::onRun()
     addGraph(s::TWITCHING_BACTERIA, { s::TENTACLE_LENGTH, s::TENTACLE_SPEED}, 0, 150);
     addGraph(s::BACTERIA, { s::SPEED}, 20, 50);
     setActiveGraph(0);
+
 }
 
 void FinalApplication::onSimulationStart()
 {
 	Application::onSimulationStart();
-    getEnv().addSwarm(new Swarm("1"));
-    getEnv().addSwarm(new Swarm("2"));
+    //add Petridishes
+    for(int i=0;i<5;++i){
+        getEnv().addPetridish(i);
+        getEnv().setActivePetridish(i);
+        getEnv().addSwarm(new Swarm("1"));
+        getEnv().addSwarm(new Swarm("2"));
+    }
+    getEnv().setActivePetridish(0);
 }
 
 void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)

@@ -4,95 +4,133 @@
 #include "SimpleBacterium.hpp"
 #include "Lab.hpp"
 
-Lab::Lab()
-    : dish(getApp().getCentre(), getApp().getLabSize().x*(0.95/2),
-           getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
-      (getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2)
-{ }
+Lab::Lab():
+    currentDishId(0)
+{
+}
 void Lab::drawOn(sf::RenderTarget& targetWindow) const{
-    dish.drawOn(targetWindow);
+    getCurrentPetridish()->drawOn(targetWindow);
 }
 void Lab::update(sf::Time dt){
     generator.update(dt);
-    dish.update(dt);
+    getCurrentPetridish()->update(dt);
+
 }
 bool Lab::contains(const CircularBody& body) const{
-    return (dish > body);
+    return ((*getCurrentPetridish()) > body);
 }
 void Lab::reset(){
-    dish.reset();
+    getCurrentPetridish()->reset();
     generator.resetStopwatch();
 }
 Lab::~Lab(){
-    reset();
+    for(auto& dish:dishes){
+        (dish.second)->reset();
+    }
+    generator.resetStopwatch();
 }
 Nutriment* Lab::getNutrimentColliding(CircularBody const& body) const{
-    return dish.getNutrimentColliding(body);
+    return getCurrentPetridish()->getNutrimentColliding(body);
 }
 double Lab::getPositionScore(Vec2d const& position) const{
-    return dish.getPositionScore(position);
+    return getCurrentPetridish()->getPositionScore(position);
+
 }
 double Lab::getGradientExponent() const{
-    return dish.getGradientExponent();
+    return getCurrentPetridish()->getGradientExponent();
 }
 void Lab::decreaseGradientExponent(){
-    dish.decreaseGradientExponent();
+    getCurrentPetridish()->decreaseGradientExponent();
+
 }
 void Lab::increaseGradientExponent(){
-    dish.increaseGradientExponent();
+        getCurrentPetridish()->increaseGradientExponent();
+
 }
 double Lab::getTemperature() const{
-    return dish.getTemperature();
+    return getCurrentPetridish()->getTemperature();
+
 }
 void Lab::decreaseTemperature(){
-    dish.decreaseTemperature();
+    getCurrentPetridish()->decreaseTemperature();
 }
 void Lab::increaseTemperature(){
-    dish.increaseTemperature();
+    getCurrentPetridish()->increaseTemperature();
 }
 void Lab::refreshConfig(){
-    dish.resetTemperature();
-    dish.resetGradientExponent();
+
+    getCurrentPetridish()->resetTemperature();
+    getCurrentPetridish()->resetGradientExponent();
+
 }
 void Lab::addBacterium(Bacterium* bact){
-    dish.addBacterium(bact);
+    getCurrentPetridish()->addBacterium(bact);
 }
 void Lab::addNutriment(Nutriment* nutriment){
-    dish.addNutriment(nutriment);
+    getCurrentPetridish()->addNutriment(nutriment);
 }
 Swarm* Lab::getSwarmWithId(const std::string& id)const{
-    return dish.getSwarmWithId(id);
+    return getCurrentPetridish()->getSwarmWithId(id);
+
 }
 void Lab::addSwarm(Swarm* swarm){
-    dish.addSwarm(swarm);
+        getCurrentPetridish()->addSwarm(swarm);
 }
 bool Lab::doesCollideWithDish(CircularBody const& body) const{
-    return ((dish&body) and not (dish>body.getPosition()));
+    (((*getCurrentPetridish())&body) and not ((*getCurrentPetridish())>body.getPosition()));
 }
 std::unordered_map<std::string, double> Lab::fetchData(const std::string & str){
    std::unordered_map<std::string,double> mymap;
+   //Draws the stats corresponding to the current Petridish
    if(str==s::GENERAL){
-       mymap[s::SIMPLE_BACTERIA]=SimpleBacterium::counter;
-       mymap[s::TWITCHING_BACTERIA]=TwitchingBacterium::counter;
-       mymap[s::SWARM_BACTERIA]=SwarmBacterium::counter;
-       mymap[s::NUTRIMENT_SOURCES]=Nutriment::counter;
-       mymap[s::DISH_TEMPERATURE]=dish.getTemperature();
+       mymap[s::SIMPLE_BACTERIA]=SimpleBacterium::simpleCounterMap[getCurrentPetridishId()];
+       mymap[s::TWITCHING_BACTERIA]=TwitchingBacterium::twitchingCounterMap[getCurrentPetridishId()];
+       mymap[s::SWARM_BACTERIA]=SwarmBacterium::swarmCounterMap[getCurrentPetridishId()];
+       mymap[s::NUTRIMENT_SOURCES]=Nutriment::nutrimentCounterMap[getCurrentPetridishId()];
+       mymap[s::DISH_TEMPERATURE]=getCurrentPetridish()->getTemperature();
    }
    if(str==s::NUTRIMENT_QUANTITY){
-       mymap[s::NUTRIMENT_QUANTITY]=Nutriment::quantitycounter;
+       mymap[s::NUTRIMENT_QUANTITY]=Nutriment::quantityCounterMap[getCurrentPetridishId()];
    }
    if(str==s::SIMPLE_BACTERIA){
-       mymap[s::BETTER]=SimpleBacterium::better/SimpleBacterium::counter;
-       mymap[s::WORSE]=SimpleBacterium::worse/SimpleBacterium::counter;
+       mymap[s::BETTER]=SimpleBacterium::betterMap[getCurrentPetridishId()]/SimpleBacterium::simpleCounterMap[getCurrentPetridishId()];
+       mymap[s::WORSE]=SimpleBacterium::worseMap[getCurrentPetridishId()]/SimpleBacterium::simpleCounterMap[getCurrentPetridishId()];
    }
    if(str==s::TWITCHING_BACTERIA){
-       mymap[s::TENTACLE_LENGTH]=TwitchingBacterium::tentacle_length_tot/TwitchingBacterium::counter;
-       mymap[s::TENTACLE_SPEED]=TwitchingBacterium::tentacle_speed_tot/TwitchingBacterium::counter;
+       mymap[s::TENTACLE_LENGTH]=TwitchingBacterium::tentacleLengthMap[getCurrentPetridishId()]/TwitchingBacterium::twitchingCounterMap[getCurrentPetridishId()];
+       mymap[s::TENTACLE_SPEED]=TwitchingBacterium::tentacleSpeedMap[getCurrentPetridishId()]/TwitchingBacterium::twitchingCounterMap[getCurrentPetridishId()];
    }
    if(str==s::BACTERIA){
-       mymap[s::SPEED]=Bacterium::speed_tot/double(SimpleBacterium::counter+SwarmBacterium::counter);
-       std::cerr << Bacterium::speed_tot/double(SimpleBacterium::counter+SwarmBacterium::counter) << std::endl;
+       mymap[s::SPEED]=Bacterium::speedMap[getCurrentPetridishId()]/double(SimpleBacterium::simpleCounterMap[getCurrentPetridishId()]+SwarmBacterium::swarmCounterMap[getCurrentPetridishId()]);
    }
    return mymap;
 
+}
+void Lab::setActivePetridish(int id){
+    currentDishId=id;
+}
+int Lab::getCurrentPetridishId()const{
+    return currentDishId;
+}
+Petridish* Lab::getCurrentPetridish()const{
+    try{
+        auto paire=dishes.find(currentDishId);
+        return (paire->second);
+    }catch(std::out_of_range){
+        std::cerr<<"Out of range"<<std::endl;
+    }catch(std::invalid_argument){
+        std::cerr<<"Invalid_argument"<<std::endl;
+    }
+}
+void Lab::nextPetridish(){
+    currentDishId=(++currentDishId)%dishes.size();
+
+}
+void Lab::previousPetridish(){
+    currentDishId=(--currentDishId)%dishes.size();
+}
+void Lab::addPetridish(int id){
+    dishes[id]=(new Petridish(getApp().getCentre(), getApp().getLabSize().x*(0.95/2),
+                             getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
+                        (getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2));
 }

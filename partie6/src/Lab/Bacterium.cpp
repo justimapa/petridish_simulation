@@ -6,7 +6,7 @@
 #include <cmath>
 using namespace std;
 
-double Bacterium::speed_tot(0);
+map<int,double> Bacterium::speedMap;
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
                      double const& radius,MutableColor const& color)
 : CircularBody(position,radius),

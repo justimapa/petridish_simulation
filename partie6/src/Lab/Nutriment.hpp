@@ -20,8 +20,8 @@ class SwarmBacterium;
  */
 class Nutriment : public CircularBody,public Drawable,public Updatable{
 public:
-    static int counter;
-    static Quantity quantitycounter;
+    static std::map<int,int> nutrimentCounterMap;
+    static std::map<int,Quantity> quantityCounterMap;
     /*!
      * @brief Constructs a Nutriment:: fully set up
      * @param Position of the Nutriment::

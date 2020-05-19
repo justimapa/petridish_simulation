@@ -12,6 +12,7 @@ class Nutriment;
 class NutrimentA;
 class NutrimentB;
 
+
 /*!
  * @class Bacterium
  * @brief class that represents the functions and behavior
@@ -22,7 +23,7 @@ class NutrimentB;
 class Bacterium : public CircularBody, public Drawable, public Updatable
 {
 public:
-    static double speed_tot;
+    static std::map<int,double> speedMap;
     /*!
      * @brief Constructs a Bacterium:: fully set up
      * @param Energy qty

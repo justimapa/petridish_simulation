@@ -9,9 +9,9 @@
 using namespace std;
 
 
-int TwitchingBacterium::counter(0);
-double TwitchingBacterium::tentacle_length_tot(0);
-double TwitchingBacterium::tentacle_speed_tot(0);
+std::map<int,int> TwitchingBacterium::twitchingCounterMap;
+std::map<int,double> TwitchingBacterium::tentacleLengthMap;
+std::map<int,double> TwitchingBacterium::tentacleSpeedMap;
 
 TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
 : Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
@@ -24,9 +24,9 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
 {
     addProperty("max tentacle length", MutableNumber::positive(getConfig()["tentacle"]["length"]));
     addProperty("tentacle speed", MutableNumber::positive(getConfig()["tentacle"]["speed"]));
-    ++counter;
-    tentacle_length_tot+=getProperty("max tentacle length").get();
-    tentacle_speed_tot+=getProperty("tentacle speed").get();
+    ++twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
+    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]+=getProperty("max tentacle length").get();
+    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tentacle speed").get();
 }
 TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
 :
@@ -35,9 +35,9 @@ TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
     current_state(IDLE)
 {
     CircularBody::move(Vec2d(5,5));
-    ++counter;
-    tentacle_length_tot+=getProperty("max tentacle length").get();
-    tentacle_speed_tot+=getProperty("tentacle speed").get();
+    ++twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
+    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]+=getProperty("max tentacle length").get();
+    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tentacle speed").get();
 }
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
@@ -128,9 +128,9 @@ void TwitchingBacterium::moveGrip(const Vec2d& delta){
     grip.move(delta);
 }
 TwitchingBacterium::~TwitchingBacterium(){
-    --counter;
-    tentacle_length_tot-=getProperty("max tentacle length").get();
-    tentacle_speed_tot-=getProperty("tentacle speed").get();
+    --twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
+    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]-=getProperty("max tentacle length").get();
+    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tentacle speed").get();
 
 }
 

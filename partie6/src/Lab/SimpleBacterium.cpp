@@ -10,9 +10,9 @@
 
 using namespace std;
 
-int SimpleBacterium::counter(0);
-double SimpleBacterium::better(0);
-double SimpleBacterium::worse(0);
+map<int,int> SimpleBacterium::simpleCounterMap;
+map<int,double> SimpleBacterium::betterMap;
+map<int,double> SimpleBacterium::worseMap;
 
 SimpleBacterium::SimpleBacterium(const Vec2d& position)
 : Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
@@ -29,22 +29,24 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     addProperty("speed",MutableNumber::positive(getConfig()["speed"]));
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
     addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
-    ++counter;
-    better+=getProperty("tumble better").get();
-    worse+=getProperty("tumble worse").get();
-    speed_tot+=getProperty("speed").get();
+    ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
+    betterMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble better").get();
+    worseMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble worse").get();
+    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
 }
+
 SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
     Bacterium(other),
               rotation(other.rotation),
               oldScore(other.oldScore),
               algo(other.algo)
 {
-    ++counter;
-    speed_tot+=getProperty("speed").get();
-    better+=getProperty("tumble better").get();
-    worse+=getProperty("tumble worse").get();
+    ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
+    betterMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble better").get();
+    worseMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble worse").get();
+    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
 }
+
 void SimpleBacterium::move(sf::Time dt){
     Vec2d movement = stepDiffEq(getPosition(),getSpeedVector(),dt,(*this),DiffEqAlgorithm::EC).position - getPosition();
     if(movement.lengthSquared()>0.001){
@@ -136,8 +138,9 @@ Bacterium* SimpleBacterium::clone(){
 }
 SimpleBacterium::~SimpleBacterium()
 {
-    --counter;
-    better-=getProperty("tumble better").get();
-    worse-=getProperty("tumble worse").get();
-    speed_tot-=getProperty("speed").get();
+    --simpleCounterMap[getAppEnv().getCurrentPetridishId()];
+    betterMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tumble better").get();
+    worseMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tumble worse").get();
+    speedMap[getAppEnv().getCurrentPetridishId()]-=(getConfig()["speed"]["initial"].toDouble());
 }
+

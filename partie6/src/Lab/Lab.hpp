@@ -108,8 +108,15 @@ public:
      * @brief Destructor for the Lab::
      */
     ~Lab();
-
+    /* The following methods are for the multiple petridish extension*/
+    void setActivePetridish(int);
+    int getCurrentPetridishId()const;
+    Petridish* getCurrentPetridish()const;
+    void nextPetridish();
+    void previousPetridish();
+    void addPetridish(int);
 private:
-    Petridish dish;
+    int currentDishId;
     NutrimentGenerator generator;
+    std::map<int,Petridish*> dishes;
 };

@@ -185,3 +185,11 @@ Justin & Umut
 Nous avons réglé les soucis de calculs de stats. 
 =======
 
+Mardi 19.05.2020
+J'ai commencé à faire l'extension multiple petridish
+TO DO: Update simultané des différents petridish
+TO DO: Ajouter un élement dans le config qui permet de initialiser le nombre
+de petridish
+Idee: Générer les petridish de manière aléatoire avec des configurations 
+différents
+

@@ -78,6 +78,7 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
 
 void Petridish::reset(){
     for(auto& swarm: swarms){
+        delete swarm;
         swarm->resetSwarm();
     }
     for(auto& nutr: nutriments){

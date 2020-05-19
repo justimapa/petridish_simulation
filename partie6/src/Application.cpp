@@ -141,7 +141,7 @@ Application::Application(int argc, char const** argv)
 , mIsResetting(false)
 , mIsDragging(false)
   // TODO: make it more general
-,mCurrentControl(STATS)
+,mCurrentControl(PETRIDISH)
 ,isStatsOn(false)
 {
     // Set global singleton
@@ -525,7 +525,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
             break;
         case sf::Keyboard::Tab: // next control
         
-			mCurrentControl = static_cast<Control>((mCurrentControl + 1) % Control::NB_CONTROLS);
+            mCurrentControl = static_cast<Control>((mCurrentControl + 1) % Control::NB_CONTROLS);
 
 			break;
 			
@@ -541,6 +541,10 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
                     case STATS:
                         mStats->previous();
 						break;
+                    case PETRIDISH:
+                        mLab->previousPetridish();
+                        mStats->reset();
+                    break;
 					default:
 						break;
 				}
@@ -556,6 +560,10 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 					case STATS:
                         mStats->next();
 						break;
+                    case PETRIDISH:
+                        mLab->nextPetridish();
+                        mStats->reset();
+                        break;
 					default:
 						break;
 				}
@@ -788,7 +796,7 @@ void Application::drawControls(sf::RenderWindow& target) {
 	auto const FONT_SIZE = 12;
     drawTitle(target, sf::Color::Red, LEGEND_MARGIN, lastLegendY, FONT_SIZE);
 	lastLegendY += FONT_SIZE + 4;
-	for (size_t ctrl(STATS); ctrl <NB_CONTROLS; ++ctrl){
+    for (size_t ctrl(PETRIDISH); ctrl <NB_CONTROLS; ++ctrl){
 		drawOneControl(target, static_cast<Control>(ctrl), LEGEND_MARGIN, lastLegendY, FONT_SIZE);
 		lastLegendY += FONT_SIZE + 4;
 	}
@@ -814,6 +822,10 @@ void Application::drawOneControl(sf::RenderWindow& target
 	sf::Color color (mCurrentControl == control ? sf::Color::Red : sf::Color::White);
 	std::string text("");
 	switch (control) {
+        case PETRIDISH:
+            text = "Current Petridish : ";
+            text += to_nice_string(mLab->getCurrentPetridishId());
+            break;
 		case TEMPERATURE :
 			text = "Temperature : ";
 			text += to_nice_string(mLab->getTemperature());
@@ -824,9 +836,9 @@ void Application::drawOneControl(sf::RenderWindow& target
 			break;
 		case STATS :
 			text = "Current stat : ";
-
             text += (isStatsOn ? mStats->getCurrentTitle() : "disabled");
 			break;
+
 		default:
 			/* nothing to do */
 			break;

@@ -5,8 +5,9 @@
 #include "NutrimentB.hpp"
 #include "Random/Random.hpp"
 #include "Application.hpp"
+#include "Lab.hpp"
 
-int SwarmBacterium::counter(0);
+std::map<int,int> SwarmBacterium::swarmCounterMap;
 
 SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
 : Bacterium(uniform(getConfig()["energy"]["min"].toDouble(),getConfig()["energy"]["max"].toDouble()),
@@ -17,16 +18,16 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   swarm(group)
 {
     swarm->addSwarmBacterium(this);
-    ++counter;
-    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
+    ++swarmCounterMap[getAppEnv().getCurrentPetridishId()];
+    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
   swarm(other.swarm)
 {
     swarm->addSwarmBacterium(this);
-    ++counter;
-    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
+    ++swarmCounterMap[getAppEnv().getCurrentPetridishId()];
+    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
 
 }
 Vec2d SwarmBacterium::getSpeedVector(){
@@ -85,6 +86,6 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-   speed_tot-=(getConfig()["speed"]["initial"].toDouble());
-   --counter;
+   speedMap[getAppEnv().getCurrentPetridishId()]-=(getConfig()["speed"]["initial"].toDouble());
+   --swarmCounterMap[getAppEnv().getCurrentPetridishId()];
 }
