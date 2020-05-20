@@ -176,9 +176,11 @@ Rendu intermédiaire!
 
 Dimanche 26.04.2020
 
+Umut
+J'ai codé la partie 5.1 du projet sur la différenciation des nutriments.
+
 Justin 
 J'ai codé la classe stats.Il y a encore des soucis pour les stats de vitesse et de quantité de nutriments.
-
 
 Mardi 28.04.2020
 Justin & Umut
@@ -193,3 +195,10 @@ de petridish
 Idee: Générer les petridish de manière aléatoire avec des configurations 
 différents
 
+Mercredi 20.05.2020
+
+Umut
+
+J'ai commencé à coder l'extension Bactériophage (Les phages sont instanciables)
+TO DO: Coder les fonctionnalités (update, destruction...)
+TO DO: Soit coder deux sous classes PhageLytique et PhageLysogenique (Bacteriophage sera abstraite) ou utiliser un attribut status dans la classe Bacteriophage qui utilise un système aléatoire pour que le phage change d'état après un certain moment

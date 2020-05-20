@@ -20,6 +20,16 @@ bool Petridish::addBacterium(Bacterium* bacterium){
     delete bacterium;
     return false;
 }
+bool Petridish::addPhage(Bacteriophage* phage){
+    if(phage!=nullptr){
+        if(*this > *phage){
+            phages.push_back(phage);
+            return true;
+        }
+    }
+    delete phage;
+    return false;
+}
 
 bool Petridish::addNutriment(Nutriment* nutriment){
     if(nutriment!=nullptr){
@@ -75,6 +85,9 @@ void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
         bacterium->drawOn(targetWindow);
     }
     targetWindow.draw(border);
+    for(auto& phage: phages){
+        phage->drawOn(targetWindow);
+    }
 }
 
 void Petridish::reset(){

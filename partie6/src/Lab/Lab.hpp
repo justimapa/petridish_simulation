@@ -74,6 +74,7 @@ public:
      * @param Bacterium:: to be added
      */
     void addBacterium(Bacterium*);
+    void addPhage(Bacteriophage*);
     /*!
      * @brief Adds a Swarm:: to the Petridish::
      * @param Swarm:: to be added

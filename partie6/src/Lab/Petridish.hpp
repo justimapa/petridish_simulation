@@ -1,6 +1,7 @@
 #pragma once
 #include "Bacterium.hpp"
 #include "Nutriment.hpp"
+#include "Bacteriophage.hpp"
 #include "Swarm.hpp"
 #include <vector>
 #include "Interface/Drawable.hpp"
@@ -85,6 +86,7 @@ public:
      * @return True if the Bacterium:: could be added, false if not
      */
     bool addBacterium(Bacterium* bacterium);
+    bool addPhage(Bacteriophage* phage);
     /*!
      * @brief Adds a Nutriment:: to the Petridish::
      * @param Nutriment:: to be added
@@ -130,10 +132,10 @@ public:
 
 
 private:
-
     std::vector<Bacterium*> bacteria;
     std::vector<Nutriment*> nutriments;
     std::vector<Swarm*> swarms;
+    std::vector<Bacteriophage*> phages;
     double temperature;
     double gradientExponent;
 };
