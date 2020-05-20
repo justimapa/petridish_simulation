@@ -8,6 +8,7 @@
 #include <Lab/Swarm.hpp>
 #include <Lab/SwarmBacterium.hpp>
 #include <Lab/TwitchingBacterium.hpp>
+#include <Lab/Bacteriophage.hpp>
 #include "FinalApplication.hpp"
 
 #include <cassert>
@@ -57,6 +58,10 @@ void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)
             getEnv().addBacterium(new TwitchingBacterium(getCursorPositionInView()));
             break;
 
+       /* case sf::Keyboard::P:
+            getEnv().addPhage(new Bacteriophage(getCursorPositionInView(), 10, Vec2d::fromRandomAngle()));
+            break;*/
+
         case sf::Keyboard::Num1: {
             auto swarm = getEnv().getSwarmWithId("1");
             assert(swarm != nullptr);
@@ -68,6 +73,8 @@ void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)
             assert(swarm != nullptr);
             getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm));
         } break;
+
+
         }
     }
 }

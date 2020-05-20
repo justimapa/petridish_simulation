@@ -26,6 +26,7 @@ public:
      * @return Calculatated position
      */
     double getPositionScore(Vec2d const&)const;
+    //double getBacteriaScore(Vec2d const&)const;
     /*!
      * @brief Getter for the Petridish::'s GradientExponent
      * @return GradientExponent of the Petridish::
@@ -73,6 +74,7 @@ public:
      * @param Bacterium:: to be added
      */
     void addBacterium(Bacterium*);
+    //void addPhage(Bacteriophage*);
     /*!
      * @brief Adds a Swarm:: to the Petridish::
      * @param Swarm:: to be added

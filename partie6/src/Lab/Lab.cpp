@@ -34,8 +34,10 @@ Nutriment* Lab::getNutrimentColliding(CircularBody const& body) const{
 }
 double Lab::getPositionScore(Vec2d const& position) const{
     return getCurrentPetridish()->getPositionScore(position);
-
 }
+/*double Lab::getBacteriaScore(Vec2d const& position)const{
+    return getCurrentPetridish()->getBacteriaScore(position);
+}*/
 double Lab::getGradientExponent() const{
     return getCurrentPetridish()->getGradientExponent();
 }
@@ -66,6 +68,9 @@ void Lab::refreshConfig(){
 void Lab::addBacterium(Bacterium* bact){
     getCurrentPetridish()->addBacterium(bact);
 }
+/*void Lab::addPhage(Bacteriophage* phage){
+    getCurrentPetridish()->addPhage(phage);
+}*/
 void Lab::addNutriment(Nutriment* nutriment){
     getCurrentPetridish()->addNutriment(nutriment);
 }
