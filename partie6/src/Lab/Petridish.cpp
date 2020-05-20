@@ -67,7 +67,6 @@ void Petridish::update(sf::Time dt){
     for(auto& bacterium:bacteria){
         if(bacterium!=nullptr){
         bacterium->update(dt);
-
         if(bacterium->isDead()){
             delete bacterium;
             bacterium=nullptr;
@@ -75,6 +74,9 @@ void Petridish::update(sf::Time dt){
         }
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
+    for(auto& phage:phages){
+        phage->update(dt);
+    }
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
@@ -104,6 +106,11 @@ void Petridish::reset(){
         bact = nullptr;
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
+    for(auto& phage : phages){
+        delete phage;
+        phage = nullptr;
+    }
+    phages.erase(remove(phages.begin(),phages.end(),nullptr),phages.end());
     resetGradientExponent();
     resetTemperature();
 }

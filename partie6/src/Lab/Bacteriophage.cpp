@@ -28,7 +28,11 @@ void Bacteriophage::drawOn(sf::RenderTarget &target) const{
 }
 
 void Bacteriophage::update(sf::Time dt){
-    //
+   delay+=dt;
+   move(dt);
+   if(getAppEnv().doesCollideWithDish((*this))){
+       direction=-direction;
+   }
 }
 
 void Bacteriophage::move(sf::Time dt){
@@ -51,7 +55,7 @@ void Bacteriophage::aim(sf::Time dt){
 }
 
 Vec2d Bacteriophage::getSpeedVector() const{
-    return getDirection()*5.0;
+    return getDirection()*20;
 }
 
 Vec2d Bacteriophage::f(Vec2d position, Vec2d direction) const{
@@ -68,4 +72,8 @@ void Bacteriophage::setDirection(const Vec2d& direction_){
 
 void Bacteriophage::resetDelay(){
     delay=sf::Time::Zero;
+}
+
+Bacteriophage::~Bacteriophage(){
+
 }

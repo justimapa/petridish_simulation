@@ -60,7 +60,7 @@ void Bacterium::consumeEnergy(Quantity qt){
     energy-=qt;
 }
 bool Bacterium::isDead() const{
-    return energy <= 0.0;
+    return getEnergy() <= 0.0;
 }
 void Bacterium::setEnergy(Quantity const& energy_){
     energy=energy_;

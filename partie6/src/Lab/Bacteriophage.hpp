@@ -18,6 +18,7 @@ public:
     Vec2d getSpeedVector() const;
     void resetDelay();
     bool isLytic();
+    virtual ~Bacteriophage();
 private:
     Vec2d direction;
     sf::Color color;
