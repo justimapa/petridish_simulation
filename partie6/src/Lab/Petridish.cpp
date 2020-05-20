@@ -1,4 +1,4 @@
- #include "Petridish.hpp"
+#include "Petridish.hpp"
 #include "Application.hpp"
 #include <cmath>
 
@@ -20,16 +20,7 @@ bool Petridish::addBacterium(Bacterium* bacterium){
     delete bacterium;
     return false;
 }
-/*bool Petridish::addPhage(Bacteriophage* phage){
-    if(phage!=nullptr){
-        if(*this > *phage){
-            phages.push_back(phage);
-            return true;
-        }
-    }
-    delete phage;
-    return false;
-}*/
+
 bool Petridish::addNutriment(Nutriment* nutriment){
     if(nutriment!=nullptr){
         if(*this > *nutriment){
@@ -151,13 +142,13 @@ double Petridish::getPositionScore(Vec2d const& position) const{
     return score;
 }
 
-/*double Petridish::getBacteriaScore(Vec2d const& position)const{
+double Petridish::getBacteriaScore(Vec2d const& position)const{
     double score = 0.0;
     for(auto& bacterium:bacteria){
         score+=(bacterium->getRadius())/pow(distance(position,bacterium->getPosition()),gradientExponent);
     }
     return score;
-}*/
+}
 
 Swarm* Petridish::getSwarmWithId(const string &id) const{
     for(Swarm* swarm:swarms){
