@@ -54,6 +54,12 @@ void Bacteriophage::aim(sf::Time dt){
     }
 }
 
+void Bacteriophage::infect() const{
+    if(getAppEnv().getBacteriumColliding(*this) != nullptr){
+        //TO COMPLETE
+    }
+}
+
 Vec2d Bacteriophage::getSpeedVector() const{
     return getDirection()*20;
 }

@@ -12,6 +12,7 @@ public:
     virtual void update(sf::Time dt) override;
     void move(sf::Time dt);
     void aim(sf::Time dt);
+    void infect() const;
     Vec2d getDirection() const;
     void setDirection(const Vec2d& direction_);
     virtual Vec2d f(Vec2d position, Vec2d speed) const override;

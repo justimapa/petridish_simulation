@@ -34,6 +34,7 @@ public:
      * @return A pointer of a Nutriment:: that is colldiing with the CircularBody::
      */
     Nutriment* getNutrimentColliding(CircularBody const& body)const;
+    Bacterium* getBacteriumColliding(CircularBody const& body)const;
     /*!
      * @brief Gets the Score of a position on the Petridish::
      * @param A position
@@ -133,6 +134,7 @@ public:
 
 private:
     std::vector<Bacterium*> bacteria;
+    std::vector<Bacterium*> clones;
     std::vector<Nutriment*> nutriments;
     std::vector<Swarm*> swarms;
     std::vector<Bacteriophage*> phages;

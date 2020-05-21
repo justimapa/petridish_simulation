@@ -20,6 +20,7 @@ public:
      * @return A pointer towards the Nutriments if collision a nullptr if no collision
      */
     Nutriment* getNutrimentColliding(CircularBody const&)const;
+    Bacterium* getBacteriumColliding(CircularBody const& body)const;
     /*!
      * @brief Gets the score of a given position
      * @param Vec2d position who's score will be calculated

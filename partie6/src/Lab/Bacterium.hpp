@@ -182,5 +182,4 @@ private:
     bool abstinence;
     std::map <std::string,MutableNumber> mutations;
     sf::Time delay;
-    std::vector<Bacterium*> clones;
 };

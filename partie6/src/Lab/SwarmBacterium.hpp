@@ -84,7 +84,7 @@ public:
     /*!
       *@ Destructor for the SwarmBacterium::
       */
-    ~SwarmBacterium();
+    virtual ~SwarmBacterium() override;
 private:
     Swarm* swarm;
 };

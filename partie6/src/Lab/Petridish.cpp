@@ -80,13 +80,13 @@ void Petridish::update(sf::Time dt){
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
+    targetWindow.draw(border);
     for(auto& nutriment : nutriments){
         nutriment->drawOn(targetWindow);
     }
     for(auto& bacterium : bacteria){
         bacterium->drawOn(targetWindow);
-    }
-    targetWindow.draw(border);
+    }    
     for(auto& phage: phages){
         phage->drawOn(targetWindow);
     }
@@ -150,6 +150,14 @@ Nutriment* Petridish::getNutrimentColliding(CircularBody const& body) const{
     for(auto* nutriment:nutriments){
         if((*nutriment)&body){
             return nutriment;
+        }
+    }
+    return nullptr;
+}
+Bacterium* Petridish::getBacteriumColliding(CircularBody const& body) const{
+    for(auto* bacterium: bacteria){
+        if((*bacterium)&body){
+            return bacterium;
         }
     }
     return nullptr;
