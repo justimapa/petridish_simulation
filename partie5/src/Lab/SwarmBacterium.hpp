@@ -47,7 +47,7 @@ public:
      * @brief Getter for the speed vector of the SwarmBacterium::
      * @return The speed vector of the SwarmBacterium::
      */
-    Vec2d getSpeedVector();
+    Vec2d getSpeedVector()const;
     /*!
      * @brief Draws the SwarmBacterium::
      * @param The Window where it will be drawn.

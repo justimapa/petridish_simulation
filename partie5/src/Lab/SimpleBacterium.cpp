@@ -61,7 +61,7 @@ Quantity SimpleBacterium::eatableQuantity(NutrimentB& nutriment){
 Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
     return Vec2d(0,0);
 }
-Vec2d SimpleBacterium::getSpeedVector(){
+Vec2d SimpleBacterium::getSpeedVector()const{
     return getDirection()*(getProperty("speed").get());
 }
 void SimpleBacterium::drawOn(sf::RenderTarget& target) const{

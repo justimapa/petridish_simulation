@@ -114,7 +114,7 @@ public:
      * @param Key of the Property
      * @return Value (Mutable Number) of the Property
      */
-    MutableNumber getProperty(const std::string&);
+    MutableNumber getProperty(const std::string&)const;
     /*!
      * @brief Resets the Delay between energy consumptions
      */

@@ -69,7 +69,7 @@ void Lab::addSwarm(Swarm* swarm){
 bool Lab::doesCollideWithDish(CircularBody const& body) const{
     return ((dish&body) and not (dish>body.getPosition()));
 }
-std::unordered_map<std::string, double> Lab::fetchData(const std::string & str){
+std::unordered_map<std::string, double> Lab::fetchData(const std::string & str)const{
    std::unordered_map<std::string,double> mymap;
    if(str==s::GENERAL){
        mymap[s::SIMPLE_BACTERIA]=SimpleBacterium::counter;

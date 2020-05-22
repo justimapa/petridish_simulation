@@ -119,6 +119,7 @@ public:
     void update(sf::Time dt);
     /*!
      * @brief Fetches the Data used in the Graphs
+     * @param A string corresponding to the data we want to fetch
      * @return An unorderedmap of string and double
      */
     std::unordered_map<std::string, double> fetchData(const std::string &)const;

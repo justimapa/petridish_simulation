@@ -99,7 +99,12 @@ public:
      * @param Fraction of time dt after which the Lab:: is updated
      */
     void update(sf::Time dt);
-    std::unordered_map<std::string, double> fetchData(const std::string &);
+    /*!
+     * @brief Fetches the Data used in the Graphs
+     * @param A string corresponding to the data we want to fetch
+     * @return An unorderedmap of string and double
+     */
+    std::unordered_map<std::string, double> fetchData(const std::string &)const;
     /*!
      * @brief Erases all nutriments and bacteria within the dish
      */

@@ -29,7 +29,7 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
     speed_tot+=(getConfig()["speed"]["initial"].toDouble());
 
 }
-Vec2d SwarmBacterium::getSpeedVector(){
+Vec2d SwarmBacterium::getSpeedVector()const{
     return getDirection()*(getConfig()["speed"]["initial"].toDouble());
 }
 
