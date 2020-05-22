@@ -144,6 +144,7 @@ private:
     std::vector<Nutriment*> nutriments;
     std::vector<Swarm*> swarms;
     std::vector<Bacteriophage*> phages;
+    std::vector<Bacteriophage*> phagebuffer;
     double temperature;
     double gradientExponent;
 };

@@ -23,6 +23,7 @@ public:
      * @return A Bacteriophage:: with all parameters set
      */
     Bacteriophage(Vec2d const& position, double const& radius, Vec2d const& direction);
+    Bacteriophage(Bacteriophage& other);
     /*!
      * @brief Draws the Bacteriophage::
      * @param targetWindow where the Bacteriophage:: will be drawn
@@ -46,7 +47,7 @@ public:
     /*!
      * @brief Infects a Bacterium:: it touches
      */
-    void infect() const;
+    void infect();
     /*!
      * @brief Switches between LYTIC and LYSOGENIC at random every 5 seconds
      */
@@ -87,4 +88,5 @@ private:
     std::string status;
     sf::Time delay;
     int petridishId;
+
 };

@@ -15,6 +15,18 @@ Bacteriophage::Bacteriophage(Vec2d const& position, double const& radius, Vec2d 
     ++phageCounterMap[petridishId];
 }
 
+Bacteriophage::Bacteriophage(Bacteriophage& other):
+    CircularBody(other.getPosition(),other.getRadius()),
+    direction(other.direction),
+    color(other.color),
+    status(other.status),
+    delay(sf::Time::Zero),
+    petridishId(other.petridishId)
+{
+    CircularBody::move(40*Vec2d::fromRandomAngle());
+    ++phageCounterMap[getAppEnv().getCurrentPetridishId()];
+}
+
 void Bacteriophage::drawOn(sf::RenderTarget &target) const{
     auto const circle = buildCircle(getPosition(), getRadius(), color);
     target.draw(circle);
@@ -65,10 +77,11 @@ void Bacteriophage::aim(sf::Time dt){
     }
 }
 
-void Bacteriophage::infect() const{
+void Bacteriophage::infect(){
     //LYTIC phages kill Bacterium very quickly
     if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYTIC"){
         (*getAppEnv().getBacteriumColliding(*this,petridishId)).consumeEnergy(20);
+         getAppEnv().addPhage(new Bacteriophage(*this),petridishId);
     }
     //LYSOGENIC phages toggle Bacterium's abstinence which makes it unable to regain any energy
     if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYSOGENIC"){
