@@ -427,9 +427,11 @@ The Swarm Update(), will control if the SwarmBacterium is dead and will remove i
 *******************************************************
 ##Q5.3
 -answer to question 5.3
-
+we chose to work with two maps.
+One map that associates an Id to a title and another that maps a title to a Graph.
 *******************************************************
 ##Q5.4
 -answer to question 5.4
-
+We counted the number of instances of each class with a static variable within
+each of the respecting classes which is incremented in the constructor or decremetend in the destructor.
 *******************************************************
