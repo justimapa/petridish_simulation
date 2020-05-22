@@ -391,47 +391,64 @@ to the attribut swarms of Petridish.
 -answer to question 4.6
 
 *******************************************************
+
 ##Q4.7
 The SwarmBacterium:: will inherit from DiffEqFunction similar to the SimpleBacterium::.
 -answer to question 4.7
 
 *******************************************************
+
 ##Q4.8
-We need to redefine move, clone and getConfig as the were defined as virtual pures in the Bacterium:: class.
+We need to redefine move, clone and getConfig as the were defined as 
+virtual pures in the Bacterium:: class.
 -answer to question 4.8
 
 *******************************************************
+
 ##Q4.9
 We add the method, Swarm * getSwarmWithId(id), to the Lab:: and Petridish::.
-The lab getSwarmWithId will call the Petrdish's getSwarmwithId to get the pointer towards the swarm we want.
+The lab getSwarmWithId will call the Petrdish's getSwarmwithId to get the 
+pointer towards the swarm we want.
 -answer to question 4.9
 
 *******************************************************
+
 ##Q4.10
 The Swarm Destructor must simply destroy the pointers to the now deleted Bacteria.
 -answer to question 4.10
 
 *******************************************************
 ##Q4.11
-The Swarm Update(), will control if the SwarmBacterium is dead and will remove it if it is the case.
+The Swarm Update(), will control if the SwarmBacterium is dead and will 
+remove it if it is the case.
 -answer to question 4.11
 
 *******************************************************
+
 ##Q5.1
+Testing for types could be bad as the method cant't act polymorphically 
+on the argument, but only on the current instance "this".
 -answer to question 5.1
 
 *******************************************************
+
 ##Q5.2
+Without this method, we wouldn't have the polymorphic behavior that 
+we want between the different types of nutriments and bacteria.
 -answer to question 5.2
 
 *******************************************************
 ##Q5.3
+We chose to work with two maps:
+one map that associates an Id to a title and another that maps a title to a Graph.
 -answer to question 5.3
-we chose to work with two maps.
-One map that associates an Id to a title and another that maps a title to a Graph.
+
 *******************************************************
+
 ##Q5.4
+We counted the number of instances of each class with a static variable 
+within each of the respecting classes which is incremented in the constructor 
+or decremeted in the destructor.
 -answer to question 5.4
-We counted the number of instances of each class with a static variable within
-each of the respecting classes which is incremented in the constructor or decremetend in the destructor.
+
 *******************************************************
