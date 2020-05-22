@@ -92,7 +92,7 @@ MutableColor Bacterium::getColor() const{
 void Bacterium::addProperty(const string& key,const MutableNumber& value){
     mutations[key] = value;
 }
-MutableNumber Bacterium::getProperty(const string& key){
+MutableNumber Bacterium::getProperty(const string& key) const{
     try{
         auto paire=mutations.find(key);
         return  paire->second;
