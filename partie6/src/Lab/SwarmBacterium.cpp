@@ -30,7 +30,7 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
     speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
 
 }
-Vec2d SwarmBacterium::getSpeedVector(){
+Vec2d SwarmBacterium::getSpeedVector() const{
     return getDirection()*(getConfig()["speed"]["initial"].toDouble());
 }
 

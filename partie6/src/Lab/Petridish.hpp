@@ -117,18 +117,12 @@ public:
      * @param id of the Swarm
      * @return Pointer to the Swarm::
      */
-    Swarm* getSwarmWithId(const std::string& id)const;
+    Swarm* getSwarmWithId(const std::string& id) const;
     /*!
      * @brief Updates Petridish:: after every fraction of time dt
      * @param Fraction of time dt after which the Petridish:: is updated
      */
     void update(sf::Time dt);
-    /*!
-     * @brief Computes score which controls the perception of Gradient
-     * @param Position
-     * @return Value of the score
-     */
-    double score(Vec2d position);
     /*!
      * @brief Draws Petridish:: on targetWindow
      * @param targetWindow where the Petridish:: will be drawn

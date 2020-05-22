@@ -103,7 +103,7 @@ public:
      * @brief Getter for the speed vector of the SimpleBacterium::
      * @return The speed vector of the SimpleBacterium::
      */
-    Vec2d getSpeedVector() ;
+    Vec2d getSpeedVector() const;
     /*!
      * @brief Draws the Flagella of the SimpleBacterium::
      */
