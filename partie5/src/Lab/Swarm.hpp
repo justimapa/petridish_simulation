@@ -61,6 +61,9 @@ public:
      * @return True if the leader is not a nullptr, false otherwise.
      */
     bool hasLeader()const;
+    /*!
+     * @brief Resets the Swarm::
+     */
     void resetSwarm();
     /*!
       *@brief Destructor for the Swarm::
