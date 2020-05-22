@@ -19,19 +19,19 @@ public:
      * @brief Gets the Nutriment that is colliding with a CircularBody::
      * @return A pointer towards the Nutriment if collision a nullptr if no collision
      */
-    Nutriment* getNutrimentColliding(CircularBody const&)const;
+    Nutriment* getNutrimentColliding(CircularBody const&) const;
     /*!
      * @brief Gets the Bacterium that is colliding with a CircularBody::
      * @return A pointer towards the Bacterium if collision a nullptr if no collision
      */
-    Bacterium* getBacteriumColliding(CircularBody const& body)const;
+    Bacterium* getBacteriumColliding(CircularBody const& body) const;
     /*!
      * @brief Gets the score of a given position with respect to
      * a Nutriment:: source
      * @param Vec2d position who's score will be calculated
      * @return Calculatated score
      */
-    double getPositionScore(Vec2d const&)const;
+    double getPositionScore(Vec2d const&) const;
     /*!
      * @brief Gets the score of a given position with respect to
      * a Bacterium::
@@ -101,7 +101,7 @@ public:
       * @param Id of the Swarm
       * @return Pointer to the Swarm::
       */
-     Swarm* getSwarmWithId(const std::string& id)const;
+    Swarm* getSwarmWithId(const std::string& id) const;
     /*!
      * @brief Tests if a CircularBody:: is in collision with Petridish::
      * @return True if CircularBody is in collision false if not
@@ -117,7 +117,11 @@ public:
      * @param Fraction of time dt after which the Lab:: is updated
      */
     void update(sf::Time dt);
+<<<<<<< HEAD
+    std::unordered_map<std::string, double> fetchData(const std::string &) ;
+=======
     std::unordered_map<std::string, double> fetchData(const std::string &)const;
+>>>>>>> 7bafe0de38e50ad751976f737795ecf92bb20578
     /*!
      * @brief Erases all nutriments and bacteria within the dish
      */
