@@ -14,8 +14,11 @@ enum STATES{IDLE, WAIT_TO_DEPLOY, DEPLOY, ATTRACT, RETRACT, EAT};
 class TwitchingBacterium : public Bacterium
 {
 public:
+    //Counter for the number of TwitchingBacterium:: in a given Petridish::
     static std::map<int,int> twitchingCounterMap;
+    //Counter for the total tentacle length in a given Petridish::
     static std::map<int,double> tentacleLengthMap;
+    //Counter for the total tentacle speed in a given Petridish::
     static std::map<int,double> tentacleSpeedMap;
     /*!
      * @brief Constructs a TwitchingBacterium:: fully set up

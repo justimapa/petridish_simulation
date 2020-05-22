@@ -33,17 +33,17 @@ public:
      */
     virtual j::Value const& getConfig() const override;
     /*!
-     * @brief Returns the config value of the resistance factor
+     * @brief Getter for the config value of the resistance factor
      * @return The config value of the resistance factor
      */
     j::Value const& getResistanceFactor() const;
     /*!
-     * @brief Returns the config value of the nutritive factor
+     * @brief Getter for the config value of the nutritive factor
      * @return The config value of the nutritive factor
      */
     j::Value const& getNutritiveFactor() const;
     /*!
-     * @brief Returns the config value of the poison factor
+     * @brief Getter for the config value of the poison factor
      * @return The config value of the poison factor
      */
     j::Value const& getPoisonFactor() const;

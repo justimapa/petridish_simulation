@@ -16,6 +16,7 @@ class Swarm;
 class SwarmBacterium: public Bacterium, public DiffEqFunction
 {
 public:
+    //Counter for the number of SwarmBacterium:: in a given Petridish::
     static std::map<int,int> swarmCounterMap;
     /*!
      * @brief Constructor for the SwarmBacterium::
@@ -33,14 +34,14 @@ public:
      * @brief Getter for the "Swarm Bacterium" config
      * @return The JSON configuration of the SwarmBacterium::
      */
-    j::Value& getConfig()const override;
+    virtual j::Value& getConfig() const override;
     /*!
      * @brief Force vector
      * @param Position
      * @param Direction
      * @return Returns the force vector exercised by the leader or a null vector when it is the leader
      */
-    Vec2d f(Vec2d position, Vec2d direction) const override;
+    virtual Vec2d f(Vec2d position, Vec2d direction) const override;
     /*!
      * @brief Getter for the speed vector of the SwarmBacterium::
      * @return The speed vector of the SwarmBacterium::
@@ -50,19 +51,19 @@ public:
      * @brief Draws the SwarmBacterium::
      * @param The Window where it will be drawn.
      */
-    void drawOn(sf::RenderTarget &targetWindow) const override;
+    virtual void drawOn(sf::RenderTarget &targetWindow) const override;
     /*!
      * @brief Clones the SwarmBacterium::
      * @return A mutated copy of the SwarmBacterium::
      */
-    Bacterium* clone() override;
+    virtual Bacterium* clone() override;
     /*!
      * @brief Moves the SwarmBacterium::
      * @param The delay between moves
      *
      * If the SwarmBacterium:: is the leader it will choose a new direction after moving.
      */
-    void move(sf::Time dt) override;
+    virtual void move(sf::Time dt) override;
     /*!
      * @brief Chooses the best direction from 20 random directions
      */

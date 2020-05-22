@@ -50,7 +50,7 @@ public:
      * @brief Updates the swarm
      * @param Time delay between updates
      */
-    void update(sf::Time dt);
+    virtual void update(sf::Time dt) override;
     /*!
      * @brief Checks if a SwarmBacterium:: is the Leader of the Swarm::
      * @return True if the SwarmBacterium:: is the Leader, false otherwise.
@@ -65,7 +65,7 @@ public:
     /*!
       *@brief Destructor for the Swarm::
       */
-    ~Swarm();
+    virtual ~Swarm() override;
 private:
     std::string id;
     std::vector<SwarmBacterium*> group;

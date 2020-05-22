@@ -34,6 +34,7 @@ void Bacteriophage::update(sf::Time dt){
    delay+=dt;
    move(dt);
    infect();
+   //Every 5 secs, there is a 50% probability of swaping between LYTIC and LYSOGENIC
    if(delay >= sf::seconds(5.0)){
        statusSwap();
        resetDelay();
@@ -52,6 +53,7 @@ void Bacteriophage::move(sf::Time dt){
 }
 
 void Bacteriophage::aim(sf::Time dt){
+    //Movement will follow Bacterium gradient
     setDirection(Vec2d::fromRandomAngle());
     Vec2d nextDirection = Vec2d::fromRandomAngle();
     for(int i=0; i<20; ++i){
@@ -63,9 +65,11 @@ void Bacteriophage::aim(sf::Time dt){
 }
 
 void Bacteriophage::infect() const{
+    //LYTIC phages kill Bacterium very quickly
     if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYTIC"){
         (*getAppEnv().getBacteriumColliding(*this)).consumeEnergy(20);
     }
+    //LYSOGENIC phages toggle Bacterium's abstinence which makes it unable to regain any energy
     if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYSOGENIC"){
         (*getAppEnv().getBacteriumColliding(*this)).setAbstinence(true);
     }

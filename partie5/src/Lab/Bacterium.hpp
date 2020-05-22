@@ -18,10 +18,12 @@ class NutrimentB;
  * of bacteria within a Petridish
  *
  * Subclass of CircularBody, Drawable and Updatable
+ * Abstract class that can't have any instances
  */
 class Bacterium : public CircularBody, public Drawable, public Updatable
 {
 public:
+    //counter for the total speed of the different subclasses of Bacterium::
     static double speed_tot;
     /*!
      * @brief Constructs a Bacterium:: fully set up
@@ -62,6 +64,7 @@ public:
     Vec2d getDirection() const;
     /*!
      * @brief Setter for the Direction of the Bacterium::
+     * @param Direction that will be set
      */
     void setDirection(const Vec2d&);
     /*!
@@ -71,6 +74,7 @@ public:
     Quantity getEnergy() const;
     /*!
      * @brief Setter for the Energy of the Bacterium::
+     * @param Energy that will be set
      */
     void setEnergy(Quantity const&);
     /*!

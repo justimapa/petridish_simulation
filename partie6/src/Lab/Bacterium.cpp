@@ -25,7 +25,6 @@ Bacterium::Bacterium(Bacterium& other):
     abstinence(other.abstinence),
     mutations(other.mutations)
 {
-    //other.energy/=2;
 }
 void Bacterium::drawOn(sf::RenderTarget& target) const{
     auto const circle = buildCircle(getPosition(),getRadius(),color.get());

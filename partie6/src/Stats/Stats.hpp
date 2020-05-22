@@ -11,7 +11,6 @@ public:
     Stats();
     void drawOn(sf::RenderTarget&) const;
     void update(sf::Time dt);
-
     std::string getCurrentTitle();
     void setActive(int);
     void next();

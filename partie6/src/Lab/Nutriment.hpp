@@ -12,7 +12,7 @@ class TwitchingBacterium;
 class SwarmBacterium;
 /*!
  * @class Nutriment
- * @brief class representing the nutrient sources within the PetriDish:: which
+ * @brief class representing the nutrient sources within the Petridish:: which
  * can be consumed by the Bacterium::
  *
  * Subclass of CircularBody::, Drawable:: and Updatable
@@ -20,7 +20,9 @@ class SwarmBacterium;
  */
 class Nutriment : public CircularBody,public Drawable,public Updatable{
 public:
+    //counter for the number of nutrient sources in a given Petridish::
     static std::map<int,int> nutrimentCounterMap;
+    //counter for the total quantity of nutrient in a given Petridish::
     static std::map<int,Quantity> quantityCounterMap;
     /*!
      * @brief Constructs a Nutriment:: fully set up
@@ -30,7 +32,7 @@ public:
      */
     Nutriment(Quantity const& quantity_,Vec2d const& position_);
     /*!
-     * @brief Pure virtual method, inherited by classes NutrimentA::
+     * @brief Pure virtual methods, inherited by classes NutrimentA::
      * and NutrimentB::, specific to each type of Bacterium
      */
     virtual Quantity eatenBy(Bacterium& bact) = 0;

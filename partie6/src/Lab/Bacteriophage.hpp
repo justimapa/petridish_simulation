@@ -5,11 +5,11 @@
 #include "Utility/DiffEqSolver.hpp"
 
 /*!
- * @class Bacterium
+ * @class Bacteriophage
  * @brief class that represents the functions and behavior
- * of bacteriophage within a Petridish
+ * of a bacteriophage within a Petridish
  *
- * Subclass of CircularBody, Drawable and Updatable
+ * Subclass of CircularBody, Drawable, Updatable and DiffEqFunction
  */
 class Bacteriophage : public CircularBody, public Drawable, public Updatable, public DiffEqFunction
 {
@@ -40,21 +40,50 @@ public:
      */
     void move(sf::Time dt);
     /*!
-     * @brief Changes the direction of tumble depending
+     * @brief Changes the direction of movement along Bacterium:: gradient
      */
     void aim(sf::Time dt);
+    /*!
+     * @brief Infects a Bacterium:: it touches
+     */
     void infect() const;
+    /*!
+     * @brief Switches between LYTIC and LYSOGENIC at random every 5 seconds
+     */
     void statusSwap();
+    /*!
+     * @brief Getter for the direction of the Bacteriophage::
+     * @return Direction (unit vector) of the Bacteriophage::
+     */
     Vec2d getDirection() const;
+    /*!
+     * @brief Setter for the Direction of the Bacteriophage::
+     */
     void setDirection(const Vec2d& direction_);
-    virtual Vec2d f(Vec2d position, Vec2d speed) const override;
+    /*!
+     * @brief Getter for the speed vector of the Bacteriophage::
+     * @return The speed vector of the Bacteriophage::
+     */
     Vec2d getSpeedVector() const;
+    /*!
+     * @brief Returns a zero force
+     * @param Position
+     * @param Direction
+     * @return Returns the zero 2d vector
+     */
+    virtual Vec2d f(Vec2d position, Vec2d speed) const override;
+    /*!
+     * @brief Resets the delay between state switches
+     */
     void resetDelay();
-    bool isLytic();
+    /*!
+     * @brief Destructor for the class
+     */
     virtual ~Bacteriophage();
 private:
     Vec2d direction;
     sf::Color color;
+    //Status can be LYTIC or LYSOGENIC, determines infection effect on Bacterium::
     std::string status;
     sf::Time delay;
 };

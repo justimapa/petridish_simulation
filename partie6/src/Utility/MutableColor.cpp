@@ -20,4 +20,6 @@ sf::Color MutableColor::get() const
              static_cast<sf::Uint8>(RGBA[3].get() * 255)};
 }
 
+MutableColor::~MutableColor(){
 
+}

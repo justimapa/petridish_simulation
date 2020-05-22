@@ -9,8 +9,8 @@ class Stats:public Drawable,public Updatable
 {
 public:
     Stats();
-    void drawOn(sf::RenderTarget&) const;
-    void update(sf::Time dt);
+    virtual void drawOn(sf::RenderTarget&) const override;
+    virtual void update(sf::Time dt) override;
 
     std::string getCurrentTitle();
     void setActive(int);
@@ -22,7 +22,7 @@ public:
      * @brief Resets generator's stopwatch to 0
      */
     void resetStopwatch();
-    ~Stats();
+    virtual ~Stats() override;
 private:
     int currentid;
     sf::Time stopwatch;

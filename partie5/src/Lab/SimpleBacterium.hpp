@@ -12,7 +12,9 @@
 class SimpleBacterium : public Bacterium, public DiffEqFunction
 {
 public:
+    //Counter for the number of SimpleBacterium::
     static int counter;
+    //Counters for the total probability of better/worse tumbles in a given Petridish::
     static double better;
     static double worse;
     /*!

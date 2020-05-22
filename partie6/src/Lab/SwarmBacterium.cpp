@@ -63,12 +63,9 @@ void SwarmBacterium::drawOn(sf::RenderTarget & targetWindow) const{
 }
 
 Bacterium* SwarmBacterium::clone(){
-    if(getMinEnergyDivision()<=getEnergy()){
-        Bacterium* new_Bact(new SwarmBacterium(*this));
-        mutation(new_Bact);
-        return new_Bact;
-    }
-    return nullptr;
+    Bacterium* new_Bact(new SwarmBacterium(*this));
+    mutation(new_Bact);
+    return new_Bact;
 }
 Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment){
     return nutriment.eatenBy(*this);

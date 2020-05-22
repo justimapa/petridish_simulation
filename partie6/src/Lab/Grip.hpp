@@ -6,7 +6,7 @@
  * @brief class that represents the tentacle
  * of a bacteria
  *
- * Subclass of CircularBody, Drawable
+ * Subclass of CircularBody
  */
 class Grip : public CircularBody
 {
@@ -24,7 +24,7 @@ public:
      */
     void move(const Vec2d& distance);
     /*!
-     * @brief Destructor of the Grip::
+     * @brief Destructor of the class
      */
     ~Grip();
 };

@@ -17,16 +17,27 @@ public:
     Lab();
     /*!
      * @brief Gets the Nutriment that is colliding with a CircularBody::
-     * @return A pointer towards the Nutriments if collision a nullptr if no collision
+     * @return A pointer towards the Nutriment if collision a nullptr if no collision
      */
     Nutriment* getNutrimentColliding(CircularBody const&)const;
+    /*!
+     * @brief Gets the Bacterium that is colliding with a CircularBody::
+     * @return A pointer towards the Bacterium if collision a nullptr if no collision
+     */
     Bacterium* getBacteriumColliding(CircularBody const& body)const;
     /*!
-     * @brief Gets the score of a given position
+     * @brief Gets the score of a given position with respect to
+     * a Nutriment:: source
      * @param Vec2d position who's score will be calculated
-     * @return Calculatated position
+     * @return Calculatated score
      */
     double getPositionScore(Vec2d const&)const;
+    /*!
+     * @brief Gets the score of a given position with respect to
+     * a Bacterium::
+     * @param Vec2d position who's score will be calculated
+     * @return Calculatated score
+     */
     double getBacteriaScore(Vec2d const&)const;
     /*!
      * @brief Getter for the Petridish::'s GradientExponent
@@ -75,6 +86,10 @@ public:
      * @param Bacterium:: to be added
      */
     void addBacterium(Bacterium*);
+    /*!
+     * @brief Adds a Bacteriophage:: to the Petridish::
+     * @param Bacteriophage:: to be added
+     */
     void addPhage(Bacteriophage*);
     /*!
      * @brief Adds a Swarm:: to the Petridish::

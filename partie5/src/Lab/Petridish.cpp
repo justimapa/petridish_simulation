@@ -13,7 +13,7 @@ Petridish::Petridish(const Vec2d &position_, const double &radius_, const double
 bool Petridish::addBacterium(Bacterium* bacterium){
     if(bacterium!=nullptr){
         if(*this > *bacterium){
-            bacteria.push_back(bacterium);
+            buffer.push_back(bacterium);
             return true;
         }
     }
@@ -56,7 +56,6 @@ void Petridish::update(sf::Time dt){
     for(auto& bacterium:bacteria){
         if(bacterium!=nullptr){
         bacterium->update(dt);
-
         if(bacterium->isDead()){
             delete bacterium;
             bacterium=nullptr;
@@ -64,6 +63,8 @@ void Petridish::update(sf::Time dt){
         }
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
+    append(buffer, bacteria);
+    buffer.clear();
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);

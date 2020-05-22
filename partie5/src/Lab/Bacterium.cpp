@@ -19,13 +19,12 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
 }
 Bacterium::Bacterium(Bacterium& other):
     CircularBody(other.getPosition(),other.getRadius()),
-    energy(other.energy/2),
+    energy(other.energy/2.0),
     direction(-other.direction),
     color(other.color),
     abstinence(other.abstinence),
     mutations(other.mutations)
 {
-    other.energy=energy;
 }
 void Bacterium::drawOn(sf::RenderTarget& target) const{
     auto const circle = buildCircle(getPosition(),getRadius(),color.get());
@@ -48,6 +47,7 @@ void Bacterium::update(sf::Time dt){
         eat(*getAppEnv().getNutrimentColliding((*this)));
         if(getMinEnergyDivision()<=energy){
             getAppEnv().addBacterium(clone());
+            setEnergy(getEnergy()/2.0);
         }
         reset();
     }

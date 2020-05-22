@@ -30,3 +30,7 @@ void NutrimentGenerator::update(sf::Time dt){
 void NutrimentGenerator::resetStopwatch(){
     stopwatch = sf::Time::Zero;
 }
+
+NutrimentGenerator::~NutrimentGenerator(){
+
+}

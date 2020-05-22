@@ -5,7 +5,7 @@
 
 /*!
  * @class CircularBody::
- * @brief class the geometry and properties of a circular bodt
+ * @brief class that represents the geometry and properties of a circular body
  */
 class CircularBody
 {
@@ -90,11 +90,13 @@ protected:
     */
    CircularBody(const CircularBody& copy);
    /*!
-    * @brief Settter for the position
+    * @brief Setter for the position
+    * @param Position that wil be set
     */
    void setPosition(const Vec2d& position_);
    /*!
-    * @brief Settter for the radius
+    * @brief Setter for the radius
+    * @param Position that will be set
     */
    void setRadius(double radius);
 

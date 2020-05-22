@@ -28,6 +28,10 @@ public:
      * @brief Resets generator's stopwatch to 0
      */
     void resetStopwatch();
+    /*!
+     * @brief Destructor for the class NutrimentGenerator::
+     */
+    virtual ~NutrimentGenerator() override;
 private:
     sf::Time stopwatch;
 };

@@ -202,3 +202,9 @@ Umut
 J'ai commencé à coder l'extension Bactériophage (Les phages sont instanciables)
 TO DO: Coder les fonctionnalités (update, destruction...)
 TO DO: Soit coder deux sous classes PhageLytique et PhageLysogenique (Bacteriophage sera abstraite) ou utiliser un attribut status dans la classe Bacteriophage qui utilise un système aléatoire pour que le phage change d'état après un certain moment
+
+Vendredi 22.05.2020
+
+Umut
+
+J'ai terminé de coder l'extension Bactériophage (système aléatoire pour phages lytiques/lysogéniques)

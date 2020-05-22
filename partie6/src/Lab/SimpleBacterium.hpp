@@ -12,7 +12,9 @@
 class SimpleBacterium : public Bacterium, public DiffEqFunction
 {
 public:
+    //Counter for the number of SimpleBacterium:: in a given Petridish::
     static std::map<int,int> simpleCounterMap;
+    //Counters for the total probability of better/worse tumbles in a given Petrdish::
     static std::map<int,double> betterMap;
     static std::map<int,double> worseMap;
     /*!

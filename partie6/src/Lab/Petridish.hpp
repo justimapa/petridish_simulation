@@ -31,16 +31,28 @@ public:
     /*!
      * @brief Gets the Nutriment:: colliding with a CircularBody::
      * @param The CircularBody::
-     * @return A pointer of a Nutriment:: that is colldiing with the CircularBody::
+     * @return A pointer towards the Bacterium:: if collision a nullptr if no collision
      */
     Nutriment* getNutrimentColliding(CircularBody const& body)const;
+    /*!
+     * @brief Gets the Bacterium:: colliding with a CircularBody::
+     * @param The CircularBody::
+     * @return A pointer towards the Bacterium:: if collision a nullptr if no collision
+     */
     Bacterium* getBacteriumColliding(CircularBody const& body)const;
     /*!
-     * @brief Gets the Score of a position on the Petridish::
-     * @param A position
-     * @return The Score of the position
+     * @brief Gets the score of a given position with respect to
+     * a Nutriment:: source
+     * @param Vec2d position who's score will be calculated
+     * @return Calculatated score
      */
     double getPositionScore(Vec2d const& position)const;
+    /*!
+     * @brief Gets the score of a given position with respect to
+     * a Bacterium::
+     * @param Vec2d position who's score will be calculated
+     * @return Calculatated score
+     */
     double getBacteriaScore(Vec2d const& position)const;
     /*!
      * @brief Getter for the power

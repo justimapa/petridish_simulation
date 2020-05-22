@@ -19,10 +19,12 @@ class NutrimentB;
  * of bacteria within a Petridish
  *
  * Subclass of CircularBody, Drawable and Updatable
+ * Abstract class that can't have any instances
  */
 class Bacterium : public CircularBody, public Drawable, public Updatable
 {
 public:
+    //counter for the total speed of the different subclasses of Bacterium:: in a given Petridish::
     static std::map<int,double> speedMap;
     /*!
      * @brief Constructs a Bacterium:: fully set up
@@ -63,6 +65,7 @@ public:
     Vec2d getDirection() const;
     /*!
      * @brief Setter for the Direction of the Bacterium::
+     * @param
      */
     void setDirection(const Vec2d&);
     /*!
@@ -72,6 +75,7 @@ public:
     Quantity getEnergy() const;
     /*!
      * @brief Setter for the Energy of the Bacterium::
+     * @param Energy to be set
      */
     void setEnergy(Quantity const&);
     /*!
@@ -100,6 +104,10 @@ public:
      * @return Color of the Bacterium::
      */
     MutableColor getColor() const;
+    /*!
+     * @brief Setter for the abstinence of the Bacterium::
+     * @param Boolean to be set
+     */
     void setAbstinence(bool abstinence_);
     /*!
      * @brief Adds a new property to mutations map

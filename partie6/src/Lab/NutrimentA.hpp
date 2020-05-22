@@ -3,7 +3,7 @@
 
 /*!
  * @class NutrimentA
- * @brief Class representing nutrients of type A
+ * @brief class representing nutrients of type A
  *
  * Subclass of Nutriment::
  */

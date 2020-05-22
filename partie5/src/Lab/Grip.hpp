@@ -6,7 +6,7 @@
  * @brief class that represents the tentacle
  * of a bacteria
  *
- * Subclass of CircularBody, Drawable
+ * Subclass of CircularBody
  */
 class Grip : public CircularBody
 {
