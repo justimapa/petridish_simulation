@@ -16,7 +16,7 @@ public:
      * @param Position of the NutrimentB::
      * @return A NutrimentB:: with all parameters set
      */
-    NutrimentB(Quantity const& quantity,Vec2d const& position);
+    NutrimentB(Quantity const& quantity, Vec2d const& position, const int &id);
     /*!
      * @brief Looks at how much NutrimentB:: is eaten by the different types
      * of Bacterium::

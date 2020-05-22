@@ -6,7 +6,8 @@ using namespace std;
 
 Swarm::Swarm(const string& id):
     id(id),
-    leader(nullptr)
+    leader(nullptr),
+    petridishId(getAppEnv().getCurrentPetridishId())
 {
 
 }
@@ -33,7 +34,7 @@ void Swarm::update(sf::Time dt){
         if(swarmbacterium->isDead()){
             swarmbacterium=nullptr;
         }else{
-        temp=getAppEnv().getPositionScore(swarmbacterium->getPosition());
+        temp=getAppEnv().getPositionScore(swarmbacterium->getPosition(),petridishId);
         if (temp>= leaderScore){
                 leaderScore = temp;
                 leader = swarmbacterium;

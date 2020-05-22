@@ -86,4 +86,5 @@ private:
     //Status can be LYTIC or LYSOGENIC, determines infection effect on Bacterium::
     std::string status;
     sf::Time delay;
+    int petridishId;
 };

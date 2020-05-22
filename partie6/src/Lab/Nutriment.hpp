@@ -30,7 +30,7 @@ public:
      * @param Quantity of the Nutriment::
      * @return A Nutriment:: with all parameters set
      */
-    Nutriment(Quantity const& quantity_,Vec2d const& position_);
+    Nutriment(Quantity const& quantity_, Vec2d const& position_, const int &id);
     /*!
      * @brief Pure virtual methods, inherited by classes NutrimentA::
      * and NutrimentB::, specific to each type of Bacterium
@@ -97,5 +97,6 @@ public:
     virtual ~Nutriment();
 private:
     Quantity quantity;
+    int petridishId;
 };
 

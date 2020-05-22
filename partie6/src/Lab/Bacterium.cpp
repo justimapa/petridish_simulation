@@ -13,7 +13,8 @@ Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& d
   energy(energy),
   direction(direction),
   color(color),
-  abstinence(false)
+  abstinence(false),
+  petridishId(getAppEnv().getCurrentPetridishId())
 {
 
 }
@@ -23,7 +24,8 @@ Bacterium::Bacterium(Bacterium& other):
     direction(-other.direction),
     color(other.color),
     abstinence(other.abstinence),
-    mutations(other.mutations)
+    mutations(other.mutations),
+    petridishId(other.petridishId)
 {
 }
 void Bacterium::drawOn(sf::RenderTarget& target) const{
@@ -39,14 +41,14 @@ void Bacterium::drawOn(sf::RenderTarget& target) const{
 void Bacterium::update(sf::Time dt){
     delay+=dt;
     move(dt);
-    if(getAppEnv().doesCollideWithDish((*this))){
+    if(getAppEnv().doesCollideWithDish((*this),petridishId)){
         direction=-direction;
     }
-    if((getAppEnv().getNutrimentColliding((*this))!=nullptr)
+    if((getAppEnv().getNutrimentColliding((*this),petridishId)!=nullptr)
         and (not abstinence) and (delay>=getDelay())){
-        eat(*getAppEnv().getNutrimentColliding((*this)));
+        eat(*getAppEnv().getNutrimentColliding((*this),petridishId));
         if(getMinEnergyDivision()<=energy){        
-            getAppEnv().addBacterium(clone());
+            getAppEnv().addBacterium(clone(),petridishId);
             setEnergy(getEnergy()/2.0);
         }
         reset();

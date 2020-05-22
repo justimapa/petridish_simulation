@@ -7,8 +7,8 @@
 
 using namespace std;
 
-NutrimentB::NutrimentB(Quantity const& quantity,Vec2d const& position):
-    Nutriment(quantity,position)
+NutrimentB::NutrimentB(Quantity const& quantity,Vec2d const& position,int const& id):
+    Nutriment(quantity,position,id)
 { }
 
 Quantity NutrimentB::eatenBy(Bacterium& bact){

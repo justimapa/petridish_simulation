@@ -19,26 +19,26 @@ public:
      * @brief Gets the Nutriment that is colliding with a CircularBody::
      * @return A pointer towards the Nutriment if collision a nullptr if no collision
      */
-    Nutriment* getNutrimentColliding(CircularBody const&) const;
+    Nutriment* getNutrimentColliding(CircularBody const&, const int &id) const;
     /*!
      * @brief Gets the Bacterium that is colliding with a CircularBody::
      * @return A pointer towards the Bacterium if collision a nullptr if no collision
      */
-    Bacterium* getBacteriumColliding(CircularBody const& body) const;
+    Bacterium* getBacteriumColliding(CircularBody const& body, const int &id) const;
     /*!
      * @brief Gets the score of a given position with respect to
      * a Nutriment:: source
      * @param Vec2d position who's score will be calculated
      * @return Calculatated score
      */
-    double getPositionScore(Vec2d const&) const;
+    double getPositionScore(Vec2d const&, int const& id) const;
     /*!
      * @brief Gets the score of a given position with respect to
      * a Bacterium::
      * @param Vec2d position who's score will be calculated
      * @return Calculatated score
      */
-    double getBacteriaScore(Vec2d const&)const;
+    double getBacteriaScore(Vec2d const&, int const& id)const;
     /*!
      * @brief Getter for the Petridish::'s GradientExponent
      * @return GradientExponent of the Petridish::
@@ -75,22 +75,22 @@ public:
      * @return true if the other CircularBody:: has a smaller radius and the center is
      * within the dish, false if not
      */
-    bool contains(const CircularBody&) const;
+    bool contains(const CircularBody&,int const& id) const;
     /*!
      * @brief Adds a Nutriment:: to the Petridish::
      * @param Nutriment:: to be added
      */
-    void addNutriment(Nutriment*);
+    void addNutriment(Nutriment*,int const& id);
     /*!
      * @brief Adds a Bacterium:: to the Petridish::
      * @param Bacterium:: to be added
      */
-    void addBacterium(Bacterium*);
+    void addBacterium(Bacterium*,int const& id);
     /*!
      * @brief Adds a Bacteriophage:: to the Petridish::
      * @param Bacteriophage:: to be added
      */
-    void addPhage(Bacteriophage*);
+    void addPhage(Bacteriophage*,int const& id);
     /*!
      * @brief Adds a Swarm:: to the Petridish::
      * @param Swarm:: to be added
@@ -106,7 +106,7 @@ public:
      * @brief Tests if a CircularBody:: is in collision with Petridish::
      * @return True if CircularBody is in collision false if not
      */
-    bool doesCollideWithDish(const CircularBody &) const;
+    bool doesCollideWithDish(const CircularBody &,int const& id) const;
     /*!
      * @brief Draws dish on targetWindow
      * @param targetWindow where dish will be drawn
@@ -147,6 +147,12 @@ public:
      */
     Petridish* getCurrentPetridish()const;
     /*!
+     * @brief Getter for petridish associated to an id
+     * @param The id of the petridish
+     * @return A pointer to the petridish
+     */
+    Petridish* getPetridishwithId(int const& id)const;
+    /*!
      * @brief Increments the currentDishId
      */
     void nextPetridish();
@@ -161,6 +167,6 @@ public:
     void addPetridish(int id);
 private:
     int currentDishId;
-    NutrimentGenerator generator;
+    std::map<int,NutrimentGenerator*> generators;
     std::map<int,Petridish*> dishes;
 };

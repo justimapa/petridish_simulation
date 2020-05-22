@@ -24,9 +24,9 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
 {
     addProperty("max tentacle length", MutableNumber::positive(getConfig()["tentacle"]["length"]));
     addProperty("tentacle speed", MutableNumber::positive(getConfig()["tentacle"]["speed"]));
-    ++twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
-    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]+=getProperty("max tentacle length").get();
-    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tentacle speed").get();
+    ++twitchingCounterMap[petridishId];
+    tentacleLengthMap[petridishId]+=getProperty("max tentacle length").get();
+    tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();
 }
 TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
 :
@@ -35,9 +35,9 @@ TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
     current_state(IDLE)
 {
     CircularBody::move(Vec2d(10,10));
-    ++twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
-    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]+=getProperty("max tentacle length").get();
-    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tentacle speed").get();
+    ++twitchingCounterMap[petridishId];
+    tentacleLengthMap[petridishId]+=getProperty("max tentacle length").get();
+    tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();
 }
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
@@ -48,9 +48,9 @@ void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
 }
 void TwitchingBacterium::update(sf::Time dt){
     Bacterium::update(dt);
-    if(getAppEnv().getNutrimentColliding(grip)!=nullptr){
+    if(getAppEnv().getNutrimentColliding(grip,petridishId)!=nullptr){
         current_state = ATTRACT;
-        if(getAppEnv().getNutrimentColliding(*this)!=nullptr){
+        if(getAppEnv().getNutrimentColliding(*this,petridishId)!=nullptr){
             current_state = EAT;
         }
     }
@@ -69,7 +69,7 @@ void TwitchingBacterium::move(sf::Time dt){
     case WAIT_TO_DEPLOY: {
         Vec2d nextDirection=Vec2d::fromRandomAngle();
         for(int i=0;i<20;++i){
-            if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
+            if(getAppEnv().getPositionScore(nextDirection+getPosition(),petridishId)>getAppEnv().getPositionScore(getDirection()+getPosition(),petridishId)){
                 setDirection(nextDirection);
             }
             nextDirection=Vec2d::fromRandomAngle();
@@ -94,7 +94,7 @@ void TwitchingBacterium::move(sf::Time dt){
     break;
     }
     case EAT: {
-        if(getAppEnv().getNutrimentColliding(*this)== nullptr){
+        if(getAppEnv().getNutrimentColliding(*this,petridishId)== nullptr){
             current_state = IDLE;
         }
     break;
@@ -125,9 +125,9 @@ void TwitchingBacterium::moveGrip(const Vec2d& delta){
     grip.move(delta);
 }
 TwitchingBacterium::~TwitchingBacterium(){
-    --twitchingCounterMap[getAppEnv().getCurrentPetridishId()];
-    tentacleLengthMap[getAppEnv().getCurrentPetridishId()]-=getProperty("max tentacle length").get();
-    tentacleSpeedMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tentacle speed").get();
+    --twitchingCounterMap[petridishId];
+    tentacleLengthMap[petridishId]-=getProperty("max tentacle length").get();
+    tentacleSpeedMap[petridishId]-=getProperty("tentacle speed").get();
 
 }
 

@@ -51,27 +51,27 @@ void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)
             break;
 
         case sf::Keyboard::S:
-            getEnv().addBacterium(new SimpleBacterium(getCursorPositionInView()));
+            getEnv().addBacterium(new SimpleBacterium(getCursorPositionInView()),getEnv().getCurrentPetridishId());
             break;
 
         case sf::Keyboard::T:
-            getEnv().addBacterium(new TwitchingBacterium(getCursorPositionInView()));
+            getEnv().addBacterium(new TwitchingBacterium(getCursorPositionInView()),getEnv().getCurrentPetridishId());
             break;
 
         case sf::Keyboard::P:
-            getEnv().addPhage(new Bacteriophage(getCursorPositionInView(), 10, Vec2d::fromRandomAngle()));
+            getEnv().addPhage(new Bacteriophage(getCursorPositionInView(), 10, Vec2d::fromRandomAngle()),getEnv().getCurrentPetridishId());
             break;
 
         case sf::Keyboard::Num1: {
             auto swarm = getEnv().getSwarmWithId("1");
             assert(swarm != nullptr);
-            getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm));
+            getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm),getEnv().getCurrentPetridishId());
         } break;
 
         case sf::Keyboard::Num2: {
             auto swarm = getEnv().getSwarmWithId("2");
             assert(swarm != nullptr);
-            getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm));
+            getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm),getEnv().getCurrentPetridishId());
         } break;
 
 

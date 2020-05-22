@@ -9,9 +9,10 @@ Bacteriophage::Bacteriophage(Vec2d const& position, double const& radius, Vec2d 
   direction(direction),
   color(sf::Color::Yellow),
   status("LYTIC"),
-  delay(sf::Time::Zero)
+  delay(sf::Time::Zero),
+  petridishId(getAppEnv().getCurrentPetridishId())
 {
-    ++phageCounterMap[getAppEnv().getCurrentPetridishId()];
+    ++phageCounterMap[petridishId];
 }
 
 void Bacteriophage::drawOn(sf::RenderTarget &target) const{
@@ -39,7 +40,7 @@ void Bacteriophage::update(sf::Time dt){
        statusSwap();
        resetDelay();
    }
-   if(getAppEnv().doesCollideWithDish((*this))){
+   if(getAppEnv().doesCollideWithDish((*this),petridishId)){
        direction=-direction;
    }
 }
@@ -57,7 +58,7 @@ void Bacteriophage::aim(sf::Time dt){
     setDirection(Vec2d::fromRandomAngle());
     Vec2d nextDirection = Vec2d::fromRandomAngle();
     for(int i=0; i<20; ++i){
-        if(getAppEnv().getBacteriaScore(nextDirection+getPosition())>getAppEnv().getBacteriaScore(getDirection()+getPosition())){
+        if(getAppEnv().getBacteriaScore(nextDirection+getPosition(),petridishId)>getAppEnv().getBacteriaScore(getDirection()+getPosition(),petridishId)){
             setDirection(nextDirection);
         }
         nextDirection=Vec2d::fromRandomAngle();
@@ -66,12 +67,12 @@ void Bacteriophage::aim(sf::Time dt){
 
 void Bacteriophage::infect() const{
     //LYTIC phages kill Bacterium very quickly
-    if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYTIC"){
-        (*getAppEnv().getBacteriumColliding(*this)).consumeEnergy(20);
+    if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYTIC"){
+        (*getAppEnv().getBacteriumColliding(*this,petridishId)).consumeEnergy(20);
     }
     //LYSOGENIC phages toggle Bacterium's abstinence which makes it unable to regain any energy
-    if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYSOGENIC"){
-        (*getAppEnv().getBacteriumColliding(*this)).setAbstinence(true);
+    if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYSOGENIC"){
+        (*getAppEnv().getBacteriumColliding(*this,petridishId)).setAbstinence(true);
     }
 }
 
@@ -108,5 +109,5 @@ void Bacteriophage::resetDelay(){
 }
 
 Bacteriophage::~Bacteriophage(){
-    --phageCounterMap[getAppEnv().getCurrentPetridishId()];
+    --phageCounterMap[petridishId];
 }

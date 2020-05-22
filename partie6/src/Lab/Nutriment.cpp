@@ -12,12 +12,13 @@ using namespace std;
 std::map<int,int> Nutriment::nutrimentCounterMap;
 std::map<int,Quantity> Nutriment::quantityCounterMap;
 
-Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_)
+Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_,int const& id)
 : CircularBody(position_, quantity_),
-  quantity(quantity_)
+  quantity(quantity_),
+  petridishId(id)
 {
-    ++nutrimentCounterMap[getAppEnv().getCurrentPetridishId()];
-    quantityCounterMap[getAppEnv().getCurrentPetridishId()]+=quantity;
+    ++nutrimentCounterMap[petridishId];
+    quantityCounterMap[petridishId]+=quantity;
 }
 
 Quantity Nutriment::takeQuantity(Quantity quantity_){
@@ -72,13 +73,13 @@ bool Nutriment::isQuantityOK() const{
     return quantity <= 2 * getConfig()["quantity"]["max"].toDouble();
 }
 bool Nutriment::isContained() const{
-    return getAppEnv().contains(*this);
+    return getAppEnv().contains(*this,petridishId);
 }
 bool Nutriment::isDead()const{
     return quantity<=0;
 }
 Nutriment::~Nutriment(){
-    --nutrimentCounterMap[getAppEnv().getCurrentPetridishId()];
-    quantityCounterMap[getAppEnv().getCurrentPetridishId()]-=quantity;
+    --nutrimentCounterMap[petridishId];
+    quantityCounterMap[petridishId]-=quantity;
 }
 

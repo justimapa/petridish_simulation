@@ -14,10 +14,11 @@ class NutrimentGenerator : public Updatable
 public:
     /*!
      * @brief Constructs a NutrimentGenerator::
+     * @param PetridishId associated to this NutrimentGenerator
      * @return NutrimentGenerator:: constructed by default
      * with its stopwatch set to 0
      */
-    NutrimentGenerator();
+    NutrimentGenerator(int const& id);
     /*!
      * @brief Updates the creation and evolution of nutrients within
      * the Petridish::
@@ -34,5 +35,6 @@ public:
     virtual ~NutrimentGenerator() override;
 private:
     sf::Time stopwatch;
+    int id;
 };
 

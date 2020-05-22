@@ -12,34 +12,30 @@ void Lab::drawOn(sf::RenderTarget& targetWindow) const{
     getCurrentPetridish()->drawOn(targetWindow);
 }
 void Lab::update(sf::Time dt){
-    generator.update(dt);
-    getCurrentPetridish()->update(dt);
+    for(auto& generator:generators){
+        (generator.second)->update(dt);
+    }
+    for(auto& dish:dishes){
+        (dish.second)->update(dt);
+    }
 
 }
-bool Lab::contains(const CircularBody& body) const{
-    return ((*getCurrentPetridish()) > body);
+bool Lab::contains(const CircularBody& body,int const& id) const{
+    return ((*getPetridishwithId(id)) > body);
 }
-void Lab::reset(){
-    getCurrentPetridish()->reset();
-    generator.resetStopwatch();
+
+
+Nutriment* Lab::getNutrimentColliding(CircularBody const& body, int const& id) const{
+    return getPetridishwithId(id)->getNutrimentColliding(body);
 }
-Lab::~Lab(){
-    for(auto& dish:dishes){
-        (dish.second)->reset();
-    }
-    generator.resetStopwatch();
+Bacterium* Lab::getBacteriumColliding(CircularBody const& body, int const& id)const{
+    return getPetridishwithId(id)->getBacteriumColliding(body);
 }
-Nutriment* Lab::getNutrimentColliding(CircularBody const& body) const{
-    return getCurrentPetridish()->getNutrimentColliding(body);
+double Lab::getPositionScore(Vec2d const& position,int const& id) const{
+    return getPetridishwithId(id)->getPositionScore(position);
 }
-Bacterium* Lab::getBacteriumColliding(CircularBody const& body)const{
-    return getCurrentPetridish()->getBacteriumColliding(body);
-}
-double Lab::getPositionScore(Vec2d const& position) const{
-    return getCurrentPetridish()->getPositionScore(position);
-}
-double Lab::getBacteriaScore(Vec2d const& position)const{
-    return getCurrentPetridish()->getBacteriaScore(position);
+double Lab::getBacteriaScore(Vec2d const& position,int const& id)const{
+    return getPetridishwithId(id)->getBacteriaScore(position);
 }
 double Lab::getGradientExponent() const{
     return getCurrentPetridish()->getGradientExponent();
@@ -68,14 +64,14 @@ void Lab::refreshConfig(){
     getCurrentPetridish()->resetGradientExponent();
 
 }
-void Lab::addBacterium(Bacterium* bact){
-    getCurrentPetridish()->addBacterium(bact);
+void Lab::addBacterium(Bacterium* bact, const int &id){
+    getPetridishwithId(id)->addBacterium(bact);
 }
-void Lab::addPhage(Bacteriophage* phage){
-    getCurrentPetridish()->addPhage(phage);
+void Lab::addPhage(Bacteriophage* phage, const int &id){
+    getPetridishwithId(id)->addPhage(phage);
 }
-void Lab::addNutriment(Nutriment* nutriment){
-    getCurrentPetridish()->addNutriment(nutriment);
+void Lab::addNutriment(Nutriment* nutriment, const int &id){
+    getPetridishwithId(id)->addNutriment(nutriment);
 }
 Swarm* Lab::getSwarmWithId(const std::string& id)const{
     return getCurrentPetridish()->getSwarmWithId(id);
@@ -84,7 +80,7 @@ Swarm* Lab::getSwarmWithId(const std::string& id)const{
 void Lab::addSwarm(Swarm* swarm){
         getCurrentPetridish()->addSwarm(swarm);
 }
-bool Lab::doesCollideWithDish(CircularBody const& body) const{
+bool Lab::doesCollideWithDish(CircularBody const& body, const int &id) const{
     (((*getCurrentPetridish())&body) and not ((*getCurrentPetridish())>body.getPosition()));
 }
 
@@ -133,6 +129,16 @@ Petridish* Lab::getCurrentPetridish()const{
         std::cerr<<"Invalid_argument"<<std::endl;
     }
 }
+Petridish* Lab::getPetridishwithId(int const& id)const{
+    try{
+        auto paire=dishes.find(id);
+        return (paire->second);
+    }catch(std::out_of_range){
+        std::cerr<<"Out of range"<<std::endl;
+    }catch(std::invalid_argument){
+        std::cerr<<"Invalid_argument"<<std::endl;
+    }
+}
 void Lab::nextPetridish(){
     currentDishId=(++currentDishId)%dishes.size();
 
@@ -141,7 +147,19 @@ void Lab::previousPetridish(){
     currentDishId=(--currentDishId)%dishes.size();
 }
 void Lab::addPetridish(int id){
+    generators[id]=(new NutrimentGenerator(id));
     dishes[id]=(new Petridish(getApp().getCentre(), getApp().getLabSize().x*(0.95/2),
                              getAppConfig()["petri dish"]["temperature"]["default"].toDouble(),
                         (getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2));
+}
+
+void Lab::reset(){
+    getCurrentPetridish()->reset();
+    generators[getCurrentPetridishId()]->resetStopwatch();
+}
+Lab::~Lab(){
+    for(auto& dish:dishes){
+        (dish.second)->reset();
+    }
+    reset();
 }

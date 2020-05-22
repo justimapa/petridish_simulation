@@ -191,4 +191,8 @@ private:
     bool abstinence;
     std::map <std::string,MutableNumber> mutations;
     sf::Time delay;
+protected:
+    //The petridish it belongs to
+    int petridishId;
+
 };

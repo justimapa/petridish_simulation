@@ -18,8 +18,8 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   swarm(group)
 {
     swarm->addSwarmBacterium(this);
-    ++swarmCounterMap[getAppEnv().getCurrentPetridishId()];
-    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
+    ++swarmCounterMap[petridishId];
+    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
@@ -48,7 +48,7 @@ void SwarmBacterium::tumble(){
     setDirection(Vec2d::fromRandomAngle());
     Vec2d nextDirection=Vec2d::fromRandomAngle();
     for(int i=0;i<20;++i){
-        if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
+        if(getAppEnv().getPositionScore(nextDirection+getPosition(),petridishId)>getAppEnv().getPositionScore(getDirection()+getPosition(),petridishId)){
             setDirection(nextDirection);
         }
         nextDirection=Vec2d::fromRandomAngle();
@@ -83,6 +83,6 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-   speedMap[getAppEnv().getCurrentPetridishId()]-=(getConfig()["speed"]["initial"].toDouble());
-   --swarmCounterMap[getAppEnv().getCurrentPetridishId()];
+   speedMap[petridishId]-=(getConfig()["speed"]["initial"].toDouble());
+   --swarmCounterMap[petridishId];
 }

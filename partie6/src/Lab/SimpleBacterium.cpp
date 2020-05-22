@@ -30,9 +30,9 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
     addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
     ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
-    betterMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble better").get();
-    worseMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble worse").get();
-    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
+    betterMap[petridishId]+=getProperty("tumble better").get();
+    worseMap[petridishId]+=getProperty("tumble worse").get();
+    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
 }
 
 SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
@@ -41,10 +41,10 @@ SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
               oldScore(other.oldScore),
               algo(other.algo)
 {
-    ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
-    betterMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble better").get();
-    worseMap[getAppEnv().getCurrentPetridishId()]+=getProperty("tumble worse").get();
-    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
+    ++simpleCounterMap[petridishId];
+    betterMap[petridishId]+=getProperty("tumble better").get();
+    worseMap[petridishId]+=getProperty("tumble worse").get();
+    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
 }
 
 void SimpleBacterium::move(sf::Time dt){
@@ -98,13 +98,13 @@ void SimpleBacterium::updateFlagella(sf::Time dt){
     rotation+=dalpha;
 }
 void SimpleBacterium::updateProbability(){
-    if(getAppEnv().getPositionScore(getPosition())>=oldScore){
+    if(getAppEnv().getPositionScore(getPosition(),petridishId)>=oldScore){
         tumblingProbability=1-exp(-tLastTumble.asSeconds()/getProperty("tumble better").get());
     }else{
         tumblingProbability=1-exp(-tLastTumble.asSeconds()/getProperty("tumble worse").get());
     }
 
-    oldScore=getAppEnv().getPositionScore(getPosition());
+    oldScore=getAppEnv().getPositionScore(getPosition(),petridishId);
 }
 bool SimpleBacterium::isTumbling(){
     return bernoulli(tumblingProbability);
@@ -118,7 +118,7 @@ void SimpleBacterium::tumble(){
         setDirection(Vec2d::fromRandomAngle());
         Vec2d nextDirection=Vec2d::fromRandomAngle();
         for(int i=0;i<20;++i){
-            if(getAppEnv().getPositionScore(nextDirection+getPosition())>getAppEnv().getPositionScore(getDirection()+getPosition())){
+            if(getAppEnv().getPositionScore(nextDirection+getPosition(),petridishId)>getAppEnv().getPositionScore(getDirection()+getPosition(),petridishId)){
                 setDirection(nextDirection);
             }
             nextDirection=Vec2d::fromRandomAngle();
@@ -135,9 +135,9 @@ Bacterium* SimpleBacterium::clone(){
 }
 SimpleBacterium::~SimpleBacterium()
 {
-    --simpleCounterMap[getAppEnv().getCurrentPetridishId()];
-    betterMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tumble better").get();
-    worseMap[getAppEnv().getCurrentPetridishId()]-=getProperty("tumble worse").get();
-    speedMap[getAppEnv().getCurrentPetridishId()]-=(getConfig()["speed"]["initial"].toDouble());
+    --simpleCounterMap[petridishId];
+    betterMap[petridishId]-=getProperty("tumble better").get();
+    worseMap[petridishId]-=getProperty("tumble worse").get();
+    speedMap[petridishId]-=(getConfig()["speed"]["initial"].toDouble());
 }
 

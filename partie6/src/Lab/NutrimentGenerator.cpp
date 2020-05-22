@@ -7,8 +7,9 @@
 
 using namespace std;
 
-NutrimentGenerator::NutrimentGenerator()
-: stopwatch(sf::Time::Zero)
+NutrimentGenerator::NutrimentGenerator(int const& id)
+: stopwatch(sf::Time::Zero),
+  id(id)
 { }
 
 void NutrimentGenerator::update(sf::Time dt){
@@ -20,9 +21,9 @@ void NutrimentGenerator::update(sf::Time dt){
     if(stopwatch > sf::seconds(getShortConfig().generator_nutriment_delay)){
         resetStopwatch();
         if(bernoulli(getAppConfig()["generator"]["nutriment"]["prob"].toDouble())){
-           getAppEnv().addNutriment(new NutrimentA(quantityA, position));
+           getAppEnv().addNutriment(new NutrimentA(quantityA, position,id),id);
         } else {
-            getAppEnv().addNutriment(new NutrimentB(quantityB, position));
+            getAppEnv().addNutriment(new NutrimentB(quantityB, position,id),id);
         }
     }
 }

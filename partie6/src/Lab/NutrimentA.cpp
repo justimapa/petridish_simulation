@@ -6,8 +6,8 @@
 #include "Application.hpp"
 
 
-NutrimentA::NutrimentA(Quantity const& quantity,Vec2d const& position):
-    Nutriment(quantity,position)
+NutrimentA::NutrimentA(Quantity const& quantity,Vec2d const& position,int const& id):
+    Nutriment(quantity,position,id)
 {
 }
 
