@@ -17,9 +17,10 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   group->getInitialColor()),
   swarm(group)
 {
+
     swarm->addSwarmBacterium(this);
     ++swarmCounterMap[petridishId];
-    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
+    speedMap[petridishId]+=getProperty("speed").get();
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
@@ -27,7 +28,7 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 {
     swarm->addSwarmBacterium(this);
     ++swarmCounterMap[getAppEnv().getCurrentPetridishId()];
-    speedMap[getAppEnv().getCurrentPetridishId()]+=(getConfig()["speed"]["initial"].toDouble());
+
 
 }
 Vec2d SwarmBacterium::getSpeedVector() const{
@@ -65,6 +66,7 @@ void SwarmBacterium::drawOn(sf::RenderTarget & targetWindow) const{
 Bacterium* SwarmBacterium::clone(){
     Bacterium* new_Bact(new SwarmBacterium(*this));
     mutation(new_Bact);
+    speedMap[getAppEnv().getCurrentPetridishId()]+=new_Bact->getProperty("speed").get();
     return new_Bact;
 }
 Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment){
@@ -83,6 +85,6 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-   speedMap[petridishId]-=(getConfig()["speed"]["initial"].toDouble());
+   speedMap[petridishId]-=getProperty("speed").get();
    --swarmCounterMap[petridishId];
 }

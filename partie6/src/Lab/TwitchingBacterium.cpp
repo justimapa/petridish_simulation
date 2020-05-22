@@ -36,8 +36,6 @@ TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
 {
     CircularBody::move(Vec2d(10,10));
     ++twitchingCounterMap[petridishId];
-    tentacleLengthMap[petridishId]+=getProperty("max tentacle length").get();
-    tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();
 }
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
@@ -104,6 +102,8 @@ void TwitchingBacterium::move(sf::Time dt){
 Bacterium* TwitchingBacterium::clone(){
     Bacterium* new_Bact(new TwitchingBacterium(*this));
     mutation(new_Bact);
+    tentacleLengthMap[petridishId]+=new_Bact->getProperty("max tentacle length").get();
+    tentacleSpeedMap[petridishId]+=new_Bact->getProperty("tentacle speed").get();
     return new_Bact;
 }
 Quantity TwitchingBacterium::eatableQuantity(NutrimentA& nutriment){

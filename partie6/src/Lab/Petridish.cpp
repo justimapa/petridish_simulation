@@ -113,6 +113,11 @@ void Petridish::reset(){
         bact = nullptr;
     }
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
+    for(auto& bact : buffer){
+        delete bact;
+        bact = nullptr;
+    }
+    buffer.erase(remove(buffer.begin(),buffer.end(),nullptr),buffer.end());
     for(auto& phage : phages){
         delete phage;
         phage = nullptr;

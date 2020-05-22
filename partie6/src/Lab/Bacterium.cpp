@@ -27,6 +27,7 @@ Bacterium::Bacterium(Bacterium& other):
     mutations(other.mutations),
     petridishId(other.petridishId)
 {
+    other.energy=energy;
 }
 void Bacterium::drawOn(sf::RenderTarget& target) const{
     auto const circle = buildCircle(getPosition(),getRadius(),color.get());
@@ -49,7 +50,6 @@ void Bacterium::update(sf::Time dt){
         eat(*getAppEnv().getNutrimentColliding((*this),petridishId));
         if(getMinEnergyDivision()<=energy){        
             getAppEnv().addBacterium(clone(),petridishId);
-            setEnergy(getEnergy()/2.0);
         }
         reset();
     }

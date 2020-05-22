@@ -32,7 +32,7 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
     betterMap[petridishId]+=getProperty("tumble better").get();
     worseMap[petridishId]+=getProperty("tumble worse").get();
-    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
+    speedMap[petridishId]+=getProperty("speed").get();
 }
 
 SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
@@ -42,9 +42,6 @@ SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
               algo(other.algo)
 {
     ++simpleCounterMap[petridishId];
-    betterMap[petridishId]+=getProperty("tumble better").get();
-    worseMap[petridishId]+=getProperty("tumble worse").get();
-    speedMap[petridishId]+=(getConfig()["speed"]["initial"].toDouble());
 }
 
 void SimpleBacterium::move(sf::Time dt){
@@ -131,6 +128,9 @@ j::Value& SimpleBacterium::getConfig() const{
 Bacterium* SimpleBacterium::clone(){
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
+        betterMap[petridishId]+=new_Bact->getProperty("tumble better").get();
+        worseMap[petridishId]+=new_Bact->getProperty("tumble worse").get();
+        speedMap[petridishId]+=new_Bact->getProperty("speed").get();
         return new_Bact;
 }
 SimpleBacterium::~SimpleBacterium()
@@ -138,6 +138,6 @@ SimpleBacterium::~SimpleBacterium()
     --simpleCounterMap[petridishId];
     betterMap[petridishId]-=getProperty("tumble better").get();
     worseMap[petridishId]-=getProperty("tumble worse").get();
-    speedMap[petridishId]-=(getConfig()["speed"]["initial"].toDouble());
+    speedMap[petridishId]-=getProperty("speed").get();
 }
 

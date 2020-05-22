@@ -11,7 +11,6 @@ Swarm::Swarm(const string& id):
 {
 
 }
-
 void Swarm::addSwarmBacterium(SwarmBacterium* bacterium){
     if(bacterium!=nullptr){
         group.push_back(bacterium);
