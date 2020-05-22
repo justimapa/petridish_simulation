@@ -13,7 +13,7 @@
 namespace
 {
 
-std::vector<sf::Color> const& COLORS = { sf::Color::Cyan, sf::Color::Red, sf::Color::Magenta, sf::Color::Green,
+std::vector<sf::Color> const& COLORS = { sf::Color::Red, sf::Color::Green, sf::Color::Yellow, sf::Color::Cyan,
                                          sf::Color::White };
 
 } // anonymous
@@ -46,13 +46,13 @@ void Graph::updateData(sf::Time deltaEpoch, std::unordered_map<std::string, doub
     for (auto& serie : mSeries) {
         auto x = newEpoch.asSeconds() * X_SCALE;
         auto y = (newData.at(serie.title) - mYMin) * Y_SCALE;
-		if (serie.title == "nutriment quantity"){
-		}
+        if (serie.title == "nutriment quantity"){
+        }
         y = mSize.y - y; // Reverse SFML axis
-		if (serie.title == "nutriment quantity"){
-		}
-		
-				auto newVertex = sf::Vertex({ static_cast<float>(x), static_cast<float>(y) }, serie.color);
+        if (serie.title == "nutriment quantity"){
+        }
+
+                auto newVertex = sf::Vertex({ static_cast<float>(x), static_cast<float>(y) }, serie.color);
 
         // Check if we should swap the two buffers and clear the (new) present buffer
         if (newEpoch < mLastEpoch) {
@@ -97,10 +97,10 @@ void Graph::drawOn(sf::RenderTarget& target) const
         target.draw(&serie.presentVertices[0], serie.presentVertices.size(), sf::PrimitiveType::LinesStrip);
 
         // The legend
-		std::stringstream tmpStream;
-		auto value(serie.lastValue);
-		tmpStream << std::fixed << std::setprecision(2) << value;
-		auto value_str = tmpStream.str();
+        std::stringstream tmpStream;
+        auto value(serie.lastValue);
+        tmpStream << std::fixed << std::setprecision(2) << value;
+        auto value_str = tmpStream.str();
         value_str = value_str.substr(0, value_str.find_last_not_of("0"));
         auto text = serie.title + ": " + value_str;
         auto legend = sf::Text(text, getAppFont(), FONT_SIZE);
