@@ -1,5 +1,6 @@
 #include "Bacteriophage.hpp"
 #include "Application.hpp"
+#include "Random/Random.hpp"
 
 Bacteriophage::Bacteriophage(Vec2d const& position, double const& radius, Vec2d const& direction)
 : CircularBody(position, radius),
@@ -30,6 +31,11 @@ void Bacteriophage::drawOn(sf::RenderTarget &target) const{
 void Bacteriophage::update(sf::Time dt){
    delay+=dt;
    move(dt);
+   infect();
+   if(delay >= sf::seconds(5.0)){
+       statusSwap();
+       resetDelay();
+   }
    if(getAppEnv().doesCollideWithDish((*this))){
        direction=-direction;
    }
@@ -55,9 +61,24 @@ void Bacteriophage::aim(sf::Time dt){
 }
 
 void Bacteriophage::infect() const{
-    //if(getAppEnv().getBacteriumColliding(*this) != nullptr and S){
+    if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYTIC"){
+        (*getAppEnv().getBacteriumColliding(*this)).consumeEnergy(20);
+    }
+    if(getAppEnv().getBacteriumColliding(*this) != nullptr and status == "LYSOGENIC"){
+        (*getAppEnv().getBacteriumColliding(*this)).setAbstinence(true);
+    }
+}
 
-    //}
+void Bacteriophage::statusSwap(){
+    if(bernoulli(0.5)){
+        if(status=="LYTIC"){
+            status = "LYSOGENIC";
+            return;
+        }
+        if(status=="LYSOGENIC"){
+            status = "LYTIC";
+        }
+    }
 }
 
 Vec2d Bacteriophage::getSpeedVector() const{

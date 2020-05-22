@@ -90,6 +90,9 @@ void Bacterium::setDirection(const Vec2d& direction_){
 MutableColor Bacterium::getColor() const{
     return color;
 }
+void Bacterium::setAbstinence(bool abstinence_){
+    abstinence = abstinence_;
+}
 void Bacterium::addProperty(const string& key,const MutableNumber& value){
     mutations[key] = value;
 }

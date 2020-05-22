@@ -100,6 +100,7 @@ public:
      * @return Color of the Bacterium::
      */
     MutableColor getColor() const;
+    void setAbstinence(bool abstinence_);
     /*!
      * @brief Adds a new property to mutations map
      * @param Key of the property

@@ -11,7 +11,6 @@ Petridish::Petridish(const Vec2d &position_, const double &radius_, const double
 { }
 
 bool Petridish::addBacterium(Bacterium* bacterium){
-    std::cerr << "affiche" << std::endl;
     if(bacterium!=nullptr){
         if(*this > *bacterium){
             buffer.push_back(bacterium);
@@ -79,8 +78,6 @@ void Petridish::update(sf::Time dt){
     bacteria.erase(remove(bacteria.begin(),bacteria.end(),nullptr),bacteria.end());
     append(buffer, bacteria);
     buffer.clear();
-    std::cerr << "Bacteria: "<< bacteria.size() << std::endl;
-    std::cerr << "Buffer: "<< buffer.size() << std::endl;
     for(auto& phage:phages){
         phage->update(dt);
     }
