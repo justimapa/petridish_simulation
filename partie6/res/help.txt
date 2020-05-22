@@ -13,9 +13,9 @@ Arrows	: move simulation
 Tab	: switch to next
 	control
 PageUp	: increase CC
-PageDown  : decrease CC
-S	  : add simple bacterium
-T	: add TwitchingMotility
-	bacterium at MP
-1-2	: add swarm bacterium
+PageDown: decrease CC
+S	: add SimpleBacterium
+T	: add TwitchingBacterium
+1-2	: add SwarmBacterium
 	  of type 1-2 at MP
+P       : add Bacteriophage  

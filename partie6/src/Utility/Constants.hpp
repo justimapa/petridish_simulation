@@ -24,6 +24,7 @@ std::string const SIMPLE_BACTERIA = "simple bacteria";
 std::string const TWITCHING_BACTERIA = "twitching bacteria";
 std::string const SWARM_BACTERIA = "swarm bacteria";
 std::string const BACTERIA = "bacteria";
+std::string const BACTERIOPHAGES = "bacteriophages";
 std::string const SPEED = "speed";
 std::string const BETTER = "tumble better prob";
 std::string const WORSE = "tumble worse prob";

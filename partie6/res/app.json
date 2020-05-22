@@ -12,7 +12,7 @@
     },
     "generator" : {
         "nutriment" : {
-            "delay" : 2.0,
+            "delay" : 0.1,
             "prob" : 1
         }
     },
@@ -126,7 +126,7 @@
             "min" : 5
         },
         "speed" : {
-            "initial" : 60,
+            "initial" : 30,
             "rate" : 0.8,
             "sigma" : 0.4
         },

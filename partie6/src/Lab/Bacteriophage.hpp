@@ -14,6 +14,7 @@
 class Bacteriophage : public CircularBody, public Drawable, public Updatable, public DiffEqFunction
 {
 public:
+    static std::map<int, int> phageCounterMap;
     /*!
      * @brief Constructs a Bacteriophage:: fully set up
      * @param Position

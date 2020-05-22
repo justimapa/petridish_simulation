@@ -2,6 +2,8 @@
 #include "Application.hpp"
 #include "Random/Random.hpp"
 
+std::map<int, int> Bacteriophage::phageCounterMap;
+
 Bacteriophage::Bacteriophage(Vec2d const& position, double const& radius, Vec2d const& direction)
 : CircularBody(position, radius),
   direction(direction),
@@ -9,7 +11,7 @@ Bacteriophage::Bacteriophage(Vec2d const& position, double const& radius, Vec2d 
   status("LYTIC"),
   delay(sf::Time::Zero)
 {
-
+    ++phageCounterMap[getAppEnv().getCurrentPetridishId()];
 }
 
 void Bacteriophage::drawOn(sf::RenderTarget &target) const{
@@ -102,5 +104,5 @@ void Bacteriophage::resetDelay(){
 }
 
 Bacteriophage::~Bacteriophage(){
-
+    --phageCounterMap[getAppEnv().getCurrentPetridishId()];
 }
