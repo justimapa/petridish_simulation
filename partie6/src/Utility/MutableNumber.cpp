@@ -69,6 +69,3 @@ MutableNumber MutableNumber::positive(j::Value const& config, bool hasMax, doubl
 {
     return MutableNumber(config["initial"].toDouble(), config["rate"].toDouble(), config["sigma"].toDouble(), true, 0.0, hasMax, max);
 }
-MutableNumber::~MutableNumber(){
-
-}

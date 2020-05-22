@@ -117,7 +117,11 @@ public:
      * @param Fraction of time dt after which the Lab:: is updated
      */
     void update(sf::Time dt);
+<<<<<<< HEAD
     std::unordered_map<std::string, double> fetchData(const std::string &) ;
+=======
+    std::unordered_map<std::string, double> fetchData(const std::string &)const;
+>>>>>>> 7bafe0de38e50ad751976f737795ecf92bb20578
     /*!
      * @brief Erases all nutriments and bacteria within the dish
      */
@@ -127,12 +131,33 @@ public:
      */
     ~Lab();
     /* The following methods are for the multiple petridish extension*/
-    void setActivePetridish(int);
+    /*!
+     * @brief Setter for the currentDishId
+     */
+    void setCurrentDishId(int);
+    /*!
+     * @brief Getter for the currentDishId
+     * @return int the currentDishId
+     */
     int getCurrentPetridishId()const;
+    /*!
+     * @brief Getter for the Current Petridish
+     * @return A pointer to the current Petridish
+     */
     Petridish* getCurrentPetridish()const;
+    /*!
+     * @brief Increments the currentDishId
+     */
     void nextPetridish();
+    /*!
+     * @brief decrements the currentDishId
+     */
     void previousPetridish();
-    void addPetridish(int);
+    /*!
+     * @brief Adds a Petridish
+     * @param int id of the Petridish
+     */
+    void addPetridish(int id);
 private:
     int currentDishId;
     NutrimentGenerator generator;

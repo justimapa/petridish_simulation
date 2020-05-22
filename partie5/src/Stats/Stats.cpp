@@ -34,7 +34,7 @@ void Stats::setActive(int id){
 }
 
 
-string Stats::getCurrentTitle(){
+string Stats::getCurrentTitle() const{
     try{
         auto paire=titles.find(currentid);
         return  paire->second;

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Bacteria_Simulator_SSV_2020_STEP5)
+project(Bacteria_Simulator_SSV_2020_STEP6)
 
 # set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_STANDARD 14)

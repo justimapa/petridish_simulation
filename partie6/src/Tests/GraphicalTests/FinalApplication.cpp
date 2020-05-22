@@ -33,14 +33,14 @@ void FinalApplication::onRun()
 void FinalApplication::onSimulationStart()
 {
 	Application::onSimulationStart();
-    //add Petridishes
+    //add Petridishes and adds the swarm 1 and 2 to each of the dishes
     for(int i=0;i<5;++i){
         getEnv().addPetridish(i);
-        getEnv().setActivePetridish(i);
+        getEnv().setCurrentDishId(i);
         getEnv().addSwarm(new Swarm("1"));
         getEnv().addSwarm(new Swarm("2"));
     }
-    getEnv().setActivePetridish(0);
+    getEnv().setCurrentDishId(0);
 }
 
 void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)
