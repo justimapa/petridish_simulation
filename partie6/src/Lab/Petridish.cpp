@@ -26,7 +26,7 @@ bool Petridish::addBacterium(Bacterium* bacterium){
 bool Petridish::addPhage(Bacteriophage* phage){
     if(phage!=nullptr){
         if(*this > *phage){
-            phages.push_back(phage);
+            phagebuffer.push_back(phage);
             return true;
         }
     }
@@ -82,6 +82,8 @@ void Petridish::update(sf::Time dt){
     for(auto& phage:phages){
         phage->update(dt);
     }
+    append(phagebuffer, phages);
+    phagebuffer.clear();
 }
 void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
