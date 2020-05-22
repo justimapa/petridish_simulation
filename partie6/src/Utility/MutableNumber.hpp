@@ -74,7 +74,6 @@ public:
      * static method which can be used without creating an instance of a MutableNumber::
      */
     static MutableNumber positive(j::Value const& config, bool hasMax=false, double max=0.0);
-    ~MutableNumber();
 private:
     double value;
     double prob_mutation;

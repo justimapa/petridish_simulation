@@ -25,7 +25,6 @@ public:
      * @return Color recognized by SFML
      */
     sf::Color get() const;
-    ~MutableColor();
 private:
     std::array<MutableNumber, 4> RGBA;
 };
