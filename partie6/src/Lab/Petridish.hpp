@@ -134,7 +134,7 @@ public:
 
 private:
     std::vector<Bacterium*> bacteria;
-    std::vector<Bacterium*> clones;
+    std::vector<Bacterium*> buffer;
     std::vector<Nutriment*> nutriments;
     std::vector<Swarm*> swarms;
     std::vector<Bacteriophage*> phages;

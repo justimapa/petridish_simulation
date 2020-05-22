@@ -71,7 +71,6 @@ void Lab::refreshConfig(){
 void Lab::addBacterium(Bacterium* bact){
     getCurrentPetridish()->addBacterium(bact);
 }
-
 void Lab::addPhage(Bacteriophage* phage){
     getCurrentPetridish()->addPhage(phage);
 }

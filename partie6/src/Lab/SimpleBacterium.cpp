@@ -129,12 +129,9 @@ j::Value& SimpleBacterium::getConfig() const{
     return getAppConfig()["simple bacterium"];
 }
 Bacterium* SimpleBacterium::clone(){
-    if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
         return new_Bact;
-    }
-    return nullptr;
 }
 SimpleBacterium::~SimpleBacterium()
 {
