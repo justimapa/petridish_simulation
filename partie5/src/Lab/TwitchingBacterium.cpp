@@ -54,7 +54,7 @@ void TwitchingBacterium::update(sf::Time dt){
             current_state = EAT;
         }
     }
-    if ((grip.getPosition()-getPosition()).length() >= getProperty("max tentacle length").get()){
+    if ((grip.getPosition()-getPosition()).length() >= getProperty("max tentacle length").get() or  getAppEnv().doesCollideWithDish(grip)){
             current_state = RETRACT;
     }
     if((grip.getPosition()-getPosition()).length() <= getRadius()){
