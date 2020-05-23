@@ -30,9 +30,10 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
     addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
     ++counter;
+    speed_tot+=getProperty("speed").get();
     better+=getProperty("tumble better").get();
     worse+=getProperty("tumble worse").get();
-    speed_tot+=getProperty("speed").get();
+
 }
 SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
     Bacterium(other),
@@ -41,9 +42,6 @@ SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
               algo(other.algo)
 {
     ++counter;
-    speed_tot+=getProperty("speed").get();
-    better+=getProperty("tumble better").get();
-    worse+=getProperty("tumble worse").get();
 }
 void SimpleBacterium::move(sf::Time dt){
     Vec2d movement = stepDiffEq(getPosition(),getSpeedVector(),dt,(*this),DiffEqAlgorithm::EC).position - getPosition();
@@ -130,6 +128,9 @@ Bacterium* SimpleBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
+        better+=new_Bact->getProperty("tumble better").get();
+        worse+=new_Bact->getProperty("tumble worse").get();
+        speed_tot+=new_Bact->getProperty("speed").get();
         return new_Bact;
     }
     return nullptr;

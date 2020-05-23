@@ -18,7 +18,7 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
 {
     swarm->addSwarmBacterium(this);
     ++counter;
-    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
+    speed_tot+=(getProperty("speed").get());
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
@@ -26,7 +26,6 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 {
     swarm->addSwarmBacterium(this);
     ++counter;
-    speed_tot+=(getConfig()["speed"]["initial"].toDouble());
 
 }
 Vec2d SwarmBacterium::getSpeedVector()const{
@@ -65,6 +64,7 @@ Bacterium* SwarmBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new SwarmBacterium(*this));
         mutation(new_Bact);
+        speed_tot+=new_Bact->getProperty("speed").get();
         return new_Bact;
     }
     return nullptr;
@@ -85,6 +85,6 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-   speed_tot-=(getConfig()["speed"]["initial"].toDouble());
+   speed_tot-=(getProperty("speed").get());
    --counter;
 }

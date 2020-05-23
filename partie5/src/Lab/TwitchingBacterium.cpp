@@ -36,8 +36,6 @@ TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
 {
     CircularBody::move(Vec2d(5,5));
     ++counter;
-    tentacle_length_tot+=getProperty("max tentacle length").get();
-    tentacle_speed_tot+=getProperty("tentacle speed").get();
 }
 void TwitchingBacterium::drawOn(sf::RenderTarget& targetWindow) const{
     auto line = buildLine(getPosition(), grip.getPosition(), getColor().get(), 1.0);
@@ -105,6 +103,8 @@ Bacterium* TwitchingBacterium::clone(){
     if(getMinEnergyDivision()<=getEnergy()){
         Bacterium* new_Bact(new TwitchingBacterium(*this));
         mutation(new_Bact);
+        tentacle_length_tot+=new_Bact->getProperty("max tentacle length").get();
+        tentacle_speed_tot+=new_Bact->getProperty("tentacle speed").get();
         return new_Bact;
     }
     return nullptr;
