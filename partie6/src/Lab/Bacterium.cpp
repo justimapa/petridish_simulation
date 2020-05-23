@@ -7,15 +7,14 @@
 using namespace std;
 
 map<int,double> Bacterium::speedMap;
+map<int,double> Bacterium::immuneCounter;
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
-                     double const& radius,MutableColor const& color, MutableNumber immunity_prob_)
+                     double const& radius,MutableColor const& color)
 : CircularBody(position,radius),
   energy(energy),
   direction(direction),
   color(color),
   abstinence(false),
-  immunity_prob(immunity_prob_),
-  immunity(false),
   petridishId(getAppEnv().getCurrentPetridishId())
 {
 
@@ -26,8 +25,6 @@ Bacterium::Bacterium(Bacterium& other):
     direction(-other.direction),
     color(other.color),
     abstinence(other.abstinence),
-    immunity_prob(other.immunity_prob),
-    immunity(other.immunity),
     mutations(other.mutations),
     petridishId(other.petridishId)
 {
@@ -51,7 +48,7 @@ void Bacterium::drawOn(sf::RenderTarget& target) const{
 void Bacterium::update(sf::Time dt){
     delay+=dt;
     move(dt);
-    toggleImmunity(immunity_prob);
+
     if(getAppEnv().doesCollideWithDish((*this),petridishId)){
         std::cerr << "Effets de bord" << std::endl;
         direction=-direction;
@@ -108,7 +105,7 @@ void Bacterium::setAbstinence(bool abstinence_){
 bool Bacterium::getImmunity() const{
     return immunity;
 }
-void Bacterium::toggleImmunity(MutableNumber immunity_){
+void Bacterium::toggleImmunity(){
     //If MutableNumber:: value passes threshold value Bacterium:: becomes immune,
     //Initial values can be controlled from JSON file
     if(getProperty("immunity").get() >= getConfig()["immunity threshold"].toDouble()){
@@ -140,5 +137,7 @@ void Bacterium::reset(){
     delay=sf::Time::Zero;
 }
 Bacterium::~Bacterium(){
-
+    if(getImmunity()){
+        --immuneCounter[petridishId];
+    }
 }

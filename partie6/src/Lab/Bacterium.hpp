@@ -26,6 +26,7 @@ class Bacterium : public CircularBody, public Drawable, public Updatable
 public:
     //counter for the total speed of the different subclasses of Bacterium:: in a given Petridish::
     static std::map<int,double> speedMap;
+    static std::map<int,double> immuneCounter;
     /*!
      * @brief Constructs a Bacterium:: fully set up
      * @param Energy qty
@@ -35,7 +36,7 @@ public:
      * @param Color that can change over time
      * @return A Bacterium:: with all parameters set
      */
-    Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&, MutableNumber immunity_prob_);
+    Bacterium(Quantity const&, Vec2d const& position_, Vec2d const& direction_, double const& radius_, MutableColor const&);
     /*!
      * @brief Copy constructor for Bacterium::
      * @param Original Bacterium::
@@ -128,9 +129,8 @@ public:
     bool getImmunity() const;
     /*!
      * @brief Toggles immunity boolean when MutableNumber:: value passes threshold
-     * @param MutableNumber:: representing the immunity attribute of the Bacterium::
      */
-    void toggleImmunity(MutableNumber immunity_);
+    void toggleImmunity();
     /*!
      * @brief Resets the Delay between energy consumptions
      */
@@ -200,7 +200,6 @@ private:
     MutableColor color;
     bool abstinence;
     sf::Time delay;
-    MutableNumber immunity_prob;
     bool immunity;
     std::map <std::string,MutableNumber> mutations;
 protected:

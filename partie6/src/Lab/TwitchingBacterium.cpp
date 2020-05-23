@@ -18,16 +18,20 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
   position_,
   Vec2d::fromRandomAngle(),
   uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-  getConfig()["color"], MutableNumber::probability(getConfig()["immunity"])),
+  getConfig()["color"]),
   grip(position_, getRadius()/4.0),
   current_state(IDLE)
 {
     addProperty("max tentacle length", MutableNumber::positive(getConfig()["tentacle"]["length"]));
     addProperty("tentacle speed", MutableNumber::positive(getConfig()["tentacle"]["speed"]));
     addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
+    toggleImmunity();
     ++twitchingCounterMap[petridishId];
     tentacleLengthMap[petridishId]+=getProperty("max tentacle length").get();
     tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();
+    if(getImmunity()){
+        ++immuneCounter[petridishId];
+    }
 }
 TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
 :
@@ -102,9 +106,12 @@ void TwitchingBacterium::move(sf::Time dt){
 }
 Bacterium* TwitchingBacterium::clone(){
     Bacterium* new_Bact(new TwitchingBacterium(*this));
-    mutation(new_Bact);
+    toggleImmunity();
     tentacleLengthMap[petridishId]+=new_Bact->getProperty("max tentacle length").get();
     tentacleSpeedMap[petridishId]+=new_Bact->getProperty("tentacle speed").get();
+    if(new_Bact->getImmunity()){
+        ++immuneCounter[petridishId];
+    }
     return new_Bact;
 }
 Quantity TwitchingBacterium::eatableQuantity(NutrimentA& nutriment){

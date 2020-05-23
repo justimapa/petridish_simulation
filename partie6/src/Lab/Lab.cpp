@@ -109,6 +109,9 @@ std::unordered_map<std::string, double> Lab::fetchData(const std::string & str) 
    if(str==s::BACTERIA){
        mymap[s::SPEED]=Bacterium::speedMap[getCurrentPetridishId()]/double(SimpleBacterium::simpleCounterMap[getCurrentPetridishId()]+SwarmBacterium::swarmCounterMap[getCurrentPetridishId()]);
    }
+   if(str==s::IMMUNE){
+       mymap[s::TOTAL_IMMUNE]=Bacterium::immuneCounter[getCurrentPetridishId()];
+   }
    return mymap;
 
 }

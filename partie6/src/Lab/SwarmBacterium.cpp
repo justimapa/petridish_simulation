@@ -14,13 +14,17 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   position,
   Vec2d::fromRandomAngle(),
   uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-  group->getInitialColor(), MutableNumber::probability(getConfig()["immunity"])),
+  group->getInitialColor()),
   swarm(group)
 {
     swarm->addSwarmBacterium(this);
     addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
+    toggleImmunity();
     ++swarmCounterMap[petridishId];
     speedMap[petridishId]+=getProperty("speed").get();
+    if(getImmunity()){
+        ++immuneCounter[petridishId];
+    }
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 : Bacterium(other),
@@ -64,7 +68,11 @@ void SwarmBacterium::drawOn(sf::RenderTarget & targetWindow) const{
 Bacterium* SwarmBacterium::clone(){
     Bacterium* new_Bact(new SwarmBacterium(*this));
     mutation(new_Bact);
+    toggleImmunity();
     speedMap[getAppEnv().getCurrentPetridishId()]+=new_Bact->getProperty("speed").get();
+    if(new_Bact->getImmunity()){
+        ++immuneCounter[petridishId];
+    }
     return new_Bact;
 }
 Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment){

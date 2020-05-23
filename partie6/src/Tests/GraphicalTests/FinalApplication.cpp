@@ -26,6 +26,7 @@ void FinalApplication::onRun()
     addGraph(s::SIMPLE_BACTERIA, { s::BETTER, s::WORSE}, 0, 10);
     addGraph(s::TWITCHING_BACTERIA, { s::TENTACLE_LENGTH, s::TENTACLE_SPEED}, 0, 150);
     addGraph(s::BACTERIA, { s::SPEED}, 20, 50);
+    addGraph(s::IMMUNE, { s::TOTAL_IMMUNE}, 0, 150);
     setActiveGraph(0);
 
 }

@@ -149,7 +149,7 @@
             "rate" : 0.5,
             "sigma" : 0.2   
         },
-        "immunity threshold" : 0.51
+        "immunity threshold" : 0.6
     },
 
     "stats" : {
@@ -376,7 +376,7 @@
             "rate" : 0.5,
             "sigma" : 0.2   
         },
-        "immunity threshold" : 0.5
+        "immunity threshold" : 0.75
 
     },
     "bacteriophage" : {

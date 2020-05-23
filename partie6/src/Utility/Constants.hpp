@@ -33,6 +33,8 @@ std::string const NUTRIMENT_SOURCES = "nutriment sources";
 std::string const TENTACLE_LENGTH = "tentacle length";
 std::string const TENTACLE_SPEED = "tentacle speed";
 std::string const DISH_TEMPERATURE = "temperature";
+std::string const IMMUNE = "immune";
+std::string const TOTAL_IMMUNE = "immune bacteria";
 
 } // s
 

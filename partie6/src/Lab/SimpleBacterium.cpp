@@ -19,7 +19,7 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
             position,
             Vec2d::fromRandomAngle(),
             uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-            getConfig()["color"], MutableNumber::probability(getConfig()["immunity"])),
+            getConfig()["color"]),
   t(uniform(0.0,PI)),
   rotation(getDirection().angle()),
   oldScore(0.0),
@@ -30,10 +30,14 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
     addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
     addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
+    toggleImmunity();
     ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
     betterMap[petridishId]+=getProperty("tumble better").get();
     worseMap[petridishId]+=getProperty("tumble worse").get();
     speedMap[petridishId]+=getProperty("speed").get();
+    if(getImmunity()){
+        ++immuneCounter[petridishId];
+    }
 }
 
 SimpleBacterium::SimpleBacterium(SimpleBacterium & other):
@@ -129,9 +133,13 @@ j::Value& SimpleBacterium::getConfig() const{
 Bacterium* SimpleBacterium::clone(){
         Bacterium* new_Bact(new SimpleBacterium(*this));
         mutation(new_Bact);
+        toggleImmunity();
         betterMap[petridishId]+=new_Bact->getProperty("tumble better").get();
         worseMap[petridishId]+=new_Bact->getProperty("tumble worse").get();
         speedMap[petridishId]+=new_Bact->getProperty("speed").get();
+        if(new_Bact->getImmunity()){
+            ++immuneCounter[petridishId];
+        }
         return new_Bact;
 }
 SimpleBacterium::~SimpleBacterium()
