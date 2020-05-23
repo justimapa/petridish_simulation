@@ -37,6 +37,8 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     speedMap[petridishId]+=getProperty("speed").get();
     if(getImmunity()){
         ++immuneCounter[petridishId];
+    }else{
+        ++vulnerableCounter[petridishId];
     }
 }
 
@@ -139,6 +141,8 @@ Bacterium* SimpleBacterium::clone(){
         speedMap[petridishId]+=new_Bact->getProperty("speed").get();
         if(new_Bact->getImmunity()){
             ++immuneCounter[petridishId];
+        }else{
+            ++vulnerableCounter[petridishId];
         }
         return new_Bact;
 }

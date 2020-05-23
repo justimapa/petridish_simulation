@@ -91,7 +91,6 @@ std::unordered_map<std::string, double> Lab::fetchData(const std::string & str) 
        mymap[s::SIMPLE_BACTERIA]=SimpleBacterium::simpleCounterMap[getCurrentPetridishId()];
        mymap[s::TWITCHING_BACTERIA]=TwitchingBacterium::twitchingCounterMap[getCurrentPetridishId()];
        mymap[s::SWARM_BACTERIA]=SwarmBacterium::swarmCounterMap[getCurrentPetridishId()];
-       mymap[s::BACTERIOPHAGES]=Bacteriophage::phageCounterMap[getCurrentPetridishId()];
        mymap[s::NUTRIMENT_SOURCES]=Nutriment::nutrimentCounterMap[getCurrentPetridishId()];
        mymap[s::DISH_TEMPERATURE]=getCurrentPetridish()->getTemperature();
    }
@@ -111,6 +110,8 @@ std::unordered_map<std::string, double> Lab::fetchData(const std::string & str) 
    }
    if(str==s::IMMUNE){
        mymap[s::TOTAL_IMMUNE]=Bacterium::immuneCounter[getCurrentPetridishId()];
+       mymap[s::TOTAL_VULNERABLE]=Bacterium::vulnerableCounter[getCurrentPetridishId()];
+       mymap[s::BACTERIOPHAGES]=Bacteriophage::phageCounterMap[getCurrentPetridishId()];
    }
    return mymap;
 

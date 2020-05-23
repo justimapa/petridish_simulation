@@ -24,6 +24,8 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
     speedMap[petridishId]+=getProperty("speed").get();
     if(getImmunity()){
         ++immuneCounter[petridishId];
+    }else{
+        ++vulnerableCounter[petridishId];
     }
 }
 SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
@@ -72,6 +74,8 @@ Bacterium* SwarmBacterium::clone(){
     speedMap[getAppEnv().getCurrentPetridishId()]+=new_Bact->getProperty("speed").get();
     if(new_Bact->getImmunity()){
         ++immuneCounter[petridishId];
+    }else{
+        ++vulnerableCounter[petridishId];
     }
     return new_Bact;
 }

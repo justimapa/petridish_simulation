@@ -7,7 +7,8 @@
 using namespace std;
 
 map<int,double> Bacterium::speedMap;
-map<int,double> Bacterium::immuneCounter;
+map<int,int> Bacterium::immuneCounter;
+map<int,int> Bacterium::vulnerableCounter;
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
                      double const& radius,MutableColor const& color)
 : CircularBody(position,radius),
@@ -139,5 +140,7 @@ void Bacterium::reset(){
 Bacterium::~Bacterium(){
     if(getImmunity()){
         --immuneCounter[petridishId];
+    }else{
+        --vulnerableCounter[petridishId];
     }
 }

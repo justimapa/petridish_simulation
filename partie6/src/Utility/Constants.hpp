@@ -35,7 +35,7 @@ std::string const TENTACLE_SPEED = "tentacle speed";
 std::string const DISH_TEMPERATURE = "temperature";
 std::string const IMMUNE = "immune";
 std::string const TOTAL_IMMUNE = "immune bacteria";
-
+std::string const TOTAL_VULNERABLE ="vulnerable bacteria";
 } // s
 
 #endif // INFOSV_CONSTANTS_HPP

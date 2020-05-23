@@ -31,6 +31,8 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
     tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();
     if(getImmunity()){
         ++immuneCounter[petridishId];
+    }else{
+        ++vulnerableCounter[petridishId];
     }
 }
 TwitchingBacterium::TwitchingBacterium(TwitchingBacterium & other)
@@ -111,6 +113,8 @@ Bacterium* TwitchingBacterium::clone(){
     tentacleSpeedMap[petridishId]+=new_Bact->getProperty("tentacle speed").get();
     if(new_Bact->getImmunity()){
         ++immuneCounter[petridishId];
+    }else{
+        ++vulnerableCounter[petridishId];
     }
     return new_Bact;
 }

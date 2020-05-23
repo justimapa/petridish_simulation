@@ -26,7 +26,8 @@ class Bacterium : public CircularBody, public Drawable, public Updatable
 public:
     //counter for the total speed of the different subclasses of Bacterium:: in a given Petridish::
     static std::map<int,double> speedMap;
-    static std::map<int,double> immuneCounter;
+    static std::map<int,int> immuneCounter;
+    static std::map<int,int> vulnerableCounter;
     /*!
      * @brief Constructs a Bacterium:: fully set up
      * @param Energy qty
