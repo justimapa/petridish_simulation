@@ -8,12 +8,14 @@ using namespace std;
 
 map<int,double> Bacterium::speedMap;
 Bacterium::Bacterium(Quantity const& energy,Vec2d const& position,Vec2d const& direction,
-                     double const& radius,MutableColor const& color)
+                     double const& radius,MutableColor const& color, MutableNumber immunity_prob_)
 : CircularBody(position,radius),
   energy(energy),
   direction(direction),
   color(color),
   abstinence(false),
+  immunity_prob(immunity_prob_),
+  immunity(false),
   petridishId(getAppEnv().getCurrentPetridishId())
 {
 
@@ -24,6 +26,8 @@ Bacterium::Bacterium(Bacterium& other):
     direction(-other.direction),
     color(other.color),
     abstinence(other.abstinence),
+    immunity_prob(other.immunity_prob),
+    immunity(other.immunity),
     mutations(other.mutations),
     petridishId(other.petridishId)
 {
@@ -42,6 +46,7 @@ void Bacterium::drawOn(sf::RenderTarget& target) const{
 void Bacterium::update(sf::Time dt){
     delay+=dt;
     move(dt);
+    toggleImmunity(immunity_prob);
     if(getAppEnv().doesCollideWithDish((*this),petridishId)){
         direction=-direction;
     }
@@ -93,6 +98,18 @@ MutableColor Bacterium::getColor() const{
 }
 void Bacterium::setAbstinence(bool abstinence_){
     abstinence = abstinence_;
+}
+bool Bacterium::getImmunity() const{
+    return immunity;
+}
+void Bacterium::toggleImmunity(MutableNumber immunity_){
+    std::cerr << getProperty("immunity").get() << std::endl;
+    if(getProperty("immunity").get() >= 0.5){
+        immunity = true;
+    } else {
+        immunity = false;
+    }
+    std::cerr << immunity << std::endl;
 }
 void Bacterium::addProperty(const string& key,const MutableNumber& value){
     mutations[key] = value;

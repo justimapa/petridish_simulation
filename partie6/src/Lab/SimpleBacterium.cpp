@@ -19,7 +19,7 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
             position,
             Vec2d::fromRandomAngle(),
             uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-            getConfig()["color"]),
+            getConfig()["color"], MutableNumber::probability(getConfig()["immunity"])),
   t(uniform(0.0,PI)),
   rotation(getDirection().angle()),
   oldScore(0.0),
@@ -29,6 +29,7 @@ SimpleBacterium::SimpleBacterium(const Vec2d& position)
     addProperty("speed",MutableNumber::positive(getConfig()["speed"]));
     addProperty("tumble better",MutableNumber::positive(getConfig()["tumble"]["better"]));
     addProperty("tumble worse",MutableNumber::positive(getConfig()["tumble"]["worse"]));
+    addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
     ++simpleCounterMap[getAppEnv().getCurrentPetridishId()];
     betterMap[petridishId]+=getProperty("tumble better").get();
     worseMap[petridishId]+=getProperty("tumble worse").get();

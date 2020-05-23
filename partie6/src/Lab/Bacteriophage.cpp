@@ -78,14 +78,18 @@ void Bacteriophage::aim(sf::Time dt){
 }
 
 void Bacteriophage::infect(){
-    //LYTIC phages kill Bacterium very quickly
-    if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYTIC"){
-        (*getAppEnv().getBacteriumColliding(*this,petridishId)).consumeEnergy(20);
-         getAppEnv().addPhage(new Bacteriophage(*this),petridishId);
+    //LYTIC phages kill Bacterium very quickly and multiply proportionaly to the Bacterium's energy
+    if(status == "LYTIC" and getBacteriumColliding() != nullptr){
+        if(!(getBacteriumColliding()->getImmunity())){
+             getBacteriumColliding()->consumeEnergy(20);
+             getAppEnv().addPhage(new Bacteriophage(*this),petridishId);
+        }
     }
     //LYSOGENIC phages toggle Bacterium's abstinence which makes it unable to regain any energy
-    if(getAppEnv().getBacteriumColliding(*this,petridishId) != nullptr and status == "LYSOGENIC"){
-        (*getAppEnv().getBacteriumColliding(*this,petridishId)).setAbstinence(true);
+    if(status == "LYSOGENIC" and getBacteriumColliding() != nullptr){
+        if(!(getBacteriumColliding()->getImmunity())){
+            getBacteriumColliding()->setAbstinence(true);
+        }
     }
 }
 
@@ -115,6 +119,10 @@ Vec2d Bacteriophage::getDirection() const{
 
 void Bacteriophage::setDirection(const Vec2d& direction_){
     direction=direction_;
+}
+
+Bacterium* Bacteriophage::getBacteriumColliding() const{
+    return getAppEnv().getBacteriumColliding(*this, petridishId);
 }
 
 void Bacteriophage::resetDelay(){

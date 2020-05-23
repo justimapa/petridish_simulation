@@ -18,12 +18,13 @@ TwitchingBacterium::TwitchingBacterium(const Vec2d& position_)
   position_,
   Vec2d::fromRandomAngle(),
   uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-  getConfig()["color"]),
+  getConfig()["color"], MutableNumber::probability(getConfig()["immunity"])),
   grip(position_, getRadius()/4.0),
   current_state(IDLE)
 {
     addProperty("max tentacle length", MutableNumber::positive(getConfig()["tentacle"]["length"]));
     addProperty("tentacle speed", MutableNumber::positive(getConfig()["tentacle"]["speed"]));
+    addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
     ++twitchingCounterMap[petridishId];
     tentacleLengthMap[petridishId]+=getProperty("max tentacle length").get();
     tentacleSpeedMap[petridishId]+=getProperty("tentacle speed").get();

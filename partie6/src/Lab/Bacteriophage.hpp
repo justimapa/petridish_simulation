@@ -1,5 +1,6 @@
 #pragma once
 #include "CircularBody.hpp"
+#include "Bacterium.hpp"
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
 #include "Utility/DiffEqSolver.hpp"
@@ -66,6 +67,7 @@ public:
      * @return The speed vector of the Bacteriophage::
      */
     Vec2d getSpeedVector() const;
+    Bacterium* getBacteriumColliding() const;
     /*!
      * @brief Returns a zero force
      * @param Position

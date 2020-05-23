@@ -142,6 +142,11 @@
                 "rate" : 0.8,
                 "sigma" : 0.1
             }
+        },
+        "immunity" : {
+            "initial" : 0.2,
+            "rate" : 0.5,
+            "sigma" : 0.2   
         }
     },
 
@@ -203,6 +208,11 @@
         },
         "speed" : {
             "initial" : 30
+        },
+        "immunity" : {
+            "initial" : 0.3,
+            "rate" : 0.5,
+            "sigma" : 0.2   
         }
     },
     "swarms" : {
@@ -357,7 +367,13 @@
                 "rate" : 0.8,
                 "sigma" : 10
             }
+        },
+        "immunity" : {
+            "initial" : 0.4,
+            "rate" : 0.5,
+            "sigma" : 0.2   
         }
+
     },
     "window" : {
         "antialiasing level" : 4,

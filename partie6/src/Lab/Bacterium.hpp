@@ -35,7 +35,7 @@ public:
      * @param Color that can change over time
      * @return A Bacterium:: with all parameters set
      */
-    Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&);
+    Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&, MutableNumber immunity_prob_);
     /*!
      * @brief Copy Constructor for Bacterium::
      * @param Original Bacterium:: who's energy will be halved
@@ -122,6 +122,16 @@ public:
      */
     MutableNumber getProperty(const std::string&) const;
     /*!
+     * @brief Getter for the immunity of the Bacterium:: against Bacteriophages::
+     * @return Boolean for the Bacterium's immunity
+     */
+    bool getImmunity() const;
+    /*!
+     * @brief Setter for the immunity of the Bacterium::
+     * @param Boolean to be set
+     */
+    void toggleImmunity(MutableNumber immunity_);
+    /*!
      * @brief Resets the Delay between energy consumptions
      */
     void reset();
@@ -189,8 +199,10 @@ private:
     Vec2d direction;
     MutableColor color;
     bool abstinence;
-    std::map <std::string,MutableNumber> mutations;
     sf::Time delay;
+    MutableNumber immunity_prob;
+    bool immunity;
+    std::map <std::string,MutableNumber> mutations;
 protected:
     //The petridish it belongs to
     int petridishId;

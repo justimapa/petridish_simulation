@@ -14,11 +14,11 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
   position,
   Vec2d::fromRandomAngle(),
   uniform(getConfig()["radius"]["min"].toDouble(),getConfig()["radius"]["max"].toDouble()),
-  group->getInitialColor()),
+  group->getInitialColor(), MutableNumber::probability(getConfig()["immunity"])),
   swarm(group)
 {
-
     swarm->addSwarmBacterium(this);
+    addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
     ++swarmCounterMap[petridishId];
     speedMap[petridishId]+=getProperty("speed").get();
 }
@@ -28,8 +28,6 @@ SwarmBacterium::SwarmBacterium(SwarmBacterium & other)
 {
     swarm->addSwarmBacterium(this);
     ++swarmCounterMap[getAppEnv().getCurrentPetridishId()];
-
-
 }
 Vec2d SwarmBacterium::getSpeedVector() const{
     return getDirection()*(getConfig()["speed"]["initial"].toDouble());
