@@ -37,7 +37,12 @@ void Bacterium::drawOn(sf::RenderTarget& target) const{
     auto const circle = buildCircle(getPosition(),getRadius(),color.get());
     target.draw(circle);
     if(isDebugOn()){
-        string message="Energy : "+to_string((int)energy);
+        string message="Energy : "+to_string((int)energy) + ",";
+        if(getImmunity()){
+            message += " Immune";
+        } else {
+            message += " Not Immune";
+        }
         Vec2d textposition(getPosition()[0], getPosition()[1]+getRadius());
         auto const text=buildText(message, textposition, getAppFont(), 15, sf::Color::Red);
         target.draw(text);
@@ -48,6 +53,7 @@ void Bacterium::update(sf::Time dt){
     move(dt);
     toggleImmunity(immunity_prob);
     if(getAppEnv().doesCollideWithDish((*this),petridishId)){
+        std::cerr << "Effets de bord" << std::endl;
         direction=-direction;
     }
     if((getAppEnv().getNutrimentColliding((*this),petridishId)!=nullptr)
@@ -103,13 +109,13 @@ bool Bacterium::getImmunity() const{
     return immunity;
 }
 void Bacterium::toggleImmunity(MutableNumber immunity_){
-    std::cerr << getProperty("immunity").get() << std::endl;
-    if(getProperty("immunity").get() >= 0.5){
+    //If MutableNumber:: value passes threshold value Bacterium:: becomes immune,
+    //Initial values can be controlled from JSON file
+    if(getProperty("immunity").get() >= getConfig()["immunity threshold"].toDouble()){
         immunity = true;
     } else {
         immunity = false;
     }
-    std::cerr << immunity << std::endl;
 }
 void Bacterium::addProperty(const string& key,const MutableNumber& value){
     mutations[key] = value;

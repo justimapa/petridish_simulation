@@ -73,7 +73,7 @@ Quantity SwarmBacterium::eatableQuantity(NutrimentA& nutriment){
 Quantity SwarmBacterium::eatableQuantity(NutrimentB& nutriment) {
     return nutriment.eatenBy(*this);
 }
-Vec2d SwarmBacterium::f(Vec2d position, Vec2d direction) const{
+Vec2d SwarmBacterium::f(Vec2d position, Vec2d) const{
     if(swarm->hasLeader()){
     return getAppConfig()["swarms"][swarm->getId()]["force factor"].toDouble()*(swarm->getLeaderPosition()-position);
     }

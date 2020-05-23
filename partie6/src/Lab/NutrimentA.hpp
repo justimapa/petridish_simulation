@@ -30,7 +30,7 @@ public:
     virtual Quantity eatenBy(SwarmBacterium& bact) override;
     /*!
      * @brief Shortcut for access to config parameters
-     * @return The config parameters of NurtimentA::
+     * @return The config parameters of NutrimentA::
      */
     virtual j::Value const& getConfig() const override;
     /*!

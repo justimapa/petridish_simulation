@@ -29,7 +29,7 @@ public:
     virtual Quantity eatenBy(SwarmBacterium& bact) override;
     /*!
      * @brief Shortcut for access to config parameters
-     * @return The config parameters of NurtimentB::
+     * @return The config parameters of NutrimentB::
      */
     virtual j::Value const& getConfig() const override;
     /*!
@@ -48,7 +48,7 @@ public:
      */
     j::Value const& getPoisonFactor() const;
     /*!
-     * @brief Destructor for the class NutrimentA::
+     * @brief Destructor for the class NutrimentB::
      */
     virtual ~NutrimentB() override;
 };

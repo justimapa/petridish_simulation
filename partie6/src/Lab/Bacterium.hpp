@@ -37,9 +37,9 @@ public:
      */
     Bacterium(Quantity const&,Vec2d const& position_,Vec2d const& direction_,double const& radius_,MutableColor const&, MutableNumber immunity_prob_);
     /*!
-     * @brief Copy Constructor for Bacterium::
-     * @param Original Bacterium:: who's energy will be halved
-     * @return Returns a Copy of the Original Bacterium with half of original energy and the other direction
+     * @brief Copy constructor for Bacterium::
+     * @param Original Bacterium::
+     * @return Returns a copy of the original Bacterium with half of original energy and the other direction
      */
     Bacterium(Bacterium&);
     /*!
@@ -127,8 +127,8 @@ public:
      */
     bool getImmunity() const;
     /*!
-     * @brief Setter for the immunity of the Bacterium::
-     * @param Boolean to be set
+     * @brief Toggles immunity boolean when MutableNumber:: value passes threshold
+     * @param MutableNumber:: representing the immunity attribute of the Bacterium::
      */
     void toggleImmunity(MutableNumber immunity_);
     /*!

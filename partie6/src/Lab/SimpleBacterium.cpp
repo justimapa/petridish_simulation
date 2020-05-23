@@ -58,7 +58,7 @@ Quantity SimpleBacterium::eatableQuantity(NutrimentA& nutriment){
 Quantity SimpleBacterium::eatableQuantity(NutrimentB& nutriment){
     return nutriment.eatenBy(*this);
 }
-Vec2d SimpleBacterium::f(Vec2d position, Vec2d direction) const{
+Vec2d SimpleBacterium::f(Vec2d, Vec2d) const{
     return Vec2d(0,0);
 }
 Vec2d SimpleBacterium::getSpeedVector() const{

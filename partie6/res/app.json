@@ -2,8 +2,8 @@
     "debug" : true,
     "simulation":{
       "time":{
-         "factor":5,
-         "max dt":0.05,
+         "factor": 1,
+         "max dt": 0.05,
 	  "fixed step" : 0.01
       },
 	"background" : "sand.png",
@@ -12,7 +12,7 @@
     },
     "generator" : {
         "nutriment" : {
-            "delay" : 0.75,
+            "delay" : 0.5,
             "prob" : 1
         }
     },
@@ -144,10 +144,11 @@
             }
         },
         "immunity" : {
-            "initial" : 0.2,
+            "initial" : 0.5,
             "rate" : 0.5,
             "sigma" : 0.2   
-        }
+        },
+        "immunity threshold" : 0.51
     },
 
     "stats" : {
@@ -210,10 +211,11 @@
             "initial" : 30
         },
         "immunity" : {
-            "initial" : 0.3,
+            "initial" : 0.5,
             "rate" : 0.5,
             "sigma" : 0.2   
-        }
+        },
+        "immunity threshold" : 0.5
     },
     "swarms" : {
         "1" : {
@@ -369,11 +371,18 @@
             }
         },
         "immunity" : {
-            "initial" : 0.4,
+            "initial" : 0.5,
             "rate" : 0.5,
             "sigma" : 0.2   
-        }
+        },
+        "immunity threshold" : 0.5
 
+    },
+    "bacteriophage" : {
+        "speed" : {
+            "initial" : 20
+        },
+        "swap probability" : 0.9
     },
     "window" : {
         "antialiasing level" : 4,

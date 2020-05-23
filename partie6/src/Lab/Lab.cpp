@@ -81,7 +81,7 @@ void Lab::addSwarm(Swarm* swarm){
         getCurrentPetridish()->addSwarm(swarm);
 }
 bool Lab::doesCollideWithDish(CircularBody const& body, const int &id) const{
-    (((*getCurrentPetridish())&body) and not ((*getCurrentPetridish())>body.getPosition()));
+    return (((*getCurrentPetridish())&body) and not ((*getCurrentPetridish())>body.getPosition()));
 }
 
 std::unordered_map<std::string, double> Lab::fetchData(const std::string & str) const{

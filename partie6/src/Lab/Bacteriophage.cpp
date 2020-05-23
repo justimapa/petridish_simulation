@@ -81,7 +81,7 @@ void Bacteriophage::infect(){
     //LYTIC phages kill Bacterium very quickly and multiply proportionaly to the Bacterium's energy
     if(status == "LYTIC" and getBacteriumColliding() != nullptr){
         if(!(getBacteriumColliding()->getImmunity())){
-             getBacteriumColliding()->consumeEnergy(20);
+             getBacteriumColliding()->consumeEnergy(30);
              getAppEnv().addPhage(new Bacteriophage(*this),petridishId);
         }
     }
@@ -94,7 +94,7 @@ void Bacteriophage::infect(){
 }
 
 void Bacteriophage::statusSwap(){
-    if(bernoulli(0.5)){
+    if(bernoulli(getConfig()["swap probability"].toDouble())){
         if(status=="LYTIC"){
             status = "LYSOGENIC";
             return;
@@ -106,10 +106,10 @@ void Bacteriophage::statusSwap(){
 }
 
 Vec2d Bacteriophage::getSpeedVector() const{
-    return getDirection()*20;
+    return getDirection()*(getConfig()["speed"]["initial"].toDouble());
 }
 
-Vec2d Bacteriophage::f(Vec2d position, Vec2d direction) const{
+Vec2d Bacteriophage::f(Vec2d, Vec2d) const{
     return Vec2d(0,0);
 }
 
@@ -127,6 +127,10 @@ Bacterium* Bacteriophage::getBacteriumColliding() const{
 
 void Bacteriophage::resetDelay(){
     delay=sf::Time::Zero;
+}
+
+j::Value& Bacteriophage::getConfig() const{
+    return getAppConfig()["bacteriophage"];
 }
 
 Bacteriophage::~Bacteriophage(){

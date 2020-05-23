@@ -24,6 +24,11 @@ public:
      * @return A Bacteriophage:: with all parameters set
      */
     Bacteriophage(Vec2d const& position, double const& radius, Vec2d const& direction);
+    /*!
+     * @brief Copy constructor for Bacteriophage::
+     * @param Original Bacteriophage::
+     * @return Returns a copy of the original Bacteriophage::
+     */
     Bacteriophage(Bacteriophage& other);
     /*!
      * @brief Draws the Bacteriophage::
@@ -67,6 +72,12 @@ public:
      * @return The speed vector of the Bacteriophage::
      */
     Vec2d getSpeedVector() const;
+    /*!
+     * @brief Getter for the pointer on the Bacterium:: in collision
+     * with the Bacteriophage::
+     * @return The pointer on the Bacterium:: with which the Bacteriophage::
+     * is colliding
+     */
     Bacterium* getBacteriumColliding() const;
     /*!
      * @brief Returns a zero force
@@ -79,6 +90,11 @@ public:
      * @brief Resets the delay between state switches
      */
     void resetDelay();
+    /*!
+     * @brief Shortcut for access to config parameters
+     * @return The config parameters of Bacteriophage::
+     */
+    j::Value& getConfig() const;
     /*!
      * @brief Destructor for the class
      */
