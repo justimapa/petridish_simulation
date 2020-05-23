@@ -34,7 +34,8 @@ void FinalApplication::onSimulationStart()
 {
 	Application::onSimulationStart();
     //add Petridishes and adds the swarm 1 and 2 to each of the dishes
-    for(int i=0;i<5;++i){
+    //To change the number of petridishes change in JSON
+    for(int i=0;i<getAppConfig()["petri dish"]["total"].toDouble();++i){
         getEnv().addPetridish(i);
         getEnv().setCurrentDishId(i);
         getEnv().addSwarm(new Swarm("1"));
