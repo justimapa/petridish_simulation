@@ -57,6 +57,7 @@
         }
     },
     "petri dish" : {
+	"total" : 3,
         "gradient" : {
             "exponent" : {
 		"min" : 0,
