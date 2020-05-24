@@ -35,7 +35,7 @@ Le fichier de configuration à utiliser pour toutes les cibles est app.json.
 
 ##COMMANDES
 
-Les commandes pour l'utilisation d'une cible particulière sont données dans un panneau d'aide a droite de la fenêtre de simulation.
+Les commandes pour l'utilisation d'une cible particulière sont données dans un panneau d'aide à droite de la fenêtre de simulation.
 
 ##MODIFICATION DE CONCEPTION
 
@@ -48,6 +48,10 @@ Le codage du projet a été realisé en adéquation avec l'énoncé (pas de modi
 Les statistiques affichées correspondent à l'assiette de Petri visualisée, mais les différentes assiettes sont simulées simultanément.
 
 2. Une classe Bacteriophage qui permet de simuler les impacts d'un organisme qui s'attaque aux bactéries. Les bactériophages peuvent avoir deux états: lytique ou lysogénique, et ceci impacte l'effet qu'ils ont sur les bactéries.
+
+Les phages lytiques catalysent les bactéries, ce qui leur permet de se multiplier en fonction de l'énergie restante de la bactérie.
+
+Les phages lysogéniques activent l'attibut d'abstinence des bactéries, ce qui leur empêche de consommer de nutriments.
 
 3. Les bactéries, quant à eux, peuvent développer ou perdre une immunité face aux effets des bactériophages. La probabilité de d'acquérir ou de perdre cette immunité est modifiable dans le fichier de configuration, et cette probabilité est propre à chaque type de bactérie.
 
