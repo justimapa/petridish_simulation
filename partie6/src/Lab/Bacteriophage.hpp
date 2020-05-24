@@ -1,8 +1,8 @@
 #pragma once
-#include "CircularBody.hpp"
-#include "Bacterium.hpp"
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
+#include "CircularBody.hpp"
+#include "Bacterium.hpp"
 #include "Utility/DiffEqSolver.hpp"
 
 /*!
@@ -15,6 +15,7 @@
 class Bacteriophage : public CircularBody, public Drawable, public Updatable, public DiffEqFunction
 {
 public:
+    //Counter for the number of phages in a given Petridish::
     static std::map<int, int> phageCounterMap;
     /*!
      * @brief Constructs a Bacteriophage:: fully set up
@@ -49,13 +50,15 @@ public:
     /*!
      * @brief Changes the direction of movement along Bacterium:: gradient
      */
-    void aim(sf::Time dt);
+    void aim();
     /*!
-     * @brief Infects a Bacterium:: it touches
+     * @brief Infects a Bacterium:: it touches and multiplies if
+     * it's status is LYTIC
      */
     void infect();
     /*!
-     * @brief Switches between LYTIC and LYSOGENIC at random every 5 seconds
+     * @brief Switches between LYTIC and LYSOGENIC at random after a certain
+     * time interval
      */
     void statusSwap();
     /*!
@@ -102,7 +105,8 @@ public:
 private:
     Vec2d direction;
     sf::Color color;
-    //Status can be LYTIC or LYSOGENIC, determines infection effect on Bacterium::
+    //Status can be LYTIC or LYSOGENIC,
+    //which determines infection effect on Bacterium::
     std::string status;
     sf::Time delay;
     int petridishId;

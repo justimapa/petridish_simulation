@@ -383,7 +383,9 @@
         "speed" : {
             "initial" : 20
         },
-        "swap probability" : 0.9
+        "swap probability" : 0.9,
+        "swap delay" : 3.0,
+        "energy consumed" : 40
     },
     "window" : {
         "antialiasing level" : 4,

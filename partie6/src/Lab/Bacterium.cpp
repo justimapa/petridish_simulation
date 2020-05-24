@@ -49,9 +49,7 @@ void Bacterium::drawOn(sf::RenderTarget& target) const{
 void Bacterium::update(sf::Time dt){
     delay+=dt;
     move(dt);
-
     if(getAppEnv().doesCollideWithDish((*this),petridishId)){
-        std::cerr << "Effets de bord" << std::endl;
         direction=-direction;
     }
     if((getAppEnv().getNutrimentColliding((*this),petridishId)!=nullptr)

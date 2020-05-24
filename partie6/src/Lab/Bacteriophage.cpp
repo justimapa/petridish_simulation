@@ -47,8 +47,9 @@ void Bacteriophage::update(sf::Time dt){
    delay+=dt;
    move(dt);
    infect();
-   //Every 5 secs, there is a 50% probability of swaping between LYTIC and LYSOGENIC
-   if(delay >= sf::seconds(5.0)){
+   //After a certain time interval, there will be a certain probability that the phage's
+   //status switches, both the time interval and probability can be modifies through the JSON file
+   if(delay >= sf::seconds(getConfig()["swap delay"].toDouble())){
        statusSwap();
        resetDelay();
    }
@@ -62,10 +63,10 @@ void Bacteriophage::move(sf::Time dt){
     if(movement.lengthSquared()>0.001){
         (*this).CircularBody::move(movement);
     }
-    aim(dt);
+    aim();
 }
 
-void Bacteriophage::aim(sf::Time dt){
+void Bacteriophage::aim(){
     //Movement will follow Bacterium gradient
     setDirection(Vec2d::fromRandomAngle());
     Vec2d nextDirection = Vec2d::fromRandomAngle();
@@ -81,7 +82,7 @@ void Bacteriophage::infect(){
     //LYTIC phages kill Bacterium very quickly and multiply proportionaly to the Bacterium's energy
     if(status == "LYTIC" and getBacteriumColliding() != nullptr){
         if(!(getBacteriumColliding()->getImmunity())){
-             getBacteriumColliding()->consumeEnergy(30);
+             getBacteriumColliding()->consumeEnergy(getConfig()["energy consumed"].toDouble());
              getAppEnv().addPhage(new Bacteriophage(*this),petridishId);
         }
     }

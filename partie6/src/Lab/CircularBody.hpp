@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Utility/Vec2d.hpp"
 #include "Utility/Utility.hpp"
+#include "Utility/Vec2d.hpp"
 
 /*!
  * @class CircularBody::
