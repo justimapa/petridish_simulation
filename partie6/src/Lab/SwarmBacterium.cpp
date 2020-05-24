@@ -21,7 +21,7 @@ SwarmBacterium::SwarmBacterium(const Vec2d& position, Swarm* group)
     addProperty("immunity", MutableNumber::probability(getConfig()["immunity"]));
     toggleImmunity();
     ++swarmCounterMap[petridishId];
-    speedMap[petridishId]+=getProperty("speed").get();
+    speedMap[petridishId]+=getConfig()["speed"]["initial"].toDouble();
     if(getImmunity()){
         ++immuneCounter[petridishId];
     }else{
@@ -71,7 +71,7 @@ Bacterium* SwarmBacterium::clone(){
     Bacterium* new_Bact(new SwarmBacterium(*this));
     mutation(new_Bact);
     toggleImmunity();
-    speedMap[getAppEnv().getCurrentPetridishId()]+=new_Bact->getProperty("speed").get();
+    speedMap[getAppEnv().getCurrentPetridishId()]+=new_Bact->getConfig()["speed"]["initial"].toDouble();
     if(new_Bact->getImmunity()){
         ++immuneCounter[petridishId];
     }else{
@@ -95,6 +95,6 @@ j::Value& SwarmBacterium::getConfig( )const{
     return getAppConfig()["swarm bacterium"];
 }
 SwarmBacterium::~SwarmBacterium(){
-   speedMap[petridishId]-=getProperty("speed").get();
+   speedMap[petridishId]-=getConfig()["speed"]["initial"].toDouble();
    --swarmCounterMap[petridishId];
 }

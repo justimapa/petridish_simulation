@@ -24,7 +24,7 @@ Nutriment::Nutriment(Quantity const& quantity_,Vec2d const& position_,int const&
 Quantity Nutriment::takeQuantity(Quantity quantity_){
     Quantity initial_quantity(quantity);
     setQuantity(quantity - quantity_);
-    quantityCounterMap[getAppEnv().getCurrentPetridishId()]-=(initial_quantity-getQuantity());
+    quantityCounterMap[petridishId]-=(initial_quantity-getQuantity());
     return initial_quantity-getQuantity();
 }
 void Nutriment::setQuantity(Quantity quantity_){
@@ -56,18 +56,18 @@ void Nutriment::update(sf::Time dt){
     if(isTemperatureOK() and isQuantityOK()){
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
         quantity+=growth;
-        quantityCounterMap[getAppEnv().getCurrentPetridishId()]+=growth;
+        quantityCounterMap[petridishId]+=growth;
         setRadius(quantity);
         if(not isContained()){
             quantity-=growth;
-            quantityCounterMap[getAppEnv().getCurrentPetridishId()]-=growth;
+            quantityCounterMap[petridishId]-=growth;
             setRadius(quantity);
         }
     }
 }
 bool Nutriment::isTemperatureOK() const{
-    return getAppEnv().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
-            and getAppEnv().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble();
+    return getAppEnv().getPetridishwithId(petridishId)->getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
+            and getAppEnv().getPetridishwithId(petridishId)->getTemperature() <= getConfig()["growth"]["max temperature"].toDouble();
 }
 bool Nutriment::isQuantityOK() const{
     return quantity <= 2 * getConfig()["quantity"]["max"].toDouble();
