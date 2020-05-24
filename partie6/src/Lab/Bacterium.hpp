@@ -204,7 +204,7 @@ private:
     bool immunity;
     std::map <std::string,MutableNumber> mutations;
 protected:
-    //The petridish it belongs to
+    //Id of the petridish the Bacterium is in::
     int petridishId;
 
 };

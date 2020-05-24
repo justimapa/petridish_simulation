@@ -67,7 +67,6 @@ public:
     * @return True if the point is in our CircularBody::, false if not
     */
    bool contains(const Vec2d& point) const;
-
    /*!
     * @brief Prints the attributes of the current instance of CircularBody::
     * @param The output float of the print

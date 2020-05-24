@@ -501,13 +501,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
 				
 				mIsResetting = true;
 				getEnv().reset();
-// A DECOMMENTER:
                 getStats().reset();
-				onSimulationStart();
-				createViews();
-				mSimulationBackground= mLabBackground;
-				mSimulationView = mLabView;
-				chooseBackground();
             break;
 
         // Reset the simulation

@@ -5,6 +5,12 @@
 #include "Interface/Drawable.hpp"
 #include "Interface/Updatable.hpp"
 
+/*!
+ * @class Swarm
+ * @brief class representing the stats
+ *
+ * Subclass of Drawable and Updatable
+ */
 class Stats:public Drawable,public Updatable
 {
 public:

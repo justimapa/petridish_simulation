@@ -97,6 +97,7 @@ public:
     virtual ~Nutriment();
 private:
     Quantity quantity;
+    //Id of the petridish the Nutriment:: is in
     int petridishId;
 };
 

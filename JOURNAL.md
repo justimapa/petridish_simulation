@@ -209,12 +209,23 @@ Umut
 
 J'ai terminé de coder l'extension Bactériophage (système aléatoire pour phages lytiques/lysogéniques)
 
+Justin
+ 
+Les petridishs sont maintenant mise à jour simultanément.
+Il y a une configuration dans le JSON qui détermine le nombre de petridishs.
+J'ai ajouté le page stats IMMUNE.
+
 Samedi 23.05.2020
 
 Umut
 
 J'ai codé le paramètre mutable immunité des bactéries, qui leur donne l'attribut de pouvoir se protéger face aux bactériophages lorsque la valeur du paramètre franchit un certain seuil.
 
+Justin 
+J'ai nettoyé le code des Bactériophages
+
 Dimanche 24.05.2020
 
+Justin 
+J'ai revu les codes ai ajouté quelque commentaire
 RENDU FINAL!

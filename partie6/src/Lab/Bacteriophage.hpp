@@ -109,6 +109,7 @@ private:
     //which determines infection effect on Bacterium::
     std::string status;
     sf::Time delay;
+    //Id of the petridish the Bacteriophage is in::
     int petridishId;
 
 };

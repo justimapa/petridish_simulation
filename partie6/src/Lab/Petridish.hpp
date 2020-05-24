@@ -99,6 +99,11 @@ public:
      * @return True if the Bacterium:: could be added, false if not
      */
     bool addBacterium(Bacterium* bacterium);
+    /*!
+     * @brief Adds a Bacteriophage:: to the Petridish::
+     * @param Bacteriophage:: to be added
+     * @return True if the Bacteriophage:: could be added, false if not
+     */
     bool addPhage(Bacteriophage* phage);
     /*!
      * @brief Adds a Nutriment:: to the Petridish::

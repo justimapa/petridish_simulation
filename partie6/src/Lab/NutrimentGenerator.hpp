@@ -35,6 +35,7 @@ public:
     virtual ~NutrimentGenerator() override;
 private:
     sf::Time stopwatch;
+    //Id of the Petridish the Generator belongs to
     int id;
 };
 

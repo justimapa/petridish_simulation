@@ -73,5 +73,6 @@ private:
     std::string id;
     std::vector<SwarmBacterium*> group;
     SwarmBacterium* leader;
+    //Id of the petridish the Swarm is in::
     int petridishId;
 };
