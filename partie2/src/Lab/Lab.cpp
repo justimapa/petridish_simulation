@@ -18,7 +18,8 @@ void Lab::increaseTemperature()
 {
     dish.increaseTemperature();
 }
-void Lab::refreshConfig(){
+void Lab::refreshConfig()
+{
     dish.resetTemperature();
 }
 void Lab::addNutriment(Nutriment* nutriment)
@@ -37,7 +38,8 @@ bool Lab::contains(const CircularBody& body)
 {
     return (dish > body);
 }
-void Lab::reset(){
+void Lab::reset()
+{
     dish.reset();
 }
 Lab::~Lab()

@@ -54,12 +54,12 @@ ostream& CircularBody::print(ostream& out) const
 }
 
 CircularBody::CircularBody(Vec2d const& position,double const& radius)
-: position(position),
-  radius(radius)
+    : position(position),
+      radius(radius)
 { }
 CircularBody::CircularBody(CircularBody const& copy)
-: position(copy.getPosition()),
-  radius(copy.getRadius())
+    : position(copy.getPosition()),
+      radius(copy.getRadius())
 { }
 
 void CircularBody::setPosition(Vec2d& position_)

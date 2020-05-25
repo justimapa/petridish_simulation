@@ -1,18 +1,19 @@
- #include "Petridish.hpp"
+#include "Petridish.hpp"
 #include "Application.hpp"
 #include <cmath>
 
 using namespace std;
 
 Petridish::Petridish(const Vec2d &position_, const double &radius_, const double &temperature_, const double &gradientExponent_)
-: CircularBody(position_,radius_),
-  temperature(temperature_),
-  gradientExponent(gradientExponent_)
+    : CircularBody(position_,radius_),
+      temperature(temperature_),
+      gradientExponent(gradientExponent_)
 { }
 
-bool Petridish::addBacterium(Bacterium* bacterium){
-    if(bacterium!=nullptr){
-        if(*this > *bacterium){
+bool Petridish::addBacterium(Bacterium* bacterium)
+{
+    if(bacterium!=nullptr) {
+        if(*this > *bacterium) {
             buffer.push_back(bacterium);
             return true;
         }
@@ -20,9 +21,10 @@ bool Petridish::addBacterium(Bacterium* bacterium){
     delete bacterium;
     return false;
 }
-bool Petridish::addNutriment(Nutriment* nutriment){
-    if(nutriment!=nullptr){
-        if(*this > *nutriment){
+bool Petridish::addNutriment(Nutriment* nutriment)
+{
+    if(nutriment!=nullptr) {
+        if(*this > *nutriment) {
             nutriments.push_back(nutriment);
             return true;
         }
@@ -30,35 +32,37 @@ bool Petridish::addNutriment(Nutriment* nutriment){
     delete nutriment;
     return false;
 }
-bool Petridish::addSwarm(Swarm* swarm){
-    if(swarm!=nullptr){
-            swarms.push_back(swarm);
-            return true;
+bool Petridish::addSwarm(Swarm* swarm)
+{
+    if(swarm!=nullptr) {
+        swarms.push_back(swarm);
+        return true;
     }
     delete swarm;
     return false;
 }
 
-void Petridish::update(sf::Time dt){
-    for(auto& swarm:swarms){
+void Petridish::update(sf::Time dt)
+{
+    for(auto& swarm:swarms) {
         swarm->update(dt);
     }
-    for(auto& nutriment : nutriments){
-        if(nutriment!=nullptr){
-        nutriment->update(dt);
-        if(nutriment->isDead()){
-            delete nutriment;
-            nutriment=nullptr;
-        }
+    for(auto& nutriment : nutriments) {
+        if(nutriment!=nullptr) {
+            nutriment->update(dt);
+            if(nutriment->isDead()) {
+                delete nutriment;
+                nutriment=nullptr;
+            }
         }
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
-    for(auto& bacterium:bacteria){
-        if(bacterium!=nullptr){
-        bacterium->update(dt);
-        if(bacterium->isDead()){
-            delete bacterium;
-            bacterium=nullptr;
+    for(auto& bacterium:bacteria) {
+        if(bacterium!=nullptr) {
+            bacterium->update(dt);
+            if(bacterium->isDead()) {
+                delete bacterium;
+                bacterium=nullptr;
             }
         }
     }
@@ -66,27 +70,29 @@ void Petridish::update(sf::Time dt){
     append(buffer, bacteria);
     buffer.clear();
 }
-void Petridish::drawOn(sf::RenderTarget& targetWindow) const{
+void Petridish::drawOn(sf::RenderTarget& targetWindow) const
+{
     auto border=buildAnnulus(getPosition(),getRadius(),sf::Color::Black,5);
-    for(auto& nutriment : nutriments){
+    for(auto& nutriment : nutriments) {
         nutriment->drawOn(targetWindow);
     }
-    for(auto& bacterium : bacteria){
+    for(auto& bacterium : bacteria) {
         bacterium->drawOn(targetWindow);
     }
     targetWindow.draw(border);
 }
 
-void Petridish::reset(){
-    for(auto& swarm: swarms){
+void Petridish::reset()
+{
+    for(auto& swarm: swarms) {
         swarm->resetSwarm();
     }
-    for(auto& nutr: nutriments){
+    for(auto& nutr: nutriments) {
         delete nutr;
         nutr = nullptr;
     }
     nutriments.erase(remove(nutriments.begin(),nutriments.end(),nullptr),nutriments.end());
-    for(auto& bact : bacteria){
+    for(auto& bact : bacteria) {
         delete bact;
         bact = nullptr;
     }
@@ -94,57 +100,69 @@ void Petridish::reset(){
     resetGradientExponent();
     resetTemperature();
 }
-Petridish::~Petridish(){
+Petridish::~Petridish()
+{
     reset();
 }
 
-double Petridish::getGradientExponent() const{
+double Petridish::getGradientExponent() const
+{
     return gradientExponent;
 }
-void Petridish::decreaseGradientExponent(){
-    if(gradientExponent>getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble()){
-    gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
+void Petridish::decreaseGradientExponent()
+{
+    if(gradientExponent>getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble()) {
+        gradientExponent-=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
 
     }
 }
-void Petridish::increaseGradientExponent(){
+void Petridish::increaseGradientExponent()
+{
     gradientExponent+=getAppConfig()["petri dish"]["gradient"]["exponent"]["delta"].toDouble();
 }
-void Petridish::resetGradientExponent(){
+void Petridish::resetGradientExponent()
+{
     gradientExponent=(getAppConfig()["petri dish"]["gradient"]["exponent"]["min"].toDouble()+getAppConfig()["petri dish"]["gradient"]["exponent"]["max"].toDouble())/2;
 }
 
-double Petridish::getTemperature() const{
+double Petridish::getTemperature() const
+{
     return temperature;
 }
-void Petridish::decreaseTemperature(){
+void Petridish::decreaseTemperature()
+{
     temperature-=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
-void Petridish::increaseTemperature(){
+void Petridish::increaseTemperature()
+{
     temperature+=getAppConfig()["petri dish"]["temperature"]["delta"].toDouble();
 }
-void Petridish::resetTemperature(){
+void Petridish::resetTemperature()
+{
     temperature=getAppConfig()["petri dish"]["temperature"]["default"].toDouble();
 }
-Nutriment* Petridish::getNutrimentColliding(CircularBody const& body) const{
-    for(auto* nutriment:nutriments){
-        if((*nutriment)&body){
+Nutriment* Petridish::getNutrimentColliding(CircularBody const& body) const
+{
+    for(auto* nutriment:nutriments) {
+        if((*nutriment)&body) {
             return nutriment;
         }
     }
     return nullptr;
 }
-double Petridish::getPositionScore(Vec2d const& position) const{
+double Petridish::getPositionScore(Vec2d const& position) const
+{
     double score = 0.0;
-    for(auto& nutriment:nutriments){
+    for(auto& nutriment:nutriments) {
         score+=(nutriment->getQuantity())/pow(distance(position,nutriment->getPosition()),gradientExponent);
     }
     return score;
 }
 
-Swarm* Petridish::getSwarmWithId(const string &id) const{
-    for(Swarm* swarm:swarms){
-        if(id==swarm->getId()){
+Swarm* Petridish::getSwarmWithId(const string &id) const
+{
+    for(Swarm* swarm:swarms) {
+        if(id==swarm->getId()) {
             return swarm;
         }
     }

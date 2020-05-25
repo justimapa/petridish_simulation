@@ -6,13 +6,13 @@
 using namespace std;
 
 Nutriment::Nutriment(Quantity const& quantity,Vec2d const& position)
-: CircularBody(position, quantity),
-  quantity(quantity)
+    : CircularBody(position, quantity),
+      quantity(quantity)
 { }
 Quantity Nutriment::takeQuantity(Quantity quantity_)
 {
     Quantity quantity_taken(quantity_);
-    if(quantity >= quantity_){
+    if(quantity >= quantity_) {
         quantity -= quantity_;
         setRadius(quantity);
         return quantity_taken;
@@ -25,7 +25,7 @@ Quantity Nutriment::takeQuantity(Quantity quantity_)
 }
 void Nutriment::setQuantity(Quantity quantity_)
 {
-    if(quantity_ >= 0.0){
+    if(quantity_ >= 0.0) {
         quantity = quantity_;
     } else {
         quantity = 0.0;
@@ -33,13 +33,13 @@ void Nutriment::setQuantity(Quantity quantity_)
 }
 void Nutriment::drawOn(sf::RenderTarget& target) const
 {
-    if(not isDebugOn()){
-    auto const& texture = getAppTexture(getConfig()["texture"].toString());
-    auto nutrimentSprite = buildSprite(getPosition(),getRadius(), texture);
-    nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
-                             texture.getSize().y);
-    target.draw(nutrimentSprite);
-    }else{
+    if(not isDebugOn()) {
+        auto const& texture = getAppTexture(getConfig()["texture"].toString());
+        auto nutrimentSprite = buildSprite(getPosition(),getRadius(), texture);
+        nutrimentSprite.setScale(2 * getRadius() / texture.getSize().x, 2 * getRadius() /
+                                 texture.getSize().y);
+        target.draw(nutrimentSprite);
+    } else {
         string message="Qte : "+to_string((int)quantity);
         auto const text=buildText(message,getPosition(),getAppFont(),15,sf::Color::Black);
         auto border = buildAnnulus(getPosition(),getRadius(),sf::Color::Green,2);
@@ -53,11 +53,11 @@ j::Value const& Nutriment::getConfig() const
 }
 void Nutriment::update(sf::Time dt)
 {
-    if(isTemperatureOK() and isQuantityOK() ){
+    if(isTemperatureOK() and isQuantityOK() ) {
         auto growth = getConfig()["growth"]["speed"].toDouble() * dt.asSeconds();
         quantity+=growth;
         setRadius(quantity);
-        if(not isContained()){
+        if(not isContained()) {
             quantity-=growth;
             setRadius(quantity);
         }
@@ -66,7 +66,7 @@ void Nutriment::update(sf::Time dt)
 bool Nutriment::isTemperatureOK() const
 {
     return getAppEnv().getTemperature() >= getConfig()["growth"]["min temperature"].toDouble()
-            and getAppEnv().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble();
+           and getAppEnv().getTemperature() <= getConfig()["growth"]["max temperature"].toDouble();
 }
 bool Nutriment::isQuantityOK() const
 {

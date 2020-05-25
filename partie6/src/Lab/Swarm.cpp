@@ -11,54 +11,64 @@ Swarm::Swarm(const string& id):
 {
 
 }
-void Swarm::addSwarmBacterium(SwarmBacterium* bacterium){
-    if(bacterium!=nullptr){
+void Swarm::addSwarmBacterium(SwarmBacterium* bacterium)
+{
+    if(bacterium!=nullptr) {
         group.push_back(bacterium);
     }
 }
-void Swarm::removeSwarmBacterium(SwarmBacterium* bacterium){
+void Swarm::removeSwarmBacterium(SwarmBacterium* bacterium)
+{
     group.erase(remove(group.begin(),group.end(),bacterium),group.end());
 }
-const Vec2d& Swarm::getLeaderPosition()const{
+const Vec2d& Swarm::getLeaderPosition()const
+{
     return leader->getPosition();
 }
-j::Value& Swarm::getInitialColor()const{
+j::Value& Swarm::getInitialColor()const
+{
     return getAppConfig()["swarms"][id]["color"];
 }
-void Swarm::update(sf::Time dt){
+void Swarm::update(sf::Time dt)
+{
     leader=nullptr;
     double leaderScore(0);
     double temp(0);
-    for (auto& swarmbacterium: group){
-        if(swarmbacterium->isDead()){
+    for (auto& swarmbacterium: group) {
+        if(swarmbacterium->isDead()) {
             swarmbacterium=nullptr;
-        }else{
-        temp=getAppEnv().getPositionScore(swarmbacterium->getPosition(),petridishId);
-        if (temp>= leaderScore){
+        } else {
+            temp=getAppEnv().getPositionScore(swarmbacterium->getPosition(),petridishId);
+            if (temp>= leaderScore) {
                 leaderScore = temp;
                 leader = swarmbacterium;
             }
         }
     }
     removeSwarmBacterium(nullptr);
-   }
-bool Swarm::isLeader(const SwarmBacterium* bacterium)const {
+}
+bool Swarm::isLeader(const SwarmBacterium* bacterium)const
+{
     return leader==bacterium;
 }
-bool Swarm::hasLeader()const{
+bool Swarm::hasLeader()const
+{
     return leader!=nullptr;
 }
-string Swarm::getId()const{
+string Swarm::getId()const
+{
     return id;
 }
-void Swarm::resetSwarm(){
-    for(auto& bacterium:group){
+void Swarm::resetSwarm()
+{
+    for(auto& bacterium:group) {
         bacterium = nullptr;
     }
     group.erase(remove(group.begin(),group.end(),nullptr),group.end());
 }
-Swarm::~Swarm(){
-    for(auto& bacterium:group){
+Swarm::~Swarm()
+{
+    for(auto& bacterium:group) {
         delete bacterium;
         bacterium=nullptr;
     }

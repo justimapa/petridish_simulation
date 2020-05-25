@@ -19,7 +19,7 @@ void FinalApplication::onRun()
 {
     // Basic setup
     Application::onRun();
-	// add graphs for statistics
+    // add graphs for statistics
     setStats(true);
     addGraph(s::GENERAL, { s::SIMPLE_BACTERIA, s::TWITCHING_BACTERIA, s::SWARM_BACTERIA, s::NUTRIMENT_SOURCES, s::DISH_TEMPERATURE}, 0, 150);
     addGraph(s::NUTRIMENT_QUANTITY, {s::NUTRIMENT_QUANTITY}, 0, 2000);
@@ -33,10 +33,10 @@ void FinalApplication::onRun()
 
 void FinalApplication::onSimulationStart()
 {
-	Application::onSimulationStart();
+    Application::onSimulationStart();
     //add Petridishes and adds the swarm 1 and 2 to each of the dishes
     //To change the number of petridishes change in JSON
-    for(int i=0;i<getAppConfig()["petri dish"]["total"].toDouble();++i){
+    for(int i=0; i<getAppConfig()["petri dish"]["total"].toDouble(); ++i) {
         getEnv().addPetridish(i);
         getEnv().setCurrentDishId(i);
         getEnv().addSwarm(new Swarm("1"));
@@ -68,13 +68,15 @@ void FinalApplication::onEvent(sf::Event event, sf::RenderWindow&)
             auto swarm = getEnv().getSwarmWithId("1");
             assert(swarm != nullptr);
             getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm),getEnv().getCurrentPetridishId());
-        } break;
+        }
+        break;
 
         case sf::Keyboard::Num2: {
             auto swarm = getEnv().getSwarmWithId("2");
             assert(swarm != nullptr);
             getEnv().addBacterium(new SwarmBacterium(getCursorPositionInView(), swarm),getEnv().getCurrentPetridishId());
-        } break;
+        }
+        break;
 
 
         }

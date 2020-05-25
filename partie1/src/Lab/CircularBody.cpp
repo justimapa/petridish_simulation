@@ -6,12 +6,13 @@ using namespace std;
 
 CircularBody::CircularBody(Vec2d const& position,double const& radius):
     position(position),
-    radius(radius){
+    radius(radius)
+{
     //Done.
 }
 CircularBody::CircularBody(CircularBody const& copy):
-   position(copy.getPosition()),
-   radius(copy.getRadius())
+    position(copy.getPosition()),
+    radius(copy.getRadius())
 {
     //Done.
 }

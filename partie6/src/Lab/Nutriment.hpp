@@ -18,7 +18,8 @@ class SwarmBacterium;
  * Subclass of CircularBody::, Drawable:: and Updatable
  * Abstract class that can't have any instances
  */
-class Nutriment : public CircularBody,public Drawable,public Updatable{
+class Nutriment : public CircularBody,public Drawable,public Updatable
+{
 public:
     //counter for the number of nutrient sources in a given Petridish::
     static std::map<int,int> nutrimentCounterMap;

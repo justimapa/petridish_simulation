@@ -11,19 +11,23 @@ NutrimentA::NutrimentA(Quantity const& quantity,Vec2d const& position,int const&
 {
 }
 
-Quantity NutrimentA::eatenBy(Bacterium& bact){
+Quantity NutrimentA::eatenBy(Bacterium& bact)
+{
     return bact.eatableQuantity(*this);
 }
 
-Quantity NutrimentA::eatenBy(SimpleBacterium& bact){
+Quantity NutrimentA::eatenBy(SimpleBacterium& bact)
+{
     return takeQuantity(bact.getMaxEatableQuantity().toDouble());
 }
 
-Quantity NutrimentA::eatenBy(TwitchingBacterium& bact){
+Quantity NutrimentA::eatenBy(TwitchingBacterium& bact)
+{
     return takeQuantity(bact.getMaxEatableQuantity().toDouble());
 }
 
-Quantity NutrimentA::eatenBy(SwarmBacterium& bact){
+Quantity NutrimentA::eatenBy(SwarmBacterium& bact)
+{
     return takeQuantity(bact.getMaxEatableQuantity().toDouble());
 }
 
@@ -31,5 +35,6 @@ j::Value const& NutrimentA::getConfig() const
 {
     return getAppConfig()["nutriments"]["A"];
 }
-NutrimentA::~NutrimentA(){
+NutrimentA::~NutrimentA()
+{
 }

@@ -3,33 +3,34 @@
 
 MutableNumber::MutableNumber(double value_, double prob_mutation_,
                              double StdDev_, bool hasLowerBound_, double LowerBound_,
-              bool hasUpperBound_, double UpperBound_)
-: value(value_),
-  prob_mutation(prob_mutation_),
-  StdDev(StdDev_),
-  hasLowerBound(hasLowerBound_),
-  LowerBound(LowerBound_),
-  hasUpperBound(hasUpperBound_),
-  UpperBound(UpperBound_)
+                             bool hasUpperBound_, double UpperBound_)
+    : value(value_),
+      prob_mutation(prob_mutation_),
+      StdDev(StdDev_),
+      hasLowerBound(hasLowerBound_),
+      LowerBound(LowerBound_),
+      hasUpperBound(hasUpperBound_),
+      UpperBound(UpperBound_)
 { }
 
 MutableNumber::MutableNumber(j::Value const& config)
-: value(config["initial"].toDouble()),
-  prob_mutation(config["rate"].toDouble()),
-  StdDev(config["sigma"].toDouble()),
-  hasLowerBound(config["clamp min"].toBool()),
-  LowerBound(config["min"].toDouble()),
-  hasUpperBound(config["clamp max"].toBool()),
-  UpperBound(config["max"].toDouble())
+    : value(config["initial"].toDouble()),
+      prob_mutation(config["rate"].toDouble()),
+      StdDev(config["sigma"].toDouble()),
+      hasLowerBound(config["clamp min"].toBool()),
+      LowerBound(config["min"].toDouble()),
+      hasUpperBound(config["clamp max"].toBool()),
+      UpperBound(config["max"].toDouble())
 { }
 
-MutableNumber::MutableNumber(){
+MutableNumber::MutableNumber()
+{
 
 }
 
 void MutableNumber::set(double value_)
 {
-    if(value_ > UpperBound and hasUpperBound){
+    if(value_ > UpperBound and hasUpperBound) {
         value = UpperBound;
     } else if(value_ < LowerBound and hasLowerBound) {
         value = LowerBound;
@@ -46,7 +47,7 @@ double MutableNumber::get() const
 void MutableNumber::mutate()
 {
     if(bernoulli(prob_mutation)) {
-         set(value+=normal(0, StdDev*StdDev));
+        set(value+=normal(0, StdDev*StdDev));
     }
 }
 
@@ -70,6 +71,7 @@ MutableNumber MutableNumber::positive(j::Value const& config, bool hasMax, doubl
     return MutableNumber(config["initial"].toDouble(), config["rate"].toDouble(), config["sigma"].toDouble(), true, 0.0, hasMax, max);
 }
 
-MutableNumber::~MutableNumber(){
+MutableNumber::~MutableNumber()
+{
 
 }

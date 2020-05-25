@@ -1,15 +1,15 @@
 #include "MutableColor.hpp"
 
 MutableColor::MutableColor(j::Value const& config)
-: RGBA({MutableNumber(config["r"]), MutableNumber(config["g"]), MutableNumber(config["b"]), MutableNumber(config["a"])})
+    : RGBA({MutableNumber(config["r"]), MutableNumber(config["g"]), MutableNumber(config["b"]), MutableNumber(config["a"])})
 {}
 
 void MutableColor::mutate()
 {
-   RGBA[0].mutate();
-   RGBA[1].mutate();
-   RGBA[2].mutate();
-   RGBA[3].mutate();
+    RGBA[0].mutate();
+    RGBA[1].mutate();
+    RGBA[2].mutate();
+    RGBA[3].mutate();
 }
 
 sf::Color MutableColor::get() const
