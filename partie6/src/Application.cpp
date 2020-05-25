@@ -537,7 +537,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
                 mLab->decreaseGradientExponent();
                 break;
             case STATS:
-                mStats->previous();
+                if(isStatsOn)mStats->previous();
                 break;
             case PETRIDISH:
                 mLab->previousPetridish();
@@ -556,7 +556,7 @@ void Application::handleEvent(sf::Event event, sf::RenderWindow& window)
                 mLab->increaseGradientExponent();
                 break;
             case STATS:
-                mStats->next();
+                if(isStatsOn)mStats->next();
                 break;
             case PETRIDISH:
                 mLab->nextPetridish();
