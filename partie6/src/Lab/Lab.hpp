@@ -75,22 +75,22 @@ public:
      * @return true if the other CircularBody:: has a smaller radius and the center is
      * within the dish, false if not
      */
-    bool contains(const CircularBody&,int const& id) const;
+    bool contains(const CircularBody&,int const& id=0) const;
     /*!
      * @brief Adds a Nutriment:: to the Petridish::
-     * @param Nutriment:: to be added
+     * @param Nutriment:: to be added, set to default to 0 so it is compatible with other tests
      */
-    void addNutriment(Nutriment*,int const& id);
+    void addNutriment(Nutriment*,int const& id=0);
     /*!
      * @brief Adds a Bacterium:: to the Petridish::
-     * @param Bacterium:: to be added
+     * @param Bacterium:: to be added, set to default to 0 so it is compatible with other tests
      */
-    void addBacterium(Bacterium*,int const& id);
+    void addBacterium(Bacterium*,int const& id=0);
     /*!
      * @brief Adds a Bacteriophage:: to the Petridish::
-     * @param Bacteriophage:: to be added
+     * @param Bacteriophage:: to be added, set to default to 0 so it is compatible with other tests
      */
-    void addPhage(Bacteriophage*,int const& id);
+    void addPhage(Bacteriophage*,int const& id=0);
     /*!
      * @brief Adds a Swarm:: to the Petridish::
      * @param Swarm:: to be added

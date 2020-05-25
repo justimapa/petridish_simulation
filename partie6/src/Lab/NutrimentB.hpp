@@ -14,9 +14,10 @@ public:
      * @brief Constructs a NutrimentB:: fully set up
      * @param Quantity of the NutrimentB::
      * @param Position of the NutrimentB::
+     * @param id of the Petridish the NutrimentB:: belongs to, set to 0 to be compatible with the other tests
      * @return A NutrimentB:: with all parameters set
      */
-    NutrimentB(Quantity const& quantity, Vec2d const& position, const int &id);
+    NutrimentB(Quantity const& quantity, Vec2d const& position, const int &id=0);
     /*!
      * @brief Looks at how much NutrimentB:: is eaten by the different types
      * of Bacterium::

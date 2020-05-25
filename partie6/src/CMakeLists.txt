@@ -81,6 +81,7 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
       target_link_libraries(application sfml-graphics sfml-window sfml-system)
 	
       #Units tests:
+
       #add_executable (mutableTest  ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
       #target_link_libraries(mutableTest sfml-graphics sfml-window sfml-system)
       #add_executable (circularBodyTest  ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
@@ -102,6 +103,7 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
       #target_link_libraries(swarmTest sfml-graphics sfml-window sfml-system)
       #add_executable (twitchingTest  ${TEST_DIR}/GraphicalTests/TwitchingBacteriaTest.cpp ${SOURCES_GFX})
      #target_link_libraries(twitchingTest sfml-graphics sfml-window sfml-system)
+
     else()
         set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
         find_package(SFML 2 COMPONENTS graphics window system)
@@ -118,6 +120,7 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
             target_link_libraries(application ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
 	    #Units tests:
+
             #add_executable (mutableTest ${TEST_DIR}/UnitTests/MutablePropertyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
             #target_link_libraries(mutableTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
             #add_executable (circularBodyTest ${TEST_DIR}/UnitTests/CircularBodyTest.cpp ${CB_SOURCES} ${CACHE_SOURCES})
@@ -139,6 +142,7 @@ find_package(SFML 2.5 QUIET COMPONENTS graphics window system)
            # target_link_libraries(swarmTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
            # add_executable(twitchingTest ${TEST_DIR}/GraphicalTests/TwitchingBacteriaTest.cpp ${SOURCES_GFX})
            # target_link_libraries(twitchingTest ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+
         else()
             message(STATUS "SFML NOT FOUND ! ")
         endif() ## SFML 2
