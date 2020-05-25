@@ -28,9 +28,10 @@ public:
      * @brief Constructs a Nutriment:: fully set up
      * @param Position of the Nutriment::
      * @param Quantity of the Nutriment::
+     * @param id of the Petridish the Nutriment:: belongs to, set to 0 to be compatible with the other tests
      * @return A Nutriment:: with all parameters set
      */
-    Nutriment(Quantity const& quantity_, Vec2d const& position_, const int &id);
+    Nutriment(Quantity const& quantity_, Vec2d const& position_, const int &id=0);
     /*!
      * @brief Pure virtual methods, inherited by classes NutrimentA::
      * and NutrimentB::, specific to each type of Bacterium

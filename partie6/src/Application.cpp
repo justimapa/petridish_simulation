@@ -247,7 +247,9 @@ void Application::run()
                 elapsedTime -= dt;
 				getEnv().update(dt);
 				// A DECOMMENTER
+                if(isStatsOn){
                 getStats().update(dt);
+                }
                 onUpdate(dt);
 				--nbCycles;
 
@@ -364,6 +366,7 @@ Vec2d Application::getCentre() const
 void Application::onRun()
 {
     // By default nothing is done here
+    getAppEnv().addPetridish(0);
 	chooseBackground();
 }
 
